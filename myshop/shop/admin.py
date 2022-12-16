@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Category, Product, Contact
+from import_export.admin import ExportActionMixin
 
 # registering model category to admin
 # displaying name and slug of the product
@@ -26,6 +27,6 @@ admin.site.register(Product, ProductAdmin)
 
 # Registering contact model for admin.
 # In admin panel it's displaying subject, email and date of contact sent.
-class ContactAdmin(admin.ModelAdmin):
+class ContactAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['subject','email','sent_date']
 admin.site.register(Contact, ContactAdmin)
