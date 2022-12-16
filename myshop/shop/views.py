@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .models import Product, Category, Contact
 
+# Django view for contact
+# On url = x.x.x.x/contact it should display contact form
+# After clicking button 'SUBMIT' it moves the user to 'contact_sent.html'
+# Data go to admin panel, they are kept in SQLite as everything.
+# If contact has not been sent it's return to contact form.
 def contact(request):
     if request.method=='POST':
         contact=Contact()
@@ -13,7 +18,7 @@ def contact(request):
         contact.text=text
         contact.save()
 
-        return render(request, 'contact.html')
+        return render(request, 'contact_sent.html')
 
     return render(request, 'contact.html')
 

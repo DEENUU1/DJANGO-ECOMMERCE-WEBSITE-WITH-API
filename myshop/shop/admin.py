@@ -24,5 +24,8 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
-# Registering contact model for admin
-admin.site.register(Contact)
+# Registering contact model for admin.
+# In admin panel it's displaying subject, email and date of contact sent.
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['subject','email','sent_date']
+admin.site.register(Contact, ContactAdmin)
