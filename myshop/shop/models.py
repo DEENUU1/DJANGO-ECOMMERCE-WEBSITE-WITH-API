@@ -36,3 +36,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# Contact model
+# Email, subject, text are required it's declared in 'contact.html'
+
+class Contact(models.Model):
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.subject
