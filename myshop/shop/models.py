@@ -4,6 +4,7 @@ from django.db import models
 # This class creates categories
 # And joins them products
 class Category(models.Model):
+    objects = None
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
@@ -19,6 +20,7 @@ class Category(models.Model):
 # This class creates products
 # I used DecimalField here to prevent rounding prices
 class Product(models.Model):
+    objects = None
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
@@ -38,14 +40,3 @@ class Product(models.Model):
         return self.name
 
 
-# Contact model
-# Email, subject, text are required it's declared in 'contact.html'
-
-class Contact(models.Model):
-    email = models.EmailField()
-    subject = models.CharField(max_length=100)
-    text = models.TextField()
-    sent_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.subject
