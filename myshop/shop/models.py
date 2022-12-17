@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 
 # This class creates categories
@@ -15,7 +16,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
 # This class creates products
 # I used DecimalField here to prevent rounding prices

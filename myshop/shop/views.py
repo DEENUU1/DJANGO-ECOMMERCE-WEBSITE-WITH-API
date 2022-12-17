@@ -19,3 +19,13 @@ def main(request, category_slug=None):
                    'categories': categories,
                    'products': products})
 
+
+# This view represent detail of all available products
+
+def main_detail(request, id, slug):
+    product = get_object_or_404(Product,
+                                id=id,
+                                slug=slug,
+                                available=True)
+    return render(request,'detail.html',
+                  {'product': product})

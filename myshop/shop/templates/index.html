@@ -6,7 +6,15 @@
 </head>
 <body>
 
-<h4>Test</h4>
-
+{% for product in products %}
+<div style="text-align:center">
+<h1>{{product.name}}</h1>
+<p>{{product.stock}}</p>
+<p>{{product.available}}</p>
+<p>{{product.price}}</p>
+<img src="{{product.image.url}}">
+<a href="{% url 'product_details' id=product.id slug=product.slug %}">{{product.name}}</a>
+</div>
+{% endfor %}
 </body>
 </html>
