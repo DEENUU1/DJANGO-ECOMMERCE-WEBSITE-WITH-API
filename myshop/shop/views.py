@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
-
+from .models import Product, Category, Comments
+from .forms import CommentForm
 
 
 
@@ -21,11 +21,27 @@ def main(request, category_slug=None):
 
 
 # This view represent detail of all available products
+# It also displays user's comments
 
 def main_detail(request, id, slug):
     product = get_object_or_404(Product,
                                 id=id,
                                 slug=slug,
                                 available=True)
+
     return render(request,'detail.html',
                   {'product': product})
+
+
+# This is view for adding comments
+# It isn't done yet so I commented that
+
+# def add_comment(request):
+#     product = Product.objects.get()
+#     form = CommentForm()
+#
+#     context = {
+#         'form': form
+#     }
+#
+#     return render(request, 'comments.html', context)

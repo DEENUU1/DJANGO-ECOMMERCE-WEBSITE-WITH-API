@@ -1,3 +1,4 @@
+{% load static %}
 
 <html lang="en">
 <head>
@@ -6,13 +7,31 @@
 </head>
 <body>
 
+<a href="/">Strona główna</a>
+
+{% for category in categories %}
+
+<a href="{% url 'all_available_category' category_slug=category.slug %}">{{ category.name }}</a>
+
+{% endfor %}
+
+
+<a href="#">Twój koszyk</a>
+
+
 {% for product in products %}
 <div style="text-align:center">
 <h1>{{product.name}}</h1>
-<p>{{product.stock}}</p>
-<p>{{product.available}}</p>
-<p>{{product.price}}</p>
-<img src="{{product.image.url}}">
+<p>Dostępne sztuki: {{product.stock}}</p>
+<p>Cena: {{product.price}}zł</p>
+
+{% if product.image %}
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+{% else %}
+    <img src="{% static 'images/brak.png' %}" alt="No image">
+{% endif %}
+
+
 <a href="{% url 'product_details' id=product.id slug=product.slug %}">{{product.name}}</a>
 </div>
 {% endfor %}

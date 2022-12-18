@@ -1,5 +1,4 @@
 from django.db import models
-from django.shortcuts import reverse
 
 
 # This class creates categories
@@ -40,3 +39,17 @@ class Product(models.Model):
         return self.name
 
 
+
+# This model is for users to write a comments
+# All user can write a comment after adding name, subject and email
+# It doens't work now!
+class Comments(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=30)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+
+    def __str__(self):
+        return '%s - %s' % (self.product.name, self.user_name)
