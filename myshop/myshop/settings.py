@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'shopcontact',
+    'star_ratings',
 
 ]
 
 CART_SESSION_ID = 'cart'
+
+START_RATINGS_RATING_MODEL = 'shop.MyRating'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
+                'django.template.context_processors.request'
             ],
         },
     },

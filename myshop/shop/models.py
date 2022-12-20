@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
+from star_ratings.models import AbstractBaseRating
+
+
 # This class creates categories
 # And joins them products
 class Category(models.Model):
-    # objects = None
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
@@ -22,7 +24,6 @@ class Category(models.Model):
 # This class creates products
 # I used DecimalField here to prevent rounding prices
 class Product(models.Model):
-    # objects = None
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
@@ -59,3 +60,10 @@ class Comments(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.product.name, self.user_name)
+
+
+
+# This model is for rating system
+
+class MyRating(AbstractBaseRating):
+    foo = models.TextField()

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Comments
+from .models import Category, Product, Comments, MyRating
 from import_export.admin import ExportActionMixin
 
 # registering model category to admin
@@ -32,3 +32,6 @@ class CommentsAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['product','subject', 'text', 'user_name', 'email']
 
 
+@admin.register(MyRating)
+class RatingAdmin(admin.ModelAdmin):
+    list_display = ['foo']

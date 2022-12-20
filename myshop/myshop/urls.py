@@ -10,5 +10,7 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
     path('', include('shopcontact.urls')),
     url('', include('shop.urls', namespace='shop')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
