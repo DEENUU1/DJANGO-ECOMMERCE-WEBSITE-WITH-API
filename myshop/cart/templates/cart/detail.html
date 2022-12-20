@@ -1,0 +1,59 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    Koszyk
+{% endblock %}
+
+{% block content %}
+<h1>Koszyk</h1>
+<table class="cart">
+    <thead>
+    <tr>
+        <th>Zdjęcie</th>
+        <th>Produkt</th>
+        <th>Ilość</th>
+        <th>Usuń</th>
+        <th>Cena za sztuke</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+        {% with product=item.product %}
+    <tr>
+        <td>
+            <a href="{{product.get_absolute_url}}">
+                <img src="{{product.image.url}}">
+            </a>
+        </td>
+        <td>{{product.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>
+            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+            <input type="submit" value="Remove">
+            {% csrf_token %}
+            </form>
+        </td>
+        <td class="num">zł{{item.price}}</td>
+        <td class="num">zł{{item.total_price}}</td>
+    </tr>
+        {% endwith %}
+    {% endfor %}
+    <tr class="total">
+        <td>Total</td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td class="num">zł{{cart.get_total_price}}</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<p class="text-right">
+    <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
+    <a href="#" class="button">Przejdź do płatności</a>
+</p>
+
+{% endblock %}

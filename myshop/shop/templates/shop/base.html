@@ -1,0 +1,27 @@
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} JANUSZEX {% endblock %}</title>
+    <link href="#">
+</head>
+<body>
+
+<div id="header">
+    <a href="/" class="logo">JANUSZEX</a>
+</div>
+
+<div id="subheader">
+    <div class="cart">
+        Twój koszyk jest pusty
+    </div>
+</div>
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,12 +1,36 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title>Shop</title>
+    <link rel="stylesheet" href="{% static '/css/contact.css' %}">
 </head>
 <body>
 
-<form class="" method="post" >
+<!--NAVIGATION BAR-->
+
+<div class="navigation-bar">
+  <section id="nav-bar" class="container">
+    <header class="nav-bar">
+      <div class="brand"><a href="#">JANUSZEX</a></div>
+      <div class="nav-list">
+        <div class="hamburger">
+          <div class="bar"></div>
+        </div>
+        <ul>
+          <li><a href="/contact/">Kontakt</a></li>
+          <li><a href="#contact">Koszyk</a></li>
+        </ul>
+      </div>
+    </header>
+  </section>
+</div>
+
+<!--END OF NAVIGATION BAR-->
+
+<section class="contact-form">
+<form class="" method="post">
 
     {% csrf_token %}
     <input name="email" type="text" class="feedback-input" placeholder="E-mail" required/>
@@ -14,6 +38,35 @@
     <textarea name="text" class="feedback-input" placeholder="Message" required></textarea>
     <input type="submit" value="SUBMIT"/>
 </form>
+
+</section>
+
+<!--FOOTER SECTION-->
+
+  <footer id="footer" class="footer container">
+    <div class="footer-contact">
+      <h1 class="footer-contact-heading">Check my social media</h1>
+      <p class="footer-contact-info">Email: YOUR EMAIL HERE</p>
+    </div>
+    <div class="footer-social-follow">
+      <div class="footer-social-icon">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+<!--END OF FOOTER SECTION-->
+
+<!--HAMBURGER SCRIPT-->
+
+  <script src="{%static '/jc/app.js'%}"></script>
+
+
+<!--END OF HAMBURGER SCRIPT-->
+
+
 
 </body>
 </html>

@@ -1,13 +1,10 @@
 from django import forms
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1,21)]
 
+# This form allows user to choose from 1 do 9 pieces of product
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 10)]
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypeChoiceField(
-        choices = PRODUCT_QUANTITY_CHOICES,
-        coerce=int
-    )
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
-    update = forms.BooleanField(required=False,
-                                initial=False,
-                                widget=forms.HiddenInput)
+

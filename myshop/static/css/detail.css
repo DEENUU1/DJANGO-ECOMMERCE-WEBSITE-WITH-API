@@ -1,0 +1,45 @@
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.product-description {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff0000;
+  margin: 10px 0;
+}
+
+.buy-button {
+  display: block;
+  width: 100px;
+  height: 30px;
+  background-color: #00ff00;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+/* Responsywne reguły CSS */
+
+@media screen and (max-width: 768px) {
+  .product-name {
+    font-size: 20px;
+  }
+
+  .product-description {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+}
