@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Comments, MyRating
+from .models import Category, Product
 from import_export.admin import ExportActionMixin
 
 # registering model category to admin
@@ -27,11 +27,8 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # This allows administrator in admin panel see all comments
 # It should display information like: what product got a comment, subject, main text, user name and user email
-@admin.register(Comments)
-class CommentsAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ['product','subject', 'text', 'user_name', 'email']
 
 
-@admin.register(MyRating)
-class RatingAdmin(admin.ModelAdmin):
-    list_display = ['foo']
+# @admin.register(Comments)
+# class CommentsAdmin(ExportActionMixin, admin.ModelAdmin):
+#     list_display = ['product','subject', 'text', 'user_name', 'email']

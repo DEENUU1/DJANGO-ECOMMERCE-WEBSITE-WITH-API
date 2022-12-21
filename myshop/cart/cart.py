@@ -2,7 +2,6 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 
-
 # This class represent all functionality of cart
 
 class Cart(object):

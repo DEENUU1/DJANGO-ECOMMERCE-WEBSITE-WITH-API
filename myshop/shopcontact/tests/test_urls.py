@@ -1,11 +1,10 @@
 from django.test import TestCase
+from django.urls import reverse
 
+# This test checks if the main page of the contact form is running
 
 # To run this test write in a console
-# coverage run manage.py test shop.tests.test_urls
-
-
-# This test checks if the main page of the shop is running
+# coverage run manage.py test shopcontact.tests.test_urls
 
 class UrlTest_HomePage(TestCase):
     def testHomePage(self):
