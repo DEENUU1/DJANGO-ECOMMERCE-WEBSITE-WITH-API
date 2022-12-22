@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
-# from .forms import CommentForm
 from cart.forms import CartAddProductForm
-
+from .forms import RateForm
 
 # This view represent all products
 # The view displays only available products
@@ -34,15 +33,23 @@ def product_detail(request, id, slug):
                    'cart_product_form': cart_product_form})
 
 
-# This is view for adding comments
-# It isn't done yet so I commented that
 
-# def add_comment(request):
+# This view is representing product rate
+
+# def product_rate(request):
 #     product = Product.objects.get()
-#     form = CommentForm()
 #
-#     context = {
-#         'form': form
-#     }
+#     if request.method == 'POST':
+#         form = RateForm(request.POST)
+#         if form.is_valid():
+#             rate = form.save(commit=False)
+#             rate.movie = product
+#             rate.save()
+#             return render(request, 'shop/products/detail.html',
+#                           {'product': product})
 #
-#     return render(request, 'comments.html', context)
+#     else:
+#         form = RateForm()
+#
+#     template = loader.get_template(;)
+

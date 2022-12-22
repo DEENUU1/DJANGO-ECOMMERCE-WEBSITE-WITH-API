@@ -54,17 +54,22 @@ class Product(models.Model):
                        args=[self.id, self.slug])
 
 
-# This model is for users to write a comments
-# All user can write a comment after adding name, subject and email
-# It doens't work now!
-# class Comments(models.Model):
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     user_name = models.CharField(max_length=30)
-#     text = models.TextField()
-#     date_added = models.DateTimeField(auto_now_add=True)
-#     email = models.EmailField()
-#     subject = models.CharField(max_length=100)
-#
-#     def __str__(self):
-#         return '%s - %s' % (self.product.name, self.user_name)
-#
+# This model is for users to rate the product
+# From 1 to 5
+
+RATE = [
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
+]
+
+
+class ProductRate(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.TextField(max_length=1000, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    rate = models.PositiveIntegerField(choices=RATE)
+
+

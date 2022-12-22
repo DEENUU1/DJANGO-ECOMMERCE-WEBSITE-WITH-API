@@ -53,7 +53,7 @@
 
 <p class="text-right">
     <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
-    <a href="#" class="button">Przejdź do płatności</a>
+    <a href="{% url 'cart:order_create' %}" class="button">Przejdź do płatności</a>
 </p>
 
 {% endblock %}

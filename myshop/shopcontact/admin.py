@@ -8,6 +8,7 @@ from import_export.admin import ExportActionMixin
 # In the admin panel you can choose Action
 # Export selected contacts -> allows to download chosen data
 # Delete selected contacts -> allows to delete chosen data
+@admin.register(Contact)
 class ContactAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['subject','email','sent_date']
-admin.site.register(Contact, ContactAdmin)
+

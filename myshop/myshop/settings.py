@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'cart',
     'shopcontact',
     'star_ratings',
-    'order',
 ]
 
 CART_SESSION_ID = 'cart'

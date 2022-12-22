@@ -3,6 +3,8 @@ from django.views.decorators.http import require_POST
 from shop.models import Product
 from .cart import Cart
 from cart.forms import CartAddProductForm
+from .models import OrderItem
+from .forms import OrderCreateForm
 
 # This view represents adding to cart function
 @require_POST
@@ -34,7 +36,7 @@ def cart_detail(request):
                      'update': True})
     return render(request,'cart/detail.html', {'cart': cart})
 
-
+# This view allows user to click on the product and go back to the detail of the product
 def product_detail(request,id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
 
@@ -45,3 +47,29 @@ def product_detail(request,id, slug):
                    'cart_product_form': cart_product_form })
 
 
+
+# This view allows user to complete order and write all neccessery informations
+
+def order_create(request):
+    cart = Cart(request)
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            for item in cart:
+                OrderItem.objects.create(order=order,
+                                        product=item['product'],
+                                        price=item['price'],
+                                        quantity=item['quantity'])
+
+            cart.clear()
+            return render(request,
+                          'cart/created.html',
+                          {'order': order})
+
+    else:
+        form = OrderCreateForm()
+
+    return render(request,
+                  'cart/create.html',
+                  {'cart': cart, 'form': form})

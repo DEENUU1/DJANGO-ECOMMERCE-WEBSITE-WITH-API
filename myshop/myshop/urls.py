@@ -11,6 +11,7 @@ urlpatterns = [
     path('', include('shopcontact.urls')),
     url('', include('shop.urls', namespace='shop')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('orders/', include('cart.urls', namespace='orders')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
