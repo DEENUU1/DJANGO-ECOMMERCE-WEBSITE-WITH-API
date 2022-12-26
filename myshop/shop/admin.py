@@ -25,4 +25,11 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(ProductRate)
+# This class allows admin to display all rates
+# Sort them by rate, product and date
+@admin.register(ProductRate)
+class ProductRateAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ['rate', 'product', 'date']
+
+    list_filter = ['rate', 'product', 'date']
+

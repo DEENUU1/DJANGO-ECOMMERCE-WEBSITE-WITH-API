@@ -13,6 +13,10 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
 
+    # This button is only visible in admin panel
+    # Admin can see which order is already finished
+    sent = models.BooleanField(default=False)
+
     class Meta:
         ordering = ('-created',)
 
