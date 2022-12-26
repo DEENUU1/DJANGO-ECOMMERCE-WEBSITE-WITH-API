@@ -75,3 +75,8 @@ def product_rate(request, id, slug):
     }
 
     return HttpResponse(template.render(context,request))
+
+
+
+def about_us(request):
+    return render(request, 'shop/products/about.html')
