@@ -13,5 +13,8 @@ urlpatterns = [
 
     # This url is a detail category which display detail about available product
     path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
+
+    # This url is to display form to rate products
+    path('<int:id>/<slug:slug>/rate', views.product_rate, name='product_rate'),
 ]
 

@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 from cart.forms import CartAddProductForm
 from .forms import RateForm
+from django.template import loader
+from django.http import HttpResponse
 
 # This view represent all products
 # The view displays only available products
@@ -36,20 +38,29 @@ def product_detail(request, id, slug):
 
 # This view is representing product rate
 
-# def product_rate(request):
-#     product = Product.objects.get()
-#
-#     if request.method == 'POST':
-#         form = RateForm(request.POST)
-#         if form.is_valid():
-#             rate = form.save(commit=False)
-#             rate.movie = product
-#             rate.save()
-#             return render(request, 'shop/products/detail.html',
-#                           {'product': product})
-#
-#     else:
-#         form = RateForm()
-#
-#     template = loader.get_template(;)
+def product_rate(request, id, slug):
+    product = get_object_or_404(Product,
+                                id=id,
+                                slug=slug,
+                                available=True)
 
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.product = product
+            rate.save()
+            return render(request, 'shop/products/detail.html',
+                          {'product': product})
+
+    else:
+        form = RateForm()
+
+    template = loader.get_template('shop/products/rate.html')
+
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return HttpResponse(template.render(context,request))

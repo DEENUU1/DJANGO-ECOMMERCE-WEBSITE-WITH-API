@@ -10,6 +10,7 @@
     <div class="product-detail">
         <img src="{{product.image.url}}">
         <h1>{{product.name}}</h1>
+        <a href="{% url 'shop:product_rate' product.id product.slug %}">Rate</a>
         <h2><a href="{{product.category.get_absolute_url}}">{{product.category}}</a></h2>
         <p class="price">zł{{product.price}}</p>
         <form action="{% url 'cart:cart_add' product.id %}" method="post">
