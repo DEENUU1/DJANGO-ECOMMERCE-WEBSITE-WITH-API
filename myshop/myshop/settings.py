@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
-    'cart',
     'shopcontact',
-    'star_ratings',
+    'cart',
 ]
 
 CART_SESSION_ID = 'cart'

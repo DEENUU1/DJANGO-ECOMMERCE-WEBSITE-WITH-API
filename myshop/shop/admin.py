@@ -24,11 +24,3 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('name',)}
 
-
-# This allows administrator in admin panel see all comments
-# It should display information like: what product got a comment, subject, main text, user name and user email
-
-
-# @admin.register(Comments)
-# class CommentsAdmin(ExportActionMixin, admin.ModelAdmin):
-#     list_display = ['product','subject', 'text', 'user_name', 'email']

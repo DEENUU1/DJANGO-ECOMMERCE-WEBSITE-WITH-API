@@ -2,11 +2,11 @@ from django.contrib import admin
 from .models import Order, OrderItem
 from import_export.admin import ExportActionMixin
 
+# This class display all ordered items in admin panel
 
-@admin.register(OrderItem)
-class OrderItemAdmin(ExportActionMixin, admin.ModelAdmin):
+class OrderItemInline(admin.TabularInline):
     model = OrderItem
-    raw_id_fields = ['product']
+    fields = ['product', 'quantity', 'price']
 
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
@@ -16,5 +16,6 @@ class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
 
     list_filter = ['paid', 'created']
 
-    inline = [OrderItemAdmin]
+    inlines = [OrderItemInline]
+
 

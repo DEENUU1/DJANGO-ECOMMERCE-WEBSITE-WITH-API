@@ -13,9 +13,5 @@ urlpatterns = [
 
     # This url is a detail category which display detail about available product
     path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
-
-    # This url is for adding comments
-    # Doesn't work now
-    # path('products/<int:id>/<slug:slug>/comment/', views.add_comment, name='add_comment')
 ]
 

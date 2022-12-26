@@ -7,11 +7,11 @@ from django.urls import re_path as url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cart/', include('cart.urls', namespace='cart')),
     path('', include('shopcontact.urls')),
-    url('', include('shop.urls', namespace='shop')),
-    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('cart.urls', namespace='orders')),
+    url('', include('shop.urls', namespace='shop')),
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

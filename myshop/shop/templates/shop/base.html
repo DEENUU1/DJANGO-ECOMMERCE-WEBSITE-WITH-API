@@ -3,20 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} JANUSZEX {% endblock %}</title>
+    <title>{% block title %} SHADOK COM {% endblock %}</title>
     <link href="#">
-    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-
+    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 
 
 </head>
 <body>
 
-<div id="header">
-    <a href="/" class="logo">JANUSZEX</a>
-</div>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class='fas fa-bars'></i>
+        </label>
+        <label class="logo">SHADOK COM</label>
+        <ul>
+            <li><a class="active" href="#">Strona główna</a></li>
+            <li><a href="#">O sklepie</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
 
 <div id="subheader">
     <div class="cart">

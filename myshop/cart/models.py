@@ -1,5 +1,8 @@
 from django.db import models
 from shop.models import Product
+
+# This model allows user to write all necessary information
+# All fields are required to complete the form
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -20,6 +23,7 @@ class Order(models.Model):
         return sum(item.get_cost() for item in self.items.all())
 
 
+# This model allows website to save users order
 class OrderItem(models.Model):
     objects = None
     object = None
