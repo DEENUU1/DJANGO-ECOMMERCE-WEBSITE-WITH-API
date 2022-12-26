@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, ProductRate
 from import_export.admin import ExportActionMixin
 
 # registering model category to admin
@@ -24,3 +24,5 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('name',)}
 
+
+admin.site.register(ProductRate)

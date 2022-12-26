@@ -13,6 +13,21 @@
         <a href="{% url 'shop:product_rate' product.id product.slug %}">Rate</a>
         <h2><a href="{{product.category.get_absolute_url}}">{{product.category}}</a></h2>
         <p class="price">zł{{product.price}}</p>
+
+        <h3 style="text-align:center">Opinie o produkcie</h3>
+        <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}</h4>
+        {% if rates %}
+            {% for rate in rates %}
+            <div class="rate" style="text-align:center">
+            {{ rate.text }}
+            {{ rate.rate }}
+            </div>
+            {% endfor %}
+
+        {% else %}
+            <p>Ten produkt nie ma jeszcze żadnych opinii</p>
+        {% endif %}
+
         <form action="{% url 'cart:cart_add' product.id %}" method="post">
         {{cart_product_form}}
         {% csrf_token %}
@@ -20,6 +35,15 @@
         </form>
         {{product.description|linebreaks}}
     </div>
+
+{% for rate in rates %}
+    <div class="rate">
+        <h3 style="text-align:center">Opinie o produkcie</h3>
+        {{ rate.text }}
+        {{ rate.rate }}
+    </div>
+{% endfor %}
+
 
 
 {% endblock %}

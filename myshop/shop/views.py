@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
+from .models import Product, Category, ProductRate
 from cart.forms import CartAddProductForm
 from .forms import RateForm
 from django.template import loader
 from django.http import HttpResponse
+from django.db.models import Avg
+
 
 # This view represent all products
 # The view displays only available products
@@ -30,9 +32,18 @@ def product_detail(request, id, slug):
                                 slug=slug,
                                 available=True)
     cart_product_form = CartAddProductForm()
+
+    # It displays all rates sorted by dates
+    rates = ProductRate.objects.filter(product=product).order_by('date')
+
+    # It allows to display avg of all rates
+    average_rating = rates.aggregate(Avg('rate'))
+
     return render(request,'shop/products/detail.html',
                   {'product': product,
-                   'cart_product_form': cart_product_form})
+                   'cart_product_form': cart_product_form,
+                   'rates': rates,
+                   'average_rating': average_rating})
 
 
 

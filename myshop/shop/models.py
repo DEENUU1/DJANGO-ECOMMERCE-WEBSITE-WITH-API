@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-
 # This class creates categories
 # And joins them products
 class Category(models.Model):
