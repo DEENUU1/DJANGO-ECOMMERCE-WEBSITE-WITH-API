@@ -1,0 +1,23 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+{% block content %}
+  {% if products %}
+    <ul>
+      {% for product in products %}
+        <li>
+          <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+          <img src="{% if product.image %}
+          {{product.image.url}}
+          {% else %}
+          {% static 'images/no-image.jpg' %}
+          {% endif %}">
+          <p>Price: {{ product.price }} zł</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There is no results for this :(</p>
+  {% endif %}
+{% endblock %}

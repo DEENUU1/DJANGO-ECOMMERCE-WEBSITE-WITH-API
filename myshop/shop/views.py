@@ -5,7 +5,7 @@ from .forms import RateForm
 from django.template import loader
 from django.http import HttpResponse
 from django.db.models import Avg
-
+from django.db.models import Q
 
 # This view represent all products
 # The view displays only available products
@@ -77,6 +77,21 @@ def product_rate(request, id, slug):
     return HttpResponse(template.render(context,request))
 
 
-
+# This view is to display page with information about shop
 def about_us(request):
-    return render(request, 'shop/products/about.html')
+    return render(request, 'shop/about.html')
+
+
+# This view is to display search bar
+# And search result
+# It searching products by the name and description
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        ).filter(available=True)
+    else:
+        products = Product.objects.none()
+    return render(request, 'shop/products/search.html', {'products': products})

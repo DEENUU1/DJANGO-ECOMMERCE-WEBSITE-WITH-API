@@ -42,6 +42,13 @@
     </div>
 </div>
 
+<form method="get" action="{% url 'shop:search' %}">
+    <input name="q" type="text" placeholder="Search">
+    <button type="submit">Search</button>
+</form>
+
+
+
 <div id="content">
     {% block content %}
     {% endblock %}

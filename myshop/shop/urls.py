@@ -8,6 +8,9 @@ urlpatterns = [
     # This url is a main page which display all available products
     path('', views.product_list, name='product_list'),
 
+    # This url is to display search result
+    path('search/', views.search, name='search'),
+
     # This url is to display about page
     path('about/', views.about_us, name='about_us'),
 
@@ -19,6 +22,7 @@ urlpatterns = [
 
     # This url is to display form to rate products
     path('<int:id>/<slug:slug>/rate', views.product_rate, name='product_rate'),
+
 
 ]
 

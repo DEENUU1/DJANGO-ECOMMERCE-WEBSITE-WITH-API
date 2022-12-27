@@ -2,14 +2,17 @@ from django.contrib import admin
 from .models import Order, OrderItem
 from import_export.admin import ExportActionMixin
 
-# This class allows to display customer and order informations in one page
+# This class is connected with class OrderAdmin
+# It doesn't display in main admin panel
+# It display in 'Orders' cart as a detail informations
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
-    fields = ['product', 'quantity', 'price']
 
-# This class display information like: sent, paid, date of created and email in main page
-# After clicking on order admin can see all necessary information like: first, last name, email, adress...
+# This class display in admin panel as a 'Orders'
+# Inherits from class 'OrderItemInLine'
+# Display all necessary information
+# The button 'sent' says if the order is completed or not
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['sent', 'paid', 'created','email']
