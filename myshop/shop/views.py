@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.db.models import Avg
 from django.db.models import Q
 
+
 # This view represent all products
 # The view displays only available products
 def product_list(request, category_slug=None):
@@ -17,6 +18,7 @@ def product_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
+
     return render(request, 'shop/products/list.html',
                   {'category': category,
                    'categories': categories,
