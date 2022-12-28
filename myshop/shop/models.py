@@ -18,9 +18,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
     def get_absolute_url(self):
-        return reverse('shop:product_list_by_category',args=[self.slug])
+        return reverse('shop:product_list_by_category', args=[self.slug])
+
 
 # This class creates products
 # I used DecimalField here to prevent rounding prices
@@ -70,5 +70,3 @@ class ProductRate(models.Model):
     text = models.TextField(max_length=1000, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     rate = models.PositiveIntegerField(choices=RATE)
-
-

@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category, ProductRate
 from cart.forms import CartAddProductForm
-from .forms import RateForm
+from .forms import RateForm, ProductsFilterForm
 from django.template import loader
 from django.http import HttpResponse
 from django.db.models import Avg
 from django.db.models import Q
-
+from .filters import ProductFilter
 
 # This view represent all products
 # The view displays only available products
@@ -15,6 +15,8 @@ def product_list(request, category_slug=None):
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
 
+    product_filter = ProductFilter(request.GET, queryset=Product.objects.filter(available=True))
+
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
@@ -22,7 +24,8 @@ def product_list(request, category_slug=None):
     return render(request, 'shop/products/list.html',
                   {'category': category,
                    'categories': categories,
-                   'products': products})
+                   'products': product_filter.qs,
+                   'form': product_filter.form,})
 
 
 # This view represent detail of all available products

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop',
     'shopcontact',
     'cart',
+    'django_filters',
 ]
 
 CART_SESSION_ID = 'cart'
