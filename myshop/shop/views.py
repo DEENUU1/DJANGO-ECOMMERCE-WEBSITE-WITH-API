@@ -7,25 +7,28 @@ from django.http import HttpResponse
 from django.db.models import Avg
 from django.db.models import Q
 from .filters import ProductFilter
+from django.core.paginator import Paginator
+
 
 # This view represent all products
 # The view displays only available products
-def product_list(request, category_slug=None):
+def product_list(request):
     category = None
-    categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+
+    # Set up filter
 
     product_filter = ProductFilter(request.GET, queryset=Product.objects.filter(available=True))
 
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
+    # Set up Pagination
+
+    p = Paginator(product_filter.qs, 2)
+    page = request.GET.get('page')
+    products_list = p.get_page(page)
 
     return render(request, 'shop/products/list.html',
                   {'category': category,
-                   'categories': categories,
-                   'products': product_filter.qs,
-                   'form': product_filter.form,})
+                   'form': product_filter.form,
+                   'products_list': products_list})
 
 
 # This view represent detail of all available products
@@ -44,12 +47,11 @@ def product_detail(request, id, slug):
     # It allows to display avg of all rates
     average_rating = rates.aggregate(Avg('rate'))
 
-    return render(request,'shop/products/detail.html',
+    return render(request, 'shop/products/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'rates': rates,
                    'average_rating': average_rating})
-
 
 
 # This view is representing product rate
@@ -79,7 +81,7 @@ def product_rate(request, id, slug):
         'product': product,
     }
 
-    return HttpResponse(template.render(context,request))
+    return HttpResponse(template.render(context, request))
 
 
 # This view is to display page with information about shop
