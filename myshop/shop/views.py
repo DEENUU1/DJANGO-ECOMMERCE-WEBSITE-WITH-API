@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, ProductRate
+from .models import Product, ProductRate
 from cart.forms import CartAddProductForm
-from .forms import RateForm, ProductsFilterForm
+from .forms import RateForm
 from django.template import loader
 from django.http import HttpResponse
 from django.db.models import Avg
@@ -12,7 +12,7 @@ from django.core.paginator import Paginator
 
 # This view represent all products
 # The view displays only available products
-def product_list(request):
+def product_list(request, category_slug=None):
     category = None
 
     # Set up filter
