@@ -7,6 +7,7 @@ from shop.models import Product
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    phone_number = models.IntegerField()
     email = models.EmailField()
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
@@ -20,10 +21,6 @@ class Order(models.Model):
 
     class Meta:
         ordering = ('-created',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.items = None
 
     def __str__(self):
         return 'Order {}'.format(self.id)
