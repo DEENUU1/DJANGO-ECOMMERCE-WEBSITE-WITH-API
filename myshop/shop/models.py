@@ -25,6 +25,7 @@ class Category(models.Model):
 # This class creates products
 # I used DecimalField here to prevent rounding prices
 class Product(models.Model):
+    objects = None
     category = models.ForeignKey(Category, related_name='products',
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True,
@@ -66,6 +67,7 @@ RATE = [
 
 
 class ProductRate(models.Model):
+    objects = None
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, blank=True)
     date = models.DateTimeField(auto_now_add=True)

@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Category, Product, ProductRate
 from import_export.admin import ExportActionMixin
 
+
 # registering model category to admin
 # displaying name and slug of the product
 @admin.register(Category)
@@ -32,4 +33,3 @@ class ProductRateAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['rate', 'product', 'date']
 
     list_filter = ['rate', 'product', 'date']
-
