@@ -1,6 +1,7 @@
 from django.db import models
 from shop.models import Product
 
+
 # This model allows user to write all necessary information
 # All fields are required to complete the form
 class Order(models.Model):
@@ -19,6 +20,10 @@ class Order(models.Model):
 
     class Meta:
         ordering = ('-created',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.items = None
 
     def __str__(self):
         return 'Order {}'.format(self.id)
@@ -41,4 +46,3 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
-

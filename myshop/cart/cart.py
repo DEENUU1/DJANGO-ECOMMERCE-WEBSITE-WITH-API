@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 
+
 # This class represent all functionality of cart
 
 class Cart(object):
@@ -15,7 +16,7 @@ class Cart(object):
     # This function add products to cart and can change the value of them
     # At default it add 1 product to card
     # In the future the user will be able to edit that quantity in cart
-    def add(self, product, quantity = 1, update_quantity=False):
+    def add(self, product, quantity=1, update_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
@@ -33,14 +34,12 @@ class Cart(object):
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True
 
-
     # This function allows to delete product from cart
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
-
 
     # This function iterates all products in cart
     def __iter__(self):
@@ -67,4 +66,3 @@ class Cart(object):
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
-

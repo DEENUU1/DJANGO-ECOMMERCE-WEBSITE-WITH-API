@@ -12,5 +12,4 @@ from import_export.admin import ExportActionMixin
 @admin.register(Contact)
 class ContactAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['subject', 'email', 'sent_date']
-
     list_filter = ['subject', 'sent_date']

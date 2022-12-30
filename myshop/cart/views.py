@@ -6,6 +6,7 @@ from cart.forms import CartAddProductForm
 from .models import OrderItem
 from .forms import OrderCreateForm
 
+
 # This view represents adding to cart function
 @require_POST
 def cart_add(request, product_id):
@@ -20,12 +21,14 @@ def cart_add(request, product_id):
 
     return redirect('cart:cart_detail')
 
+
 # This view represent remove from cart option
 def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
     return redirect('cart:cart_detail')
+
 
 # This view represent the whole cart
 def cart_detail(request):
@@ -34,22 +37,21 @@ def cart_detail(request):
         item['update_quantity_form'] = CartAddProductForm(
             initial={'quantity': item['quantity'],
                      'update': True})
-    return render(request,'cart/detail.html', {'cart': cart})
+    return render(request, 'cart/detail.html', {'cart': cart})
+
 
 # This view allows user to click on the product and go back to the detail of the product
-def product_detail(request,id, slug):
+def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
 
     cart_product_form = CartAddProductForm()
     return render(request,
                   'shop/templates/detail.html',
                   {'product': product,
-                   'cart_product_form': cart_product_form })
+                   'cart_product_form': cart_product_form})
 
 
-
-# This view allows user to complete order and write all neccessery informations
-
+# This view allows user to complete order and write all necessary information
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
@@ -58,9 +60,9 @@ def order_create(request):
             order = form.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
-                                        product=item['product'],
-                                        price=item['price'],
-                                        quantity=item['quantity'])
+                                         product=item['product'],
+                                         price=item['price'],
+                                         quantity=item['quantity'])
 
             cart.clear()
             return render(request,
