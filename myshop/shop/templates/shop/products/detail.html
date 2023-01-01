@@ -29,14 +29,13 @@
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
 
-        {% if rate_filter %}
+        {% if rate_filter.qs.count %}
             {% for rate in rate_filter.qs %}
             <div class="rate" style="text-align:center">
                 {{ rate.text }}
                 {{ rate.rate }}
             </div>
             {% endfor %}
-
         {% else %}
             <p>Ten produkt nie ma jeszcze żadnych opinii</p>
         {% endif %}
