@@ -37,7 +37,7 @@
             </div>
             {% endfor %}
         {% else %}
-            <p>Ten produkt nie ma jeszcze żadnych opinii</p>
+            <p style="text-align:center">Ten produkt nie ma jeszcze żadnych opinii lub opinia którą wybrałeś nie istnieje.</p>
         {% endif %}
 
         <form action="{% url 'cart:cart_add' product.id %}" method="post">
@@ -45,6 +45,13 @@
         {% csrf_token %}
         <input type="submit" value="Dodaj do koszyka">
         </form>
+
+        <form action="{% url 'saved:saved_add' product.id %}" method="post">
+        {{saved_product_form}}
+        {% csrf_token %}
+        <input type="submit" value="Dodaj do ulubiony">
+        </form>
+
         {{product.description|linebreaks}}
     </div>
 

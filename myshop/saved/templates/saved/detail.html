@@ -1,0 +1,52 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    Ulubione produkty
+{% endblock %}
+
+{% block content %}
+<h1>Ulubione produkty</h1>
+<table class="cart">
+    <thead>
+    <tr>
+        <th>Zdjęcie</th>
+        <th>Produkt</th>
+        <th>Usuń</th>
+        <th>Cena za sztuke</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in saved %}
+        {% with product=item.product %}
+    <tr>
+        <td>
+            <a href="{{product.get_absolute_url}}">
+                <img src="{% if product.image %}
+                {{product.image.url}}
+                {% else %}
+                {% static 'images/no-image.jpg' %}
+                {% endif %}">
+            </a>
+        </td>
+        <td>{{product.name}}</td>
+        <td>
+            <form action="{% url 'saved:saved_remove' product.id %}" method="post">
+            <input type="submit" value="Remove">
+            {% csrf_token %}
+            </form>
+        </td>
+        <td class="num">zł{{item.price}}</td>
+    </tr>
+        {% endwith %}
+    {% endfor %}
+>
+
+    </tbody>
+</table>
+
+<p class="text-right">
+    <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
+</p>
+
+{% endblock %}

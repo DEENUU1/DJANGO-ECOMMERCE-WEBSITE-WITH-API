@@ -40,6 +40,11 @@
             {% endif %}
         {% endwith %}
     </div>
+
+    <div class="saved">
+        <a href="{% url 'saved:saved_detail' %}">Ulubione produkty</a>
+    </div>
+
 </div>
 
 <form method="get" action="{% url 'shop:search' %}">

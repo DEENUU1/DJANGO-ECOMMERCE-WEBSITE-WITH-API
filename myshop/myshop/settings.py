@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'shopcontact',
     'cart',
     'django_filters',
+    'saved',
 ]
 
 CART_SESSION_ID = 'cart'
+SAVED_SESSION_ID = 'saved'
 
 START_RATINGS_RATING_MODEL = 'shop.MyRating'
 
