@@ -15,7 +15,15 @@ class RateForm(forms.ModelForm):
 
 
 # This form allows user to filter products
-# User should be able to choose filtering by: price, name, rate
+# User should be able to choose filtering by: price, name
 
 class ProductsFilterForm(forms.Form):
+    name = forms.CharField()
+
+
+# This form allows user to filter rates
+# User should be able to choose filtering by: date, rate
+
+
+class ProductRateFilterForm(forms.Form):
     name = forms.CharField()

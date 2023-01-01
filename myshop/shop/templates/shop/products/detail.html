@@ -6,6 +6,7 @@
 {% endblock %}
 
 
+
 {% block content %}
     <div class="product-detail">
         <img src="{% if product.image %}
@@ -20,11 +21,19 @@
 
         <h3 style="text-align:center">Opinie o produkcie</h3>
         <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}</h4>
-        {% if rates %}
-            {% for rate in rates %}
+
+
+        <form method="GET">
+            {% csrf_token%}
+            {{rate_filter.form}}
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        {% if rate_filter %}
+            {% for rate in rate_filter.qs %}
             <div class="rate" style="text-align:center">
-            {{ rate.text }}
-            {{ rate.rate }}
+                {{ rate.text }}
+                {{ rate.rate }}
             </div>
             {% endfor %}
 
@@ -39,14 +48,6 @@
         </form>
         {{product.description|linebreaks}}
     </div>
-
-{% for rate in rates %}
-    <div class="rate">
-        <h3 style="text-align:center">Opinie o produkcie</h3>
-        {{ rate.text }}
-        {{ rate.rate }}
-    </div>
-{% endfor %}
 
 
 

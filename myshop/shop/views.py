@@ -6,7 +6,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django.db.models import Avg
 from django.db.models import Q
-from .filters import ProductFilter
+from .filters import ProductFilter, RateFilter
 from django.core.paginator import Paginator
 
 
@@ -17,7 +17,8 @@ def product_list(request, category_slug=None):
 
     # Set up filter
 
-    product_filter = ProductFilter(request.GET, queryset=Product.objects.filter(available=True))
+    product_filter = ProductFilter(request.GET,
+                                   queryset=Product.objects.filter(available=True))
 
     # Set up Pagination
 
@@ -32,7 +33,8 @@ def product_list(request, category_slug=None):
 
 
 # This view represent detail of all available products
-# It also displays user's comments
+# It also displays user's comments and rates
+# User can filter product's rates by the value of rate from 1 to 5
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product,
@@ -41,7 +43,12 @@ def product_detail(request, id, slug):
                                 available=True)
     cart_product_form = CartAddProductForm()
 
+    # Set up filters
+    rate_filter = RateFilter(request.GET,
+                             queryset=ProductRate.objects.filter(product=product))
+
     # It displays all rates sorted by dates
+    # rates is only used for average_rating
     rates = ProductRate.objects.filter(product=product).order_by('date')
 
     # It allows to display avg of all rates
@@ -50,8 +57,8 @@ def product_detail(request, id, slug):
     return render(request, 'shop/products/detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form,
-                   'rates': rates,
-                   'average_rating': average_rating})
+                   'rate_filter': rate_filter,
+                   'average_rating': average_rating, })
 
 
 # This view is representing product rate
