@@ -51,24 +51,15 @@
         {% endwith %}
     {% endfor %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Zapisz">
-</form>
-
-
-
-
     {% if cart.coupon %}
         <tr class="subtotal">
-            <td>Wartość całkowita</td>
+            <td>Wartość całkowita produktów</td>
             <td colspan="4"></td>
             <td class="num">{{ cart.get_total_price }} zł</td>
         </tr>
         <tr>
             <td>
-                Kupon "{{ cart.coupon.code }}"
+                Wartość kuponu "{{ cart.coupon.code }}"
                 ({{ cart.coupon.discount }}% rabatu)
             </td>
             <td colspan="4"></td>
@@ -77,11 +68,16 @@
             </td>
         </tr>
     {% endif %}
+    <tr class="shipping_value">
+        <td>Dostawa InPost na podany adres</td>
+        <td colspan="4"></td>
+        <td>+ 8.99zł</td>
+    </tr>
     <tr class="total">
         <td>Kwota do zapłaty</td>
         <td colspan="4"></td>
         <td class="num">
-            {{ cart.get_total_price_after_discount|floatformat:"2"}} zł
+            {{ cart.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł
         </td>
     </tr>
 
@@ -100,5 +96,7 @@
     <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
     <a href="{% url 'cart:order_create' %}" class="button">Przejdź do płatności</a>
 </p>
+
+
 
 {% endblock %}

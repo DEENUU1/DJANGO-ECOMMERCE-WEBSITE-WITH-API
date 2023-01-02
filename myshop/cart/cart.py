@@ -1,11 +1,17 @@
+import decimal
 from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 from coupons.models import Coupon
 
 
-# This class represent all functionality of cart
+# This function represent shipping price
+# If you want you can change that value
+def shipping_value():
+    return Decimal('8.99')
 
+
+# This class represent all functionality of cart
 class Cart(object):
     def __init__(self, request):
         self.session = request.session
@@ -65,7 +71,7 @@ class Cart(object):
             self.cart[str(product.id)]['product'] = product
 
         for item in self.cart.values():
-            item['price'] = Decimal(item['price'])
+            item['price'] = decimal.Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
@@ -81,6 +87,12 @@ class Cart(object):
     # This function returns total cart price after subtracted coupon rabat
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
+
+    # This function allows to add final price
+    # After coupon rabat and shipping
+    # Price of shipping a constant value which is in function 'shipping_value'
+    def get_total_price_after_discount_and_shipping(self):
+        return self.get_total_price_after_discount() + shipping_value()
 
     # This function allows to clear everything from cart
     def clear(self):
