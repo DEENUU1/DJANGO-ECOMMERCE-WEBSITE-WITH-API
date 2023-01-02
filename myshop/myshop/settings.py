@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cart',
     'django_filters',
     'saved',
+    'coupons',
 ]
 
 CART_SESSION_ID = 'cart'
@@ -59,8 +60,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
 
 
 ROOT_URLCONF = 'myshop.urls'

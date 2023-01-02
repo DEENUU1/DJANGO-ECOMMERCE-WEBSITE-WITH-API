@@ -8,6 +8,7 @@ from django.urls import re_path as url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shopcontact.urls')),
+    path('coupons/', include('coupons.urls', namespace='coupons')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('saved/', include('saved.urls', namespace='saved')),
     path('orders/', include('cart.urls', namespace='orders')),

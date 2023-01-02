@@ -17,7 +17,7 @@
         <h1>{{product.name}}</h1>
         <a href="{% url 'shop:product_rate' product.id product.slug %}">Rate</a>
         <h2><a href="{{product.category.get_absolute_url}}">{{product.category}}</a></h2>
-        <p class="price">zł{{product.price}}</p>
+        <p class="price">{{product.price}}zł</p>
 
         <h3 style="text-align:center">Opinie o produkcie</h3>
         <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}</h4>

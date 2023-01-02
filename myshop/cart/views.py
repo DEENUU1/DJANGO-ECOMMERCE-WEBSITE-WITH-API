@@ -5,6 +5,7 @@ from .cart import Cart
 from cart.forms import CartAddProductForm
 from .models import OrderItem
 from .forms import OrderCreateForm
+from coupons.forms import CouponForm
 
 
 # This view represents adding to cart function
@@ -37,7 +38,12 @@ def cart_detail(request):
         item['update_quantity_form'] = CartAddProductForm(
             initial={'quantity': item['quantity'],
                      'update': True})
-    return render(request, 'cart/detail.html', {'cart': cart})
+
+    coupon_apply_form = CouponForm()
+
+    return render(request, 'cart/detail.html',
+                  {'cart': cart,
+                   'coupon_apply_form': coupon_apply_form})
 
 
 # This view allows user to click on the product and go back to the detail of the product

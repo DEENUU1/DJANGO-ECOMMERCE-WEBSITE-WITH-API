@@ -22,3 +22,4 @@ class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ['paid', 'created']
 
     inlines = [OrderItemInline]
+

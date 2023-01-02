@@ -45,22 +45,47 @@
             {% csrf_token %}
             </form>
         </td>
-        <td class="num">zł{{item.price}}</td>
-        <td class="num">zł{{item.total_price}}</td>
+        <td class="num">{{item.price}}zł</td>
+        <td class="num">{{item.total_price}}zł</td>
     </tr>
         {% endwith %}
     {% endfor %}
+
+    {% if cart.coupon %}
+        <tr class="subtotal">
+            <td>Wartość całkowita</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }} zł</td>
+        </tr>
+        <tr>
+            <td>
+                Kupon "{{ cart.coupon.code }}"
+                ({{ cart.coupon.discount }}% rabatu)
+            </td>
+            <td colspan="4"></td>
+            <td class="num neg">
+                - {{ cart.get_discount|floatformat:"2" }} zł
+            </td>
+        </tr>
+    {% endif %}
     <tr class="total">
-        <td>Total</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td class="num">zł{{cart.get_total_price}}</td>
+        <td>Kwota do zapłaty</td>
+        <td colspan="4"></td>
+        <td class="num">
+            {{ cart.get_total_price_after_discount|floatformat:"2"}} zł
+        </td>
     </tr>
+
 
     </tbody>
 </table>
+
+<p>Kupon rabatowy:</p>
+<form action="{% url 'coupons:apply' %}" method="post">
+    {{ coupon_apply_form }}
+    <input type="submit" value="Dodaj">
+    {% csrf_token %}
+</form>
 
 <p class="text-right">
     <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
