@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order
+from .models import Order, Shipping
 
 # This form allows user to choose from 1 do 9 pieces of product
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 10)]
@@ -28,3 +28,8 @@ class OrderCreateForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+# This form allows user to choose shipping method
+class ShippingForm(forms.ModelForm):
+    shipping_option = forms.ModelChoiceField(queryset=Shipping.objects.filter(active=True))

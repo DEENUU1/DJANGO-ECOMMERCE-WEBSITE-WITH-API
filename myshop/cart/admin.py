@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Shipping
 from import_export.admin import ExportActionMixin
 
 
@@ -23,3 +23,9 @@ class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
 
     inlines = [OrderItemInline]
 
+
+@admin.register(Shipping)
+class ShippingAdmin(admin.ModelAdmin):
+    list_display = ['active', 'supplier_name', 'shipping_price']
+
+    list_filter = ['active', 'shipping_price']

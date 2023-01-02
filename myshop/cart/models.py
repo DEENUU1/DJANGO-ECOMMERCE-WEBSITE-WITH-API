@@ -43,3 +43,15 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
+# This model allows to create shipping aptions
+# In cart user can choose options created in admin panel
+# This model has name and price
+class Shipping(models.Model):
+    supplier_name = models.CharField(max_length=100)
+    shipping_price = models.DecimalField(max_digits=10, decimal_places=2)
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.supplier_name

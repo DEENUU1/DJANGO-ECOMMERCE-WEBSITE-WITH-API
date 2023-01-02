@@ -51,6 +51,15 @@
         {% endwith %}
     {% endfor %}
 
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Zapisz">
+</form>
+
+
+
+
     {% if cart.coupon %}
         <tr class="subtotal">
             <td>Wartość całkowita</td>
