@@ -6,13 +6,22 @@
 {% block content %}
 
 
+<!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
 <form method="GET" action="{% url 'shop:product_list' %}">
-    {{form.as_p}}
-    <input type="submit" value="Submit"/>
+  {% csrf_token %}
+  <label>Cena mniejsza od:</label>
+  {{ form.price__lt }}
+  <br>
+  <label>Cena większa od:</label>
+  {{ form.price__gt }}
+  <br>
+  <label>Kategoria:</label>
+  {{ form.category }}
+  <input type="submit" value="Submit">
 </form>
 
-
+<!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
 <div>
     <div id="main" class="product-list">

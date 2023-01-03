@@ -6,8 +6,11 @@ from .models import ProductRate, RATE
 # Write a comment of the product
 # All fields are required to save
 class RateForm(forms.ModelForm):
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea'}), required=True)
-    rate = forms.ChoiceField(choices=RATE, widget=forms.Select(), required=True)
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea'}),
+                           required=True)
+    rate = forms.ChoiceField(choices=RATE,
+                             widget=forms.Select(),
+                             required=True)
 
     class Meta:
         model = ProductRate
@@ -15,10 +18,10 @@ class RateForm(forms.ModelForm):
 
 
 # This form allows user to filter products
-# User should be able to choose filtering by: price, name
+# User should be able to choose filtering by: price, name, category
 
-class ProductsFilterForm(forms.Form):
-    name = forms.CharField()
+# class ProductsFilterForm(forms.Form):
+#     name = forms.CharField()
 
 
 # This form allows user to filter rates

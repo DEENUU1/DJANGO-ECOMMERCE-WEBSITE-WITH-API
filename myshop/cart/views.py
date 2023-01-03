@@ -46,7 +46,6 @@ def cart_detail(request):
                    'coupon_apply_form': coupon_apply_form})
 
 
-
 # This view allows user to click on the product and go back to the detail of the product
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
@@ -82,3 +81,5 @@ def order_create(request):
     return render(request,
                   'cart/create.html',
                   {'cart': cart, 'form': form})
+
+
