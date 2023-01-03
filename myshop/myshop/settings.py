@@ -42,12 +42,15 @@ INSTALLED_APPS = [
     'shopcontact',
     'cart',
     'django_filters',
-    'saved',
     'coupons',
 ]
 
-CART_SESSION_ID = 'cart'
-SAVED_SESSION_ID = 'saved'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+SESSION_COOKIE_CART = 'cart'
+
+
+
 
 
 START_RATINGS_RATING_MODEL = 'shop.MyRating'

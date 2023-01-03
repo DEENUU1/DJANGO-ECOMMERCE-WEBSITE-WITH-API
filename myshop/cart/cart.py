@@ -15,9 +15,9 @@ def shipping_value():
 class Cart(object):
     def __init__(self, request):
         self.session = request.session
-        cart = self.session.get(settings.CART_SESSION_ID)
+        cart = self.session.get(settings.SESSION_COOKIE_CART)
         if not cart:
-            cart = self.session[settings.CART_SESSION_ID] = {}
+            cart = self.session[settings.SESSION_COOKIE_CART] = {}
         self.cart = cart
         self.coupon_id = self.session.get('coupon_id')
 
@@ -39,7 +39,7 @@ class Cart(object):
 
     # This function save cart in session
     def save(self):
-        self.session[settings.CART_SESSION_ID] = self.cart
+        self.session[settings.SESSION_COOKIE_CART] = self.cart
         self.session.modified = True
 
     # This function allows to delete product from cart
@@ -96,5 +96,5 @@ class Cart(object):
 
     # This function allows to clear everything from cart
     def clear(self):
-        del self.session[settings.CART_SESSION_ID]
+        del self.session[settings.SESSION_COOKIE_CART]
         self.session.modified = True
