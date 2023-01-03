@@ -23,7 +23,7 @@
         <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}</h4>
 
 
-        <form method="GET">
+        <form method="GET" action="{% url 'shop:product_detail' product.id product.slug %}">
             {% csrf_token%}
             {{rate_filter.form}}
             <button type="submit" class="btn btn-primary">Filter</button>

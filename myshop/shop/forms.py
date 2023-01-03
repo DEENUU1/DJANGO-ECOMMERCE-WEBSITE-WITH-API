@@ -28,5 +28,5 @@ class RateForm(forms.ModelForm):
 # User should be able to choose filtering by: date, rate
 
 
-class ProductRateFilterForm(forms.Form):
-    name = forms.CharField()
+# class ProductRateFilterForm(forms.Form):
+#     name = forms.CharField()
