@@ -28,5 +28,3 @@ class OrderCreateForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
-
-

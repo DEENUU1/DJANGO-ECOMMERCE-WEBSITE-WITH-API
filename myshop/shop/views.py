@@ -20,6 +20,9 @@ def product_list(request, category_slug=None):
     product_filter = ProductFilter(request.GET,
                                    queryset=Product.objects.filter(available=True))
 
+    cart_product_form = CartAddProductForm()
+
+
     # Set up Pagination
 
     p = Paginator(product_filter.qs, 2)
@@ -29,6 +32,7 @@ def product_list(request, category_slug=None):
     return render(request, 'shop/products/list.html',
                   {'category': category,
                    'form': product_filter.form,
+                   'cart_product_form': cart_product_form,
                    'products_list': products_list})
 
 
