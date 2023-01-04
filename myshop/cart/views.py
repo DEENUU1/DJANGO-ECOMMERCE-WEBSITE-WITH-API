@@ -6,6 +6,9 @@ from cart.forms import CartAddProductForm
 from .models import OrderItem
 from .forms import OrderCreateForm
 from coupons.forms import CouponForm
+from django.http import JsonResponse
+import json
+from django.urls import reverse
 
 
 # This view represents adding to cart function
@@ -80,6 +83,6 @@ def order_create(request):
 
     return render(request,
                   'cart/create.html',
-                  {'cart': cart, 'form': form})
-
+                  {'cart': cart,
+                   'form': form})
 

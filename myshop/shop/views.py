@@ -12,7 +12,7 @@ from django.core.paginator import Paginator
 
 # This view represent all products
 # The view displays only available products
-def product_list(request, category_slug=None):
+def product_list(request: render, category_slug=None) -> render:
     category = None
 
     # Set up filter
