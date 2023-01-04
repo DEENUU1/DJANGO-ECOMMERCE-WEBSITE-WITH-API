@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.urls import reverse
 from shop.models import Product
 from .cart import Cart
 from cart.forms import CartAddProductForm
-from .models import OrderItem
+from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from coupons.forms import CouponForm
-from django.http import JsonResponse
-import json
-from django.urls import reverse
 
 
 # This view represents adding to cart function
@@ -65,6 +63,7 @@ def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
+
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -74,9 +73,13 @@ def order_create(request):
                                          quantity=item['quantity'])
 
             cart.clear()
-            return render(request,
-                          'cart/created.html',
-                          {'order': order})
+
+            request.session.set_expiry(0)
+            # return render(request,
+            #               'cart/created.html',
+            #               {'order': order})
+            request.session['order_id'] = order.id
+            return redirect(reverse('payment:process'))
 
     else:
         form = OrderCreateForm()

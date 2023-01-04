@@ -43,13 +43,16 @@ INSTALLED_APPS = [
     'cart',
     'django_filters',
     'coupons',
+    'paypal.standard.ipn',
+    'payment',
 ]
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_CART = 'cart'
 
-
+PAYPAL_RECEIVER_EMAIL = 'sb-nboak24765401@business.example.com'
+PAYPAL_TEST = True
 
 
 

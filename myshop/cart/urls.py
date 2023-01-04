@@ -22,4 +22,5 @@ urlpatterns = [
     # This url represent completing order
 
     path('create/', views.order_create, name='order_create'),
+
 ]

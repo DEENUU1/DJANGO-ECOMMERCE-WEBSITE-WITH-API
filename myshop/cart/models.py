@@ -14,6 +14,7 @@ class Order(models.Model):
     postal_code = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
+    transaction_id = models.CharField(max_length=200, blank=True)
 
     # This button is only visible in admin panel
     # Admin can see which order is already finished
