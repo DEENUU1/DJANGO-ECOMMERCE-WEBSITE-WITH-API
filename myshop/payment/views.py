@@ -24,9 +24,6 @@ def payment_canceled(request):
 
 
 def payment_process(request):
-    paypal_response = PayPalIPN.get_paypal_response(request)
-    transaction_id = paypal_response.get('txn_id', '')
-    save_transaction_id = Order.objects.create(transaction_id=transaction_id)
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     host = request.get_host()
@@ -34,7 +31,8 @@ def payment_process(request):
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': order.get_total_cost(), #'%.2f' % order.get_total_cost().quantize(Decimal('.01')),
+        'amount': order.get_total_cost(),
+        'shipping': 8.99,
         'item_name': order.id,
         'invoice': str(order.id),
         'currency_code': 'PLN',
