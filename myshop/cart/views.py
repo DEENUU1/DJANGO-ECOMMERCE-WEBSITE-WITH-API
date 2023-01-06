@@ -7,6 +7,7 @@ from cart.forms import CartAddProductForm
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from coupons.forms import CouponForm
+from .tasks import order_created
 
 
 # This view represents adding to cart function
@@ -74,11 +75,10 @@ def order_create(request):
 
             cart.clear()
 
-            request.session.set_expiry(0)
-            # return render(request,
-            #               'cart/created.html',
-            #               {'order': order})
+            order_created.delay(order.id)
+
             request.session['order_id'] = order.id
+
             return redirect(reverse('payment:process'))
 
     else:

@@ -5,9 +5,13 @@ from django.urls import reverse
 # This class creates categories
 # And joins them products
 class Category(models.Model):
-    name = models.CharField(max_length=200, db_index=True,
+    name = models.CharField(max_length=200,
+                            db_index=True,
                             help_text='Put the name of your category. Capitalization does not matter')
-    slug = models.SlugField(max_length=200, db_index=True, unique=True,
+
+    slug = models.SlugField(max_length=200,
+                            db_index=True,
+                            unique=True,
                             help_text='It is generating automatically. Do not change that!!!')
 
     class Meta:
@@ -26,17 +30,31 @@ class Category(models.Model):
 # I used DecimalField here to prevent rounding prices
 class Product(models.Model):
     objects = None
-    category = models.ForeignKey(Category, related_name='products',
+    category = models.ForeignKey(Category,
+                                 related_name='products',
                                  on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, db_index=True,
+
+    name = models.CharField(max_length=100,
+                            db_index=True,
                             help_text='You can write any name you want. It does not matter on the URL')
-    slug = models.SlugField(max_length=200, db_index=True,
+
+    slug = models.SlugField(max_length=200,
+                            db_index=True,
                             help_text='It is generating automatically. Do not change that!!!')
-    image = models.ImageField(blank=True, upload_to='media/images/',
+
+    image = models.ImageField(blank=True,
+                              upload_to='media/images/',
                               help_text='You only can choose 1 image')
+
     description = models.TextField(blank=True,
                                    help_text='You can make your products description as long as you want.')
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    price = models.DecimalField(max_digits=10,
+                                decimal_places=2)
+
+    shipping_price = models.DecimalField(max_digits=10,
+                                         decimal_places=2)
+
     stock = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)

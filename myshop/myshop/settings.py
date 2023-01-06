@@ -54,6 +54,7 @@ SESSION_COOKIE_CART = 'cart'
 PAYPAL_RECEIVER_EMAIL = 'sb-nboak24765401@business.example.com'
 PAYPAL_TEST = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 START_RATINGS_RATING_MODEL = 'shop.MyRating'

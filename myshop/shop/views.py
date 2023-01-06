@@ -12,7 +12,7 @@ from django.core.paginator import Paginator
 
 # This view represent all products
 # The view displays only available products
-def product_list(request: render, category_slug=None) -> render:
+def product_list(request, category_slug=None):
     category = None
 
     # Set up filter
@@ -45,6 +45,7 @@ def product_detail(request, id, slug):
                                 id=id,
                                 slug=slug,
                                 available=True)
+
     cart_product_form = CartAddProductForm()
 
     # Set up filters

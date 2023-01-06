@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from .cart import Cart
 
 
 # This model allows user to write all necessary information
@@ -14,7 +15,8 @@ class Order(models.Model):
     postal_code = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
-    transaction_id = models.CharField(max_length=200, blank=True)
+    transaction_id = models.CharField(max_length=200,
+                                      blank=True)
 
     # This button is only visible in admin panel
     # Admin can see which order is already finished
@@ -34,9 +36,17 @@ class Order(models.Model):
 class OrderItem(models.Model):
     objects = None
     object = None
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    order = models.ForeignKey(Order,
+                              related_name='items',
+                              on_delete=models.CASCADE)
+
+    product = models.ForeignKey(Product,
+                                related_name='order_items',
+                                on_delete=models.CASCADE)
+
+    price = models.DecimalField(max_digits=10,
+                                decimal_places=2)
+
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):

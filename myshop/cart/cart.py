@@ -5,12 +5,6 @@ from shop.models import Product
 from coupons.models import Coupon
 
 
-# This function represent shipping price
-# If you want you can change that value
-def shipping_value():
-    return Decimal('8.99')
-
-
 # This class represent all functionality of cart
 class Cart(object):
     def __init__(self, request):
@@ -20,6 +14,12 @@ class Cart(object):
             cart = self.session[settings.SESSION_COOKIE_CART] = {}
         self.cart = cart
         self.coupon_id = self.session.get('coupon_id')
+
+    # This function represent shipping price
+    # If you want you can change that value
+
+    def shipping_value(self):
+        return Decimal('8.99')
 
     # This function add products to cart and can change the value of them
     # At default it add 1 product to card
@@ -92,7 +92,7 @@ class Cart(object):
     # After coupon rabat and shipping
     # Price of shipping a constant value which is in function 'shipping_value'
     def get_total_price_after_discount_and_shipping(self):
-        return self.get_total_price_after_discount() + shipping_value()
+        return self.get_total_price_after_discount() + self.shipping_value()
 
     # This function allows to clear everything from cart
     def clear(self):

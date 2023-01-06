@@ -6,6 +6,12 @@ from paypal.standard.forms import PayPalPaymentsForm
 from cart.models import Order, OrderItem
 from django.views.decorators.csrf import csrf_exempt
 from cart.cart import Cart
+from paypal.standard.ipn.models import PayPalIPN
+
+
+def shipping_value():
+    return Decimal('8.99')
+
 
 @csrf_exempt
 def payment_done(request):
@@ -18,19 +24,26 @@ def payment_canceled(request):
 
 
 def payment_process(request):
+    paypal_response = PayPalIPN.get_paypal_response(request)
+    transaction_id = paypal_response.get('txn_id', '')
+    save_transaction_id = Order.objects.create(transaction_id=transaction_id)
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     host = request.get_host()
     cart = Cart(request)
+
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': cart.get_total_price(),
+        'amount': order.get_total_cost(), #'%.2f' % order.get_total_cost().quantize(Decimal('.01')),
         'item_name': order.id,
         'invoice': str(order.id),
         'currency_code': 'PLN',
-        'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
-        'return_url': 'http://{}{}'.format(host, reverse('payment:done')),
-        'cancel_return': 'http://{}{}'.format(host, reverse('payment:canceled')),
+        'notify_url': 'http://{}{}'.format(host,
+                                           reverse('paypal-ipn')),
+        'return_url': 'http://{}{}'.format(host,
+                                           reverse('payment:done')),
+        'cancel_return': 'http://{}{}'.format(host,
+                                              reverse('payment:canceled')),
 
     }
 
@@ -38,4 +51,4 @@ def payment_process(request):
     return render(request, 'payment/process.html',
                   {'order': order,
                    'form': form,
-                   'cart': cart,})
+                   'cart': cart, })
