@@ -17,8 +17,8 @@ class OrderItemInline(admin.TabularInline):
 # The button 'sent' says if the order is completed or not
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ['sent', 'paid', 'created', 'email']
+    list_display = ['order_status', 'paid', 'created', 'email']
 
-    list_filter = ['paid', 'created']
+    list_filter = ['order_status', 'created']
 
     inlines = [OrderItemInline]

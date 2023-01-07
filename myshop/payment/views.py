@@ -6,28 +6,28 @@ from paypal.standard.forms import PayPalPaymentsForm
 from cart.models import Order, OrderItem
 from django.views.decorators.csrf import csrf_exempt
 from cart.cart import Cart
-from paypal.standard.ipn.models import PayPalIPN
-
-
-def shipping_value():
-    return Decimal('8.99')
 
 
 @csrf_exempt
 def payment_done(request):
-    return render(request, 'payment/done.html')
+    return render(request,
+                  'payment/done.html')
 
 
 @csrf_exempt
 def payment_canceled(request):
-    return render(request, 'payment/canceled.html')
+    return render(request,
+                  'payment/canceled.html')
 
 
 def payment_process(request):
     order_id = request.session.get('order_id')
-    order = get_object_or_404(Order, id=order_id)
+    order = get_object_or_404(Order,
+                              id=order_id)
+
     host = request.get_host()
     cart = Cart(request)
+    # total_prise = cart.get_total_price_after_discount_and_shipping()
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,

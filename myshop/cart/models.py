@@ -1,6 +1,5 @@
 from django.db import models
 from shop.models import Product
-from .cart import Cart
 
 
 # This model allows user to write all necessary information
@@ -15,12 +14,21 @@ class Order(models.Model):
     postal_code = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
-    transaction_id = models.CharField(max_length=200,
-                                      blank=True)
 
     # This button is only visible in admin panel
-    # Admin can see which order is already finished
-    sent = models.BooleanField(default=False)
+    # Admin can see and set the order status
+    # On default the order status is set to 'nowe' (1)
+
+    ORDER_STATUS = [
+        (1, 'nowe'),
+        (2, 'w realizacji'),
+        (3, 'wysłane'),
+        (4, 'odebrane'),
+        (5, 'anulowane'),
+        (6, 'zwrócone'),
+    ]
+
+    order_status = models.PositiveIntegerField(choices=ORDER_STATUS)
 
     class Meta:
         ordering = ('-created',)
