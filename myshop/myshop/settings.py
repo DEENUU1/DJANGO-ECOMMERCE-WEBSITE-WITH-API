@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'coupons',
     'paypal.standard.ipn',
     'payment',
+    'phone_field'
 ]
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'

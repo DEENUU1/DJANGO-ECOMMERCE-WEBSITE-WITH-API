@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from phone_field import PhoneField
 
 
 # This model allows user to write all necessary information
@@ -7,7 +8,7 @@ from shop.models import Product
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone_number = models.IntegerField()
+    phone_number = PhoneField()
     email = models.EmailField()
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
