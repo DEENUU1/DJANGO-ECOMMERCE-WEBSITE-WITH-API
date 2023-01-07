@@ -1,7 +1,22 @@
-const hamburger_icon = document.querySelector('#nav-bar .nav-bar .nav-list .hamburger');
-const nav_list = document.querySelector('#nav-bar .nav-bar .nav-list');
+const nav = document.querySelector(".nav"),
+  searchIcon = document.querySelector("#searchIcon"),
+  navOpenBtn = document.querySelector(".navOpenBtn"),
+  navCloseBtn = document.querySelector(".navCloseBtn");
 
-hamburger_icon.addEventListener('click', () => {
-	nav_list.classList.toggle('open');
-	hamburger_icon.classList.toggle('active');
+searchIcon.addEventListener("click", () => {
+  nav.classList.toggle("openSearch");
+  nav.classList.remove("openNav");
+  if (nav.classList.contains("openSearch")) {
+    return searchIcon.classList.replace("uil-search", "uil-times");
+  }
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+
+navOpenBtn.addEventListener("click", () => {
+  nav.classList.add("openNav");
+  nav.classList.remove("openSearch");
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+navCloseBtn.addEventListener("click", () => {
+  nav.classList.remove("openNav");
 });

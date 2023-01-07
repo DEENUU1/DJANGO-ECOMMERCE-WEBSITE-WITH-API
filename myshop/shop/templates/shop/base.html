@@ -4,52 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} SHADOK COM {% endblock %}</title>
-    <link href="#">
     <link rel="stylesheet" href="{% static '/css/base.css' %}">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
 </head>
 <body>
 
-    <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class='fas fa-bars'></i>
-        </label>
-        <label class="logo">SHADOK COM</label>
-        <ul>
-            <li><a class="active" href="#">Strona główna</a></li>
-            <li><a href="/about">O sklepie</a></li>
-            <li><a href="/contact">Kontakt</a></li>
-        </ul>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div id="subheader">
-    <div class="cart">
+<nav class="nav">
+      <i class="uil uil-bars navOpenBtn"></i>
+      <a href="{% url 'shop:product_list' %}" class="logo">SHADOK</a>
+
+      <ul class="nav-links">
+        <i class="uil uil-times navCloseBtn"></i>
+        <li><a href="{% url 'shop:product_list' %}">Produkty</a></li>
+        <li><a href="{% url 'shop:about_us' %}">O sklepie</a></li>
+        <li><a href="{% url 'contact' %}">Kontakt</a></li>
         {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-        Koszyk:
-        <a href="{% url 'cart:cart_detail' %}">
-            {{total_items}} produkt {{total_items|pluralize:'y'}},
-            {{cart.get_total_price}} zł
-        </a>
-            {% else %}
-                Koszyk jest pusty
-            {% endif %}
+          {% if cart|length > 0 %}
+          <li><a href="{% url 'cart:cart_detail' %}">Koszyk <sup>{{ total_items }}</sup></a></li>
+          {% else %}
+          <li><a href="{% url 'cart:cart_detail' %}">Koszyk</a></li>
+          {% endif %}
         {% endwith %}
-    </div>
+      </ul>
 
-</div>
+      <i class="uil uil-search search-icon" id="searchIcon"></i>
+      <div class="search-box">
+        <form method="get" action="{% url 'shop:search' %}">
+        <i class="uil uil-search search-icon"></i>
+        <input name="q" type="text" placeholder="Wyszukaj produkt..." />
+        </form>
+      </div>
+</nav>
 
-<form method="get" action="{% url 'shop:search' %}">
-    <input name="q" type="text" placeholder="Search">
-    <button type="submit">Search</button>
-</form>
+<script>
+    const nav = document.querySelector(".nav"),
+  searchIcon = document.querySelector("#searchIcon"),
+  navOpenBtn = document.querySelector(".navOpenBtn"),
+  navCloseBtn = document.querySelector(".navCloseBtn");
+
+searchIcon.addEventListener("click", () => {
+  nav.classList.toggle("openSearch");
+  nav.classList.remove("openNav");
+  if (nav.classList.contains("openSearch")) {
+    return searchIcon.classList.replace("uil-search", "uil-times");
+  }
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+
+navOpenBtn.addEventListener("click", () => {
+  nav.classList.add("openNav");
+  nav.classList.remove("openSearch");
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+navCloseBtn.addEventListener("click", () => {
+  nav.classList.remove("openNav");
+});
+
+</script>
 
 
 
