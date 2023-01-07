@@ -10,15 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+
 
 <nav class="nav">
       <i class="uil uil-bars navOpenBtn"></i>
@@ -47,8 +42,73 @@
       </div>
 </nav>
 
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+<footer>
+    <section class="container">
+        <div class="about">
+            <h3>O nas</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+        <div class="services">
+            <h3>Obsługa</h3>
+            <ul>
+                <li>
+                    <a href="{% url 'shop:about_us' %}">O nas</a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">Kontakt</a>
+                </li>
+                <li>
+                    <a href="#">Regulamin</a>
+                </li>
+                <li>
+                    <a href="#">Polityka prywatności</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="orders">
+            <h3>Obsługa</h3>
+            <ul>
+                <li>
+                    <a href="#">Dostawa</a>
+                </li>
+                <li>
+                    <a href="#">Zwroty i reklamacje</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="contact">
+            <h3>Kontakt</h3>
+            <ul>
+                <li>
+                    Adres: 935 Pennsylvania Avenue NW, Washington, DC 20535, Stany Zjednoczone
+                </li>
+                <li>
+                    Numer telefonu: 123-123-123
+                </li>
+                <li>
+                    Email: bestshop@gmai.com
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="copyright">Copyright: Kacper Włodarczyk</section>
+</footer>
+
+
 <script>
-    const nav = document.querySelector(".nav"),
+const nav = document.querySelector(".nav"),
   searchIcon = document.querySelector("#searchIcon"),
   navOpenBtn = document.querySelector(".navOpenBtn"),
   navCloseBtn = document.querySelector(".navCloseBtn");
@@ -72,13 +132,6 @@ navCloseBtn.addEventListener("click", () => {
 });
 
 </script>
-
-
-
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
 
 </body>
 </html>
