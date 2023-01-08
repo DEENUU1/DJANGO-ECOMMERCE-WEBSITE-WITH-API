@@ -1,11 +1,11 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 
 {% block title %}
     Koszyk
 {% endblock %}
 
-{% block content %}
+{% include "shop/navbar.html" %}
 <h1>Koszyk</h1>
 <table class="cart">
     <thead>
@@ -99,4 +99,4 @@
 
 
 
-{% endblock %}
+{% include "shop/footer.html" %}

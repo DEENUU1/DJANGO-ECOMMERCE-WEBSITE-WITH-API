@@ -1,11 +1,12 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 
 {% block title %}
   About us
 {% endblock %}
-N
-{% block content %}
+
+{% include "shop/navbar.html" %}
+
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <h1>About SHADOK</h1>
 <img src="{% static 'images/shadok.png' %}">
@@ -21,6 +22,4 @@ N
   no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.24130544849!2d-77.02737474865877!3d38.89559685455422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b79a7e96a279%3A0x9597136898411ea!2sFederalne%20Biuro%20%C5%9Aledcze!5e0!3m2!1spl!2sde!4v1672227034945!5m2!1spl!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-{% endblock %}
-`
+{% include "shop/footer.html" %}

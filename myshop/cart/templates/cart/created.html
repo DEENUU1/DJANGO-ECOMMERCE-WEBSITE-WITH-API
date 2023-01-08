@@ -1,11 +1,12 @@
-{% extends 'shop/base.html' %}
+
 {% block title %}
     Twoje zamówienie zostało wysłane!
     Niedługo znajdzie się u ciebie
 {% endblock %}
 
-{% block content %}
+
+{% include "shop/navbar.html" %}
 <h1>Twoje zamówienie zostało wysłane! Niedługo znajdzie się u ciebie</h1>
 <p>Numer twojego zamówienia: {{order.id}}</p>
 
-{% endblock %}
+{% include "shop/footer.html" %}

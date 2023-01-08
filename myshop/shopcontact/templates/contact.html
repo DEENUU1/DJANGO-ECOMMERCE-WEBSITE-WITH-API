@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 
 
@@ -8,18 +8,8 @@
 
 
 
-{% block content %}
-<!--<section class="contact-form">-->
-<!--<form class="" method="post">-->
+{% include "shop/navbar.html" %}
 
-<!--    {% csrf_token %}-->
-<!--    <input name="email" type="text" class="feedback-input" placeholder="E-mail" required/>-->
-<!--    <input name="subject" type="subject" class="feedback-input" placeholder="Subject" required/>-->
-<!--    <textarea name="text" class="feedback-input" placeholder="Message" required></textarea>-->
-<!--    <input type="submit" value="SUBMIT"/>-->
-<!--</form>-->
-
-<!--</section>-->
 
 <form method="post" action="{% url 'contact' %}">
   {% csrf_token %}
@@ -27,6 +17,5 @@
   <input type="submit" value="Submit">
 </form>
 
-
-{% endblock %}
+{% include "shop/footer.html" %}
 

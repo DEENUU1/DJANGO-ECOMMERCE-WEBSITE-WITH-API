@@ -1,8 +1,8 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 
 
-{% block content %}
+{% include "shop/navbar.html" %}
 <br><br><br>
 
   {% if products %}
@@ -22,4 +22,4 @@
   {% else %}
     <p>There is no results for this :(</p>
   {% endif %}
-{% endblock %}
+{% include "shop/footer.html" %}

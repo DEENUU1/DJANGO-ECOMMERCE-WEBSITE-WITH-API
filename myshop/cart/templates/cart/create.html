@@ -1,16 +1,9 @@
-{% extends 'shop/base.html' %}
+
 {% block title %}
   Kasa
 {% endblock %}
 
-<style>
-  .phone-field-ext, .phone-field-ext+input {
-    display: none;
-}
-</style>
-
-
-{% block content %}
+{% include "shop/navbar.html" %}
   <h1>Kasa</h1>
 
 <div class="order-info">
@@ -34,4 +27,4 @@
 </form>
 
 
-{% endblock %}
+{% include "shop/footer.html" %}

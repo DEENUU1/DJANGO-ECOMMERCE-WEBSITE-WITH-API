@@ -1,0 +1,122 @@
+footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 50px 20px;
+    width: 80%;
+
+    margin: 0 auto;
+}
+
+.container h3 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #FFCD00;
+}
+
+.about {
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.services {
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.services ul {
+    list-style-type: none;
+    line-height: 2;
+
+}
+
+.services a {
+    color: white;
+    text-decoration: none;
+}
+
+.services a:hover {
+    color: #FFCD00;
+    text-decoration: underline;
+}
+
+
+
+
+.orders {
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.orders ul {
+    list-style-type: none;
+    line-height: 2;
+
+}
+
+.orders a {
+    color: white;
+    text-decoration: none;
+}
+
+.orders a:hover {
+    color: #FFCD00;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+.contact {
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+
+.contact ul {
+    list-style-type: none;
+    line-height: 2;
+}
+
+
+
+
+
+.copyright {
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid gray;
+}
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

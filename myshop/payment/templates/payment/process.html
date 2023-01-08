@@ -1,9 +1,9 @@
-{% extends "shop/base.html" %}
+{% include "shop/navbar.html" %}
 
 {% block title  %} PayPal {% endblock %}
 
-{% block content %}
+
 <h1>Pay using PayPal</h1>
 {{ form.render }}
 
-{% endblock %}
+{% include "shop/footer.html" %}

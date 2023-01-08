@@ -1,10 +1,10 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 {% block title %}
 {% if category %} {{category.name }} {% else %} Produkty {% endif %}
 {% endblock %}
-{% block content %}
 
+{% include "shop/navbar.html" %}
 <br><br><br>
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
@@ -58,4 +58,4 @@ Page {{ products_list.numer }} of {{ products_list.paginator.num_pages }}
 
 {% endif %}
 
-{% endblock content %}
+{% include "shop/footer.html" %}

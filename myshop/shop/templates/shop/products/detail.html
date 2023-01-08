@@ -1,13 +1,12 @@
-{% extends "shop/base.html" %}
+
 {% load static %}
 
 {% block title %}
     {{product.name}}
 {% endblock %}
 
+{% include "shop/navbar.html" %}
 
-
-{% block content %}
 <br><br><br>
 
     <div class="product-detail">
@@ -52,6 +51,4 @@
         {{product.description|linebreaks}}
     </div>
 
-
-
-{% endblock %}
+{% include "shop/footer.html" %}
