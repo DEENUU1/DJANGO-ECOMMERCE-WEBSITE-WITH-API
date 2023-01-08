@@ -1,8 +1,10 @@
-/* ===== PRODUCT DETAIL SECTION ===== */
 html {
 	font-family: 'Montserrat';
 	scroll-behavior: smooth;
 }
+
+
+/* ===== PRODUCT DETAIL SECTION ===== */
 
 
 
@@ -41,7 +43,7 @@ html {
 }
 
 .row .left img{
-    width: 80%;
+    max-width: 100%; /*width: 80% */
     height: 100%;
     object-fit: cover;
     margin-top: 30px;

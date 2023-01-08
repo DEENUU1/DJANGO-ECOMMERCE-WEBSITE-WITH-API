@@ -1,11 +1,24 @@
 
 {% load static %}
-{% block title %}
-{% if category %} {{category.name }} {% else %} Produkty {% endif %}
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/product_list.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+</head>
+
+<!-- Navigation Bar -->
 {% include "shop/navbar.html" %}
+<!-- Navigation Bar -->
+
+
 <br><br><br>
+
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
 <form method="GET" action="{% url 'shop:product_list' %}">
@@ -23,39 +36,57 @@
 
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
-<div>
-    <div id="main" class="product-list">
-        <h1>Produkty</h1>
-        {% for product in products_list %}
-        <div class="item">
-            <a href="{{c.get_absolute_url}}">
-                <img src="{% if product.image %}
+
+<!-- PRODUCTS -->
+
+<div class="grid">
+  {% for product in products_list %}
+  <article>
+      <a href="{{product.get_absolute_url}}">
+      <img src="{% if product.image %}
                 {{product.image.url}}
                 {% else %}
                 {% static 'images/no-image.jpg' %}
                 {% endif %}">
-            </a>
-            <a href="{{product.get_absolute_url}}">{{product.name}}</a>
-            <br>
-            {{product.price}} zł
-
-
-        </div>
-        {% endfor %}
+      </a>
+    <div class="text">
+      <a href="{{product.get_absolute_url}}">
+        <h4 class="product-name">{{product.name|truncatechars:100}}</h4>
+      </a>
+        <p class="product-price"><strong>{{product.price}} zł</strong></p>
     </div>
+  </article>
+   {% endfor %}
 </div>
 
-{% if products_list.has_previous %}
-    <a href="?page=1">First</a>
-    <a href="?page={{products_list.previous_page_number}}">Previous</a>
-{% endif %}
 
-Page {{ products_list.numer }} of {{ products_list.paginator.num_pages }}
 
-{% if products_list.has_next %}
-    <a href="?page={{products_list.next_page_number}}">next</a>
-    <a href="?page={{products_list.paginator.num_pages}}">last</a>
 
-{% endif %}
+<!-- PRODUCTS -->
 
+
+<!-- PAGINATOR -->
+
+<div class="pagintion-container">
+        <div class="pagination">
+
+        {% if products_list.has_previous %}
+            <a href="?page=1">Pierwsza</a>
+            <a href="?page={{products_list.previous_page_number}}">Poprzednia</a>
+        {% endif %}
+
+        {% if products_list.has_next %}
+            <a href="?page={{products_list.next_page_number}}">Następna</a>
+            <a href="?page={{products_list.paginator.num_pages}}">Ostatnia</a>
+        {% endif %}
+        </div>
+    <p>Strona: {{ products_list.number }} z {{ products_list.paginator.num_pages }}</p>
+
+</div>
+<!-- PAGINATOR -->
+
+
+
+<!-- Footer -->
 {% include "shop/footer.html" %}
+<!-- Footer -->
