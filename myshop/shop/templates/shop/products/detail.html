@@ -1,54 +1,93 @@
-
 {% load static %}
 
-{% block title %}
-    {{product.name}}
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/product_detail.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+</head>
+
+
+<!-- Navigation Bar -->
 {% include "shop/navbar.html" %}
+<!-- Navigation Bar -->
 
 <br><br><br>
 
-    <div class="product-detail">
-        <img src="{% if product.image %}
+<!-- Product details -->
+
+<section id="product" class="product container">
+    <div class="product-info">
+        <h1 class="product-info-heading">{{product.name}}</h1>
+        <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}<i class="fa fa-star"></i></h4>
+
+    </div>
+
+    <div class="row">
+        <div class="left">
+            <img src="{% if product.image %}
                 {{product.image.url}}
                 {% else %}
                 {% static 'images/no-image.jpg' %}
                 {% endif %}">
-        <h1>{{product.name}}</h1>
-        <a href="{% url 'shop:product_rate' product.id product.slug %}">Rate</a>
-        <h2><a href="{{product.category.get_absolute_url}}">{{product.category}}</a></h2>
-        <p class="price">{{product.price}}zł</p>
+        </div>
 
+        <div class="right">
+            <div class="content">
+                <p class="price">{{product.price}} zł</p>
+                <p class="description">{{product.description}}</p>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{cart_product_form}}
+                    {% csrf_token %}
+                    <input type="submit" value="Dodaj do koszyka">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Product details -->
+
+
+
+<!-- Product rates -->
+    <div class="product-rates">
+        <a href="{% url 'shop:product_rate' product.id product.slug %}">Oceń produkt</a>
         <h3 style="text-align:center">Opinie o produkcie</h3>
-        <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}</h4>
-
+        <h4 style="text-align:center">
+            Średnia ocen: {{ average_rating.rate__avg }}
+            <i class="fa fa-star"></i>
+        </h4>
 
         <form method="GET" action="{% url 'shop:product_detail' product.id product.slug %}">
             {% csrf_token%}
             {{rate_filter.form}}
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-primary">Filtruj</button>
         </form>
 
         {% if rate_filter.qs.count %}
             {% for rate in rate_filter.qs %}
             <div class="rate" style="text-align:center">
                 {{ rate.text }}
-                {{ rate.rate }}
+                {{ rate.rate }} <i class="fa fa-star"></i>
             </div>
             {% endfor %}
         {% else %}
             <p style="text-align:center">Ten produkt nie ma jeszcze żadnych opinii lub opinia którą wybrałeś nie istnieje.</p>
         {% endif %}
 
-        <form action="{% url 'cart:cart_add' product.id %}" method="post">
-        {{cart_product_form}}
-        {% csrf_token %}
-        <input type="submit" value="Dodaj do koszyka">
-        </form>
-
-
-        {{product.description|linebreaks}}
     </div>
 
+<!-- Product rates -->
+
+
+
+<!-- Footer -->
 {% include "shop/footer.html" %}
+<!-- Footer -->

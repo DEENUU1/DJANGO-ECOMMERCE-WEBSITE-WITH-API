@@ -1,0 +1,145 @@
+/* ===== PRODUCT DETAIL SECTION ===== */
+html {
+	font-family: 'Montserrat';
+	scroll-behavior: smooth;
+}
+
+
+
+.product {
+	min-height: 50vh;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 100%;
+}
+.product .product-info {
+    width: 100%;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.product .product-info .product-info-heading {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.row {
+    width: 100%;
+    max-width: 2000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.row .left{
+    overflow: hidden;
+
+}
+
+.row .left img{
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 30px;
+}
+
+.row .right{
+    display: flex;
+    align-items: center;
+}
+
+.row .right .content{
+    padding-left: 20px;
+}
+
+.row .right .content .price {
+    color: red;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.row .right .content .description{
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: black;
+}
+
+.row .right .content label {
+    font-size: 20px;
+}
+
+.row .right .content select {
+
+  color: black;
+  padding: 12px;
+  width: 60px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  font-weight: 600;
+}
+
+.row .right .content input {
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 20px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.row .right .content input:hover {
+    background-color: #bf8c00;
+}
+
+@media (max-width: 991px) {
+    .row .right .content{
+        padding-left: 0;
+    }
+
+}
+
+@media (max-width: 1276px) {
+    .row {
+        width: 100%;
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+    }
+    .row .left img{
+        width: 70%;
+        height: 100%;
+        object-fit: cover;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+}
+}
+
+@media only screen and (min-width: 768px) {
+	.product {
+		width: 100%;
+		margin: 0 auto;
+		flex-direction: column;
+	}
+	.product .product-info {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+/* ===== END OF PRODUCT DETAIL SECTION ===== */
