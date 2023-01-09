@@ -88,4 +88,3 @@ def order_create(request):
                   'cart/create.html',
                   {'cart': cart,
                    'form': form})
-
