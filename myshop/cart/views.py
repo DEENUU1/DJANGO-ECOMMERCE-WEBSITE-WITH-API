@@ -73,6 +73,14 @@ def order_create(request):
                                          price=item['price'],
                                          quantity=item['quantity'])
 
+                product = Product.objects.get(id=item['product'].id)
+                product.stock -= item['quantity']
+                product.save()
+
+                if product.stock == 0:
+                    product.available = False
+                    product.save()
+
             cart.clear()
 
             order_created.delay(order.id)

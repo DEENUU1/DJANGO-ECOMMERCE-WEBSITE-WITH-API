@@ -2,7 +2,6 @@ from django.db import models
 from shop.models import Product
 
 
-
 # This model allows user to write all necessary information
 # All fields are required to complete the form
 class Order(models.Model):
