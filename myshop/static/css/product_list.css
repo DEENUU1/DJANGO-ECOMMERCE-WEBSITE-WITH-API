@@ -3,6 +3,51 @@ html {
 	scroll-behavior: smooth;
 }
 
+/* ===== PRODUCT FILTER SECTION ===== */
+
+.filters {
+  border-radius: 5px;
+  padding: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.filters li {
+  list-style-type: none;
+}
+
+.filters input[type=number], select {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: columns;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.filters input[type=submit] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+   display: inline-block;
+}
+
+filters. input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+
+
+/* ===== PRODUCT FILTER SECTION ===== */
+
+/* ===== PRODUCT LIST SECTION ===== */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px,    1fr));
@@ -13,14 +58,14 @@ html {
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
 }
 .grid article img {
-  width: 400px;
+  max-width: 400px;
   height: 400px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   object-fit: contain;
-
 }
+
 .text {
   padding: 0 20px 20px;
 }
@@ -38,6 +83,10 @@ html {
   bottom: 0;
 }
 
+/* ===== PRODUCT LIST SECTION ===== */
+
+
+/* ===== PAGINATION SECTION ===== */
 
 .pagintion-container p {
     display: flex;
@@ -45,6 +94,29 @@ html {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
+}
+
+.text form input {
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 15px 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.text form input:hover {
+    background-color: #e8bb05;
+}
+
+.text form select{
+    display: none;
 }
 
 
@@ -72,3 +144,22 @@ html {
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* ===== PAGINATION SECTION ===== */
+
+
+@media (max-width: 1276px) {
+    .grid img{
+        width: 70%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px,    1fr));
+      grid-gap: 20px;
+    }
+}

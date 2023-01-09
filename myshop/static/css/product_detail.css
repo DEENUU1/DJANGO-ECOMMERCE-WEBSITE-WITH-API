@@ -6,8 +6,6 @@ html {
 
 /* ===== PRODUCT DETAIL SECTION ===== */
 
-
-
 .product {
 	min-height: 50vh;
 	flex-direction: column;
@@ -84,7 +82,6 @@ html {
   border-radius: 10px;
   border-width: 3px;
   font-size: 20px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   -webkit-appearance: button;
   appearance: button;
   outline: none;
@@ -96,16 +93,17 @@ html {
     border: none;
     color: black;
     font-weight: 600;
-    padding: 20px 32px;
+    padding: 18px 28px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .row .right .content input:hover {
-    background-color: #bf8c00;
+    background-color: #e8bb05;
 }
 
 @media (max-width: 991px) {

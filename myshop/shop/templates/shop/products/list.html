@@ -20,20 +20,22 @@
 <br><br><br>
 
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
-
-<form method="GET" action="{% url 'shop:product_list' %}">
-  {% csrf_token %}
-  <label>Cena mniejsza od:</label>
-  {{ form.price__lt }}
-  <br>
-  <label>Cena większa od:</label>
-  {{ form.price__gt }}
-  <br>
-  <label>Kategoria:</label>
-  {{ form.category }}
-  <input type="submit" value="Submit">
-</form>
-
+<div class="filters">
+    <form method="GET" action="{% url 'shop:product_list' %}">
+      {% csrf_token %}
+      <ul>
+          <li>
+              <label>Cena mniejsza od:</label>
+              {{ form.price__lt }}
+              <label>Cena większa od:</label>
+              {{ form.price__gt }}
+              <label>Kategoria:</label>
+              {{ form.category }}
+              <input type="submit" value="Submit">
+          </li>
+      </ul>
+    </form>
+</div>
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 
 
@@ -54,6 +56,12 @@
         <h4 class="product-name">{{product.name|truncatechars:100}}</h4>
       </a>
         <p class="product-price"><strong>{{product.price}} zł</strong></p>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+            {{cart_product_form}}
+            {% csrf_token %}
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
     </div>
   </article>
    {% endfor %}
