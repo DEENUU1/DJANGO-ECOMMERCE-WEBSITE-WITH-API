@@ -28,7 +28,7 @@ html {
 
 .filters input[type=submit] {
   width: 10%;
-  background-color: #4CAF50;
+  background-color: #FFCD00;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -39,7 +39,7 @@ html {
 }
 
 filters. input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #e8bb05;
 }
 
 

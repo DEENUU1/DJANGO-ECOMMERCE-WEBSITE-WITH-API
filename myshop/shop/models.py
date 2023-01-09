@@ -88,5 +88,6 @@ class ProductRate(models.Model):
     objects = None
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, blank=True)
+    user_name = models.CharField(max_length=30)
     date = models.DateTimeField(auto_now_add=True)
     rate = models.PositiveIntegerField(choices=RATE)

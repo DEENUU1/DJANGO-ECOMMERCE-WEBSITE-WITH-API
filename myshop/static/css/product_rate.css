@@ -1,0 +1,53 @@
+html {
+	font-family: 'Montserrat';
+	scroll-behavior: smooth;
+}
+
+/* ===== HEADER ===== */
+
+h1 {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* ===== HEADER ===== */
+
+/* ===== FORM =====*/
+
+.product-rate-form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 100%;
+  background-color: #FFCD00;
+  color: black;
+  font-size: 20px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  background-color: #e8bb05;
+}
+
+
+/* ===== FORM =====*/
