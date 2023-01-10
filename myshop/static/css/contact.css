@@ -1,8 +1,3 @@
-html {
-	font-family: 'Montserrat';
-	scroll-behavior: smooth;
-}
-
 /* ===== HEADER ===== */
 
 h1 {
@@ -22,7 +17,7 @@ h1 {
   margin-bottom: 100px;
 }
 
-input[type=text], select, textarea {
+input, select, textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -31,10 +26,6 @@ input[type=text], select, textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-label {
-  width: 100%;
 }
 
 button[type=submit] {
