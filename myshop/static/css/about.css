@@ -1,0 +1,103 @@
+/* ===== PRODUCT DETAIL SECTION ===== */
+
+.about {
+	flex-direction: column;
+	margin: 0 auto;
+	width: 100%;
+}
+.about .about-info {
+    width: 100%;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.about .about-info .about-info-heading {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.row {
+    width: 100%;
+    max-width: 2000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.row .left{
+    overflow: hidden;
+
+}
+
+.row .left img{
+    max-width: 100%; /*width: 80% */
+    height: 100%;
+    object-fit: cover;
+    margin-top: 30px;
+}
+
+.row .right{
+    display: flex;
+    align-items: center;
+}
+
+.row .right .content{
+    padding-left: 20px;
+}
+
+.row .right .content .description{
+    font-size: 20px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    color: black;
+}
+
+.row .right .content iframe {
+    flex: 1;
+}
+
+@media (max-width: 991px) {
+    .row .right .content{
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1276px) {
+    .row {
+        width: 100%;
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+    }
+    .row .left img{
+        width: 70%;
+        height: 100%;
+        object-fit: cover;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .row .right iframe{
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+	.about {
+		width: 100%;
+		margin: 0 auto;
+		flex-direction: column;
+	}
+	.about .about-info {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+/* ===== END OF PRODUCT DETAIL SECTION ===== */
