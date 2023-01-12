@@ -23,6 +23,17 @@
 
 <h1>Login</h1>
 
+
+<form method="POST" action="">
+	{% csrf_token %}
+	<input type="text" name="username" placeholder="Nazwa użytkownika...">
+
+	<input type="password" name="password" placeholder="Hasło...">
+
+	<input type="submit" value="Login">
+
+</form>
+
 {% for message in messages %}
 
     <p>{{message}}</p>
@@ -32,3 +43,6 @@
 <!-- Footer -->
 {% include "shop/footer.html" %}
 <!-- Footer -->
+
+
+
