@@ -4,9 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import re_path as url
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('', include('shopcontact.urls')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
     path('cart/', include('cart.urls', namespace='cart')),

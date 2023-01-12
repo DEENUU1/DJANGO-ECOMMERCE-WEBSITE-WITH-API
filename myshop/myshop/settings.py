@@ -45,20 +45,24 @@ INSTALLED_APPS = [
     'coupons',
     'paypal.standard.ipn',
     'payment',
-    'phone_field'
+    'phone_field',
+    'accounts',
 ]
 
+''' SESSIONS '''
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-
 SESSION_COOKIE_CART = 'cart'
 
+''' PAYPAL '''
 PAYPAL_RECEIVER_EMAIL = 'sb-nboak24765401@business.example.com'
 PAYPAL_TEST = True
 
+''' EMAIL '''
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
+''' RATING SYSTEM '''
 START_RATINGS_RATING_MODEL = 'shop.MyRating'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
