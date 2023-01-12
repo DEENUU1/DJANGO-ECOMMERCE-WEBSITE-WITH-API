@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from cart.models import OrderItem, Order
 
 # User registration view
 def registerPage(request):
@@ -56,3 +56,13 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('/accounts/login/')
+
+
+def profileUser(request):
+    if request.user.is_authenticated:
+        orders = Order.objects.filter(email=request.user.email)
+    else:
+        orders = []
+    return render(request,
+                  'accounts/profile_user.html',
+                  {'orders': orders})
