@@ -30,14 +30,14 @@ input[type="text"], input[type="email"], input[type="password"] {
   font-size: 20px;
 }
 
-.register-button {
+.login-button {
     display: grid;
     width: 100%;
     text-align: center;
     margin-top: 25px;
 }
 
-.register-button input[type='submit']{
+.login-button input[type='submit']{
     background: #27A116;
     padding: 15px 20px;
     text-decoration: none;
@@ -46,12 +46,12 @@ input[type="text"], input[type="email"], input[type="password"] {
     font-size: 20px;
 }
 
-.register-button input[type='submit']:hover {
+.login-button input[type='submit']:hover {
     background: #208511;
 }
 
 
-.login-button {
+.register-button {
     display: grid;
     width: 100%;
     text-align: center;
@@ -59,7 +59,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin-bottom: 50px;
 }
 
-.login-button a{
+.register-button a{
     background: #27A116;
     padding: 15px 20px;
     text-decoration: none;
@@ -68,7 +68,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     font-size: 20px;
 }
 
-.login-button a:hover {
+.register-button a:hover {
     background: #208511;
 }
 

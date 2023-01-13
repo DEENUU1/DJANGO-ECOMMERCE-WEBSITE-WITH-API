@@ -17,22 +17,29 @@
 {% include "shop/navbar.html" %}
 <!-- Navigation Bar -->
 
-<br><br><br><br><br><br>
 
 <!-- LOGIN FORM -->
 
-<h1>Login</h1>
+<h1>Zaloguj się</h1>
 
 
 <form method="POST" action="">
 	{% csrf_token %}
-	<input type="text" name="username" placeholder="Nazwa użytkownika...">
+    <div class="form-row">
+    <label for="username">Nazwa użytkownika</label>
+	<input type="text" name="username">
+    <label for="password">Hasło</label>
+	<input type="password" name="password">
 
-	<input type="password" name="password" placeholder="Hasło...">
-
-	<input type="submit" value="Login">
-
+	<div class="login-button">
+	    <input type="submit" value="Login">
+    </div>
+    </div>
 </form>
+
+<div class="register-button">
+    <a href="{% url 'accounts:register' %}">Zarejestruj się</a>
+</div>
 
 {% for message in messages %}
 
