@@ -15,4 +15,7 @@ urlpatterns = [
 
     # This url is displaying user profile
     path('profile/', views.profileUser, name='profile'),
+
+    # This url is displaying password reset form
+    path('reset/', views.changePassword, name='reset'),
 ]

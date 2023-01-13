@@ -13,3 +13,12 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+
+# Form for password reset
+# Display fields like email and password
+
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField()
+    old_password = forms.CharField(widget=forms.PasswordInput)
+    new_password = forms.CharField(widget=forms.PasswordInput)
+
