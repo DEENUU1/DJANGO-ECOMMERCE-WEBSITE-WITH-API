@@ -8,7 +8,7 @@ def statute(request):
     return render(request, 'statute.html')
 
 def privacy_policy(request):
-    pass
+    return render(request, 'privacy.html')
 
 def shipping(request):
     return render(request, 'shipping.html')
