@@ -21,22 +21,23 @@
 
 <!-- REGISTER FORM -->
 
-<h1>Register</h1>
+<h1>Utwór konto</h1>
 
-<form method="POST" action="">
+<form method="POST" action="" class="responsive-form">
     {% csrf_token %}
-    {{form.username.label}}
+    <div class="form-row">
+    <label for="username">Nazwa użytkownika</label>
     {{form.username}}
-
-    {{form.email.label}}
+    <label for="email">Adres Email</label>
     {{form.email}}
-
-    {{form.password1.label}}
+    <label for="password1">Hasło</label>
     {{form.password1}}
-
-    {{form.password2.label}}
+    <label for="password2">Powtórz hasło</label>
     {{form.password2}}
-    <input type="submit" name="Zarejestruj się">
+        <div class="register-button">
+            <input type="submit" value="Zarejestruj się">
+        </div>
+    </div>
     {{form.errors}}
 </form>
 

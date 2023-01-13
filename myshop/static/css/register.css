@@ -1,0 +1,52 @@
+h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.responsive-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+
+.form-row {
+  display: grid;
+  width: 100%;
+}
+
+label {
+  text-align: center;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.register-button {
+    display: grid;
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.register-button input[type='submit']{
+    background: #27A116;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.register-button input[type='submit']:hover {
+    background: #208511;
+}
