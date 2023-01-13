@@ -19,6 +19,12 @@ class CartAddProductForm(forms.Form):
 # It's going to display fields like: first name, last name
 # email, address, postal code and city 
 class OrderCreateForm(forms.ModelForm):
+    first_name = forms.CharField(label='Imie')
+    last_name = forms.CharField(label='Nazwisko')
+    phone_number = forms.CharField(label='Numer telefonu')
+    address = forms.CharField(label='Adres')
+    postal_code = forms.CharField(label='Kod pocztowy')
+    city = forms.CharField(label='Miasto')
     class Meta:
         model = Order
         fields = ['first_name', 'last_name', 'email', 'phone_number', 'address',

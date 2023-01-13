@@ -1,0 +1,50 @@
+.header {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.order-info {
+    text-align: center;
+}
+
+.order-form {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.order-form label {
+    display: block;
+}
+
+.order-form input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.button1 {
+    width: 50%;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+button {
+    background: #27A116;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #208511;
+}

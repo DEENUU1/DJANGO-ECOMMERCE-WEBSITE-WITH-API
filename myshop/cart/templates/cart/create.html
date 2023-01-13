@@ -1,13 +1,23 @@
+{% load static %}
 
-{% block title %}
-  Kasa
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/order_detail.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
 
 {% include "shop/navbar.html" %}
-  <h1>Kasa</h1>
 
+<div class="header">
+  <h1>Podsumowanie zamówienia</h1>
+</div>
 <div class="order-info">
-  <h3>Zamówienie</h3>
   <ul>
     {% for item in cart %}
     <li>
@@ -22,7 +32,7 @@
 
 <form action="." method="post" class="order-form">
   {{form.as_p}}
-  <p><input type="submit" value="Złóż zamówienie"></p>
+    <button type="submit" class="button1">Zamów</button>
   {% csrf_token %}
 </form>
 
