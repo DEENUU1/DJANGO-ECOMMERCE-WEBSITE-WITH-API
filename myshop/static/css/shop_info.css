@@ -1,0 +1,24 @@
+.info {
+    margin-top: 300px;
+    margin-bottom: 300px;
+    text-align: center;
+}
+
+.info a{
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 18px 28px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.info a:hover {
+    background-color: #e8bb05;
+}
