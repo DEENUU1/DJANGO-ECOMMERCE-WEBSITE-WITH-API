@@ -11,9 +11,6 @@ urlpatterns = [
     # This url is to display search result
     path('search/', views.search, name='search'),
 
-    # This url is to display about page
-    path('about/', views.about_us, name='about_us'),
-
     # This url is a category page which display all available products in a category
     path('<str:category_slug>/', views.product_list, name='product_list_by_category'),
 

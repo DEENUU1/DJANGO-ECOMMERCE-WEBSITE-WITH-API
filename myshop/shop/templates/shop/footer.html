@@ -23,16 +23,16 @@
             <h3>Obsługa</h3>
             <ul>
                 <li>
-                    <a href="{% url 'shop:about_us' %}">O nas</a>
+                    <a href="{% url 'shop_info:about_us' %}">O nas</a>
                 </li>
                 <li>
                     <a href="{% url 'contact' %}">Kontakt</a>
                 </li>
                 <li>
-                    <a href="#">Regulamin</a>
+                    <a href="{% url 'shop_info:statute' %}">Regulamin</a>
                 </li>
                 <li>
-                    <a href="#">Polityka prywatności</a>
+                    <a href="{% url 'shop_info:privacy' %}">Polityka prywatności</a>
                 </li>
             </ul>
         </div>
@@ -41,13 +41,13 @@
             <h3>Obsługa</h3>
             <ul>
                 <li>
-                    <a href="#">Dostawa</a>
+                    <a href="{% url 'shop_info:shipping' %}">Dostawa</a>
                 </li>
                 <li>
-                    <a href="#">Zwroty i reklamacje</a>
+                    <a href="{% url 'shop_info:returns' %}">Zwroty i reklamacje</a>
                 </li>
                 <li>
-                    <a href="#">FAQ</a>
+                    <a href="{% url 'shop_info:faq' %}">FAQ</a>
                 </li>
             </ul>
         </div>

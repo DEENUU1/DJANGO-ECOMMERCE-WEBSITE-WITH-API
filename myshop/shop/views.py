@@ -96,9 +96,6 @@ def product_rate(request, id, slug):
     return HttpResponse(template.render(context, request))
 
 
-# This view is to display page with information about shop
-def about_us(request):
-    return render(request, 'shop/about.html')
 
 
 # This view is to display search bar

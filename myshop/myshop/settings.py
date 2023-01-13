@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'payment',
     'phone_field',
     'accounts',
+    'shop_info',
 ]
 
 ''' SESSIONS '''

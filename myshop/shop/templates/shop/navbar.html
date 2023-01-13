@@ -21,7 +21,7 @@
       <ul class="nav-links">
         <i class="uil uil-times navCloseBtn"></i>
         <li><a href="{% url 'shop:product_list' %}">Produkty</a></li>
-        <li><a href="{% url 'shop:about_us' %}">O sklepie</a></li>
+        <li><a href="{% url 'shop_info:about_us' %}">O sklepie</a></li>
         <li><a href="{% url 'contact' %}">Kontakt</a></li>
         {% with total_items=cart|length %}
           {% if cart|length > 0 %}
