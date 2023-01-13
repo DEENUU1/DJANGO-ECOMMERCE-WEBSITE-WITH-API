@@ -17,5 +17,5 @@ def returns_complaints(request):
     return render(request, 'returns.html')
 
 def faq(request):
-    pass
+    return render(request, 'faq.html')
 
