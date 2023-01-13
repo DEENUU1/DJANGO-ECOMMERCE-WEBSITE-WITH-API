@@ -1,0 +1,140 @@
+.cart-header {
+    text-align: center;
+    margin-bottom: 50px;
+    text-size: 30px;
+}
+
+.cart-container {
+    overflow-x: auto;
+    margin-top: 100px;
+    margin-bottom: 25px;
+
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td,tr  {
+    text-align: left;
+    padding: 8px;
+    font-weight: 800;
+}
+
+
+img {
+    width: 200px;
+    height: 250px;
+}
+
+.row .right .content label {
+    font-size: 20px;
+}
+
+table select {
+
+  color: black;
+  padding: 10px;
+  width: 60px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  font-size: 20px;
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  font-weight: 600;
+}
+
+table input {
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 18px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+table input:hover {
+    background-color: #e8bb05;
+}
+
+.delete-button input{
+    background-color: #FF2F2F;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 18px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.delete-button input:hover {
+    background-color: #CA0000;
+}
+
+.coupon-form {
+    text-align: center;
+}
+
+.coupon-form label{
+    display: none;
+}
+
+.coupon-form input[type='submit'] {
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 800;
+    padding: 15px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.coupon-form input[type='submit']:hover {
+    background-color: #e8bb05;
+}
+
+.coupon-form input[type='text'] {
+    padding: 12px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.buttons {
+    display: grid;
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.button-1 {
+    background: #27A116;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.button-1:hover {
+    background: #208511;
+}

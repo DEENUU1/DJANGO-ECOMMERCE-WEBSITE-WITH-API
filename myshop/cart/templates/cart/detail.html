@@ -1,101 +1,107 @@
 
 {% load static %}
 
-{% block title %}
-    Koszyk
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/cart_detail.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
 
 {% include "shop/navbar.html" %}
-<h1>Koszyk</h1>
-<table class="cart">
-    <thead>
-    <tr>
-        <th>Zdjęcie</th>
-        <th>Produkt</th>
-        <th>Ilość</th>
-        <th>Usuń</th>
-        <th>Cena za sztuke</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for item in cart %}
-        {% with product=item.product %}
-    <tr>
-        <td>
-            <a href="{{product.get_absolute_url}}">
-                <img src="{% if product.image %}
-                {{product.image.url}}
-                {% else %}
-                {% static 'images/no-image.jpg' %}
-                {% endif %}">
-            </a>
-        </td>
-        <td>{{product.name}}</td>
-        <td>
-            <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
-                {{ item.update_quantity_form.update }}
-                <input type="submit" value="Zmień">
-                {% csrf_token %}
-            </form>
-        </td>
-        <td>
-            <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-            <input type="submit" value="Remove">
-            {% csrf_token %}
-            </form>
-        </td>
-        <td class="num">{{item.price}}zł</td>
-        <td class="num">{{item.total_price}}zł</td>
-    </tr>
-        {% endwith %}
-    {% endfor %}
+<div class="cart-container">
+    <h1 class="cart-header">Koszyk</h1>
+    <table class="table table-responsive">
+        <tbody>
 
-    {% if cart.coupon %}
-        <tr class="subtotal">
-            <td>Wartość całkowita produktów</td>
-            <td colspan="4"></td>
-            <td class="num">{{ cart.get_total_price }} zł</td>
-        </tr>
+        {% for item in cart %}
+            {% with product=item.product %}
         <tr>
             <td>
-                Wartość kuponu "{{ cart.coupon.code }}"
-                ({{ cart.coupon.discount }}% rabatu)
+                <a href="{{product.get_absolute_url}}">
+                    <img src="{% if product.image %}
+                    {{product.image.url}}
+                    {% else %}
+                    {% static 'images/no-image.jpg' %}
+                    {% endif %}">
+                </a>
             </td>
+            <td>{{product.name}}</td>
+            <td class="num">{{item.price}}zł</td>
+            <td>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ item.update_quantity_form.quantity }}
+                    {{ item.update_quantity_form.update }}
+                    <input type="submit" value="Zmień">
+                    {% csrf_token %}
+                </form>
+            </td>
+            <td class="num">{{item.total_price}}zł</td>
+            <td>
+                <form action="{% url 'cart:cart_remove' product.id %}" method="post" class="delete-button">
+                <input type="submit" value="Usuń">
+                {% csrf_token %}
+                </form>
+            </td>
+
+
+        </tr>
+            {% endwith %}
+        {% endfor %}
+
+        {% if cart.coupon %}
+            <tr class="subtotal">
+                <td>Wartość całkowita produktów</td>
+                <td colspan="4"></td>
+                <td class="num">{{ cart.get_total_price }} zł</td>
+            </tr>
+            <tr>
+                <td>
+                    Wartość kuponu "{{ cart.coupon.code }}"
+                    ({{ cart.coupon.discount }}% rabatu)
+                </td>
+                <td colspan="4"></td>
+                <td class="num neg">
+                    - {{ cart.get_discount|floatformat:"2" }} zł
+                </td>
+            </tr>
+        {% endif %}
+        <tr class="shipping_value">
+            <td>Dostawa InPost na podany adres</td>
             <td colspan="4"></td>
-            <td class="num neg">
-                - {{ cart.get_discount|floatformat:"2" }} zł
+            <td>+ 8.99zł</td>
+        </tr>
+        <tr class="total">
+            <td>Kwota do zapłaty</td>
+            <td colspan="4"></td>
+            <td class="num">
+                {{ cart.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł
             </td>
         </tr>
-    {% endif %}
-    <tr class="shipping_value">
-        <td>Dostawa InPost na podany adres</td>
-        <td colspan="4"></td>
-        <td>+ 8.99zł</td>
-    </tr>
-    <tr class="total">
-        <td>Kwota do zapłaty</td>
-        <td colspan="4"></td>
-        <td class="num">
-            {{ cart.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł
-        </td>
-    </tr>
 
+        </tbody>
 
-    </tbody>
-</table>
+    </table>
+</div>
 
-<p>Kupon rabatowy:</p>
-<form action="{% url 'coupons:apply' %}" method="post">
-    {{ coupon_apply_form }}
-    <input type="submit" value="Dodaj">
-    {% csrf_token %}
-</form>
+<div class="coupon-form">
+    <h2>Kupon rabatowy:</h2>
+    <form action="{% url 'coupons:apply' %}" method="post">
+        {{ coupon_apply_form }}
+        <input type="submit" value="Dodaj">
+        {% csrf_token %}
+    </form>
+</div>
 
-<p class="text-right">
-    <a href="{% url 'shop:product_list' %}" class="buttonlight">Kontynuuj zakupy</a>
-    <a href="{% url 'cart:order_create' %}" class="button">Przejdź do płatności</a>
-</p>
+<div class="buttons">
+    <a href="{% url 'cart:order_create' %}" class="button-1">Przejdź do płatności</a>
+</div>
 
 
 
