@@ -24,15 +24,18 @@ def registerPage(request):
                 messages.success(request, f'{user} Twoje konto zostało utworzone')
 
                 return redirect('/accounts/login/')
+            else:
+                messages.error(request, 'Wystąpił błąd w trakcie zakładania konta. Spróbuj ponownie')
+        else:
+            form = CreateUserForm()
 
     return render(request,
                   'accounts/register.html',
-                  {'form': form,
-                   })
+                  {'form': form})
 
 
 # User login view
-# User can login using his username and password
+# User can log in using his username and password
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('/product_list/')

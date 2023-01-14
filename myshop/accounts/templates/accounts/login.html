@@ -31,6 +31,12 @@
     <label for="password">Hasło</label>
 	<input type="password" name="password">
 
+    {% for message in messages %}
+    <div class="messages">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+
 	<div class="login-button">
 	    <input type="submit" value="Login">
     </div>
@@ -43,11 +49,6 @@
 
 </div>
 
-{% for message in messages %}
-
-    <p>{{message}}</p>
-
-{% endfor %}
 
 <!-- Footer -->
 {% include "shop/footer.html" %}

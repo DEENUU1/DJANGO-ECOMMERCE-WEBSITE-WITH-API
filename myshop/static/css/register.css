@@ -30,6 +30,11 @@ input[type="text"], input[type="email"], input[type="password"] {
   font-size: 20px;
 }
 
+.form-row .messages {
+    color: red;
+    text-align: center;
+}
+
 .register-button {
     display: grid;
     width: 100%;

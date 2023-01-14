@@ -33,11 +33,18 @@
     {{form.password1}}
     <label for="password2">Powtórz hasło</label>
     {{form.password2}}
+
+    {% for message in messages %}
+    <div class="messages">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+
         <div class="register-button">
             <input type="submit" value="Zarejestruj się">
         </div>
     </div>
-    {{form.errors}}
+
 </form>
 
 <div class="login-button">
