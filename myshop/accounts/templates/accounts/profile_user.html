@@ -22,6 +22,9 @@
 
 <h1>Twój profil</h1>
 
+<a href="{% url 'accounts:reset' %}">Zmień hasło</a>
+<a href="{% url 'accounts:delete' %}">Usuń konto</a>
+
 <div class="container">
     {% for order in orders %}
     <span>Zamówienie numer: {{ order.id }}</span>

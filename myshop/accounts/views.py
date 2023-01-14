@@ -3,8 +3,9 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from cart.models import OrderItem, Order
-from .forms import PasswordResetForm
+from .forms import PasswordResetForm, DeleteUserForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # User registration view
 # User has to add username, email and password
@@ -65,12 +66,14 @@ def loginPage(request):
 
 
 # This view doesn't have template it works as a function
+@login_required()
 def logoutUser(request):
     logout(request)
     return redirect('/accounts/login/')
 
 # User can change his password by writing his email address and old password
 # If email or old password doesn't match it will return a message
+
 def changePassword(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)
@@ -100,6 +103,7 @@ def changePassword(request):
 
 # This view display profile of a user
 # Logged user can browse his orders and other information
+@login_required()
 def profileUser(request):
     if request.user.is_authenticated:
         orders = Order.objects.filter(email=request.user.email)
@@ -108,3 +112,34 @@ def profileUser(request):
     return render(request,
                   'accounts/profile_user.html',
                   {'orders': orders})
+
+
+# This view allows user to delete account
+# User has to be log in to delete account in his profile
+
+@login_required()
+def deleteUser(request):
+    if request.user.is_authenticated:
+        form = DeleteUserForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password):
+                    user.delete()
+                    logout(request)
+                    messages.success(request, 'Twoje konto pomyślnie usunięte')
+                    return redirect('/accounts/login')
+                else:
+                    messages.error(request, 'Nieudało się usunąć twojego konta. Spróbuj ponownie')
+            except User.DoesNotExist:
+                messages.info(request, 'To konto nie istnieje.')
+        else:
+            messages.error(request, 'Błędna nazwa użytkownika lub hasło. Spróbuj ponownie.')
+    else:
+        form = DeleteUserForm()
+
+    return render(request,
+                  'accounts/delete_user.html',
+                  {'form': form})

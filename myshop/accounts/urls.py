@@ -18,4 +18,7 @@ urlpatterns = [
 
     # This url is displaying password reset form
     path('reset/', views.changePassword, name='reset'),
+
+    # This url is for deleting user profile
+    path('delete/', views.deleteUser, name='delete'),
 ]

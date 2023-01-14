@@ -22,3 +22,7 @@ class PasswordResetForm(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput)
     new_password = forms.CharField(widget=forms.PasswordInput)
 
+
+class DeleteUserForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
