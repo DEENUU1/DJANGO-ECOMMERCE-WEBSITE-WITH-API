@@ -18,6 +18,9 @@ def registerPage(request):
         if request.method == 'POST':
             form = CreateUserForm(request.POST)
 
+            if User.objects.filter(email=form.data['email']).exists():
+                messages.error(request, 'Podany email już istnieje!')
+
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
