@@ -30,9 +30,13 @@
           <li><a href="{% url 'cart:cart_detail' %}">Koszyk</a></li>
           {% endif %}
         {% endwith %}
-         <li><a href="{% url 'accounts:login' %}">Zaloguj się</a></li>
-         <li><a href="{% url 'accounts:logout' %}">Wyloguj się</a></li>
-         <li><a href="{% url 'accounts:profile' %}">Twój profil</a></li>
+          <li class="user-dropdown">
+              <a href="{% url 'accounts:profile' %}">Twój profil</a>
+              <div class="user-dropdown-content">
+                  <a class="dropdown-links" href="{% url 'accounts:logout' %}">Wyloguj się</a>
+                  <a class="dropdown-links" href="{% url 'accounts:login' %}">Zaloguj się</a>
+              </div>
+          </li>
       </ul>
 
       <i class="uil uil-search search-icon" id="searchIcon"></i>
