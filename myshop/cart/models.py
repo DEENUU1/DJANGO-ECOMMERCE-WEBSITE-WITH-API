@@ -1,6 +1,8 @@
 from django.db import models
 from shop.models import Product
-from .cart import Cart
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
+from coupons.models import Coupon
 
 # This model allows user to write all necessary information
 # All fields are required to complete the form
@@ -19,14 +21,23 @@ class Order(models.Model):
     # Admin can see and set the order status
     # On default the order status is set to 'nowe' (1)
 
+    coupon = models.ForeignKey(Coupon,
+                               related_name='orders',
+                               null=True,
+                               blank=True,
+                               on_delete=models.CASCADE)
+    discount = models.IntegerField(default=0,
+                                   validators=[MinValueValidator(0),
+                                               MaxValueValidator(100)])
+
     class Meta:
         ordering = ('-created',)
 
+    def get_total_cost(self):
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - total_cost * (self.discount / Decimal('100'))
     def __str__(self):
         return 'Order {}'.format(self.id)
-
-    def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
 
 
     ORDER_STATUS = [
