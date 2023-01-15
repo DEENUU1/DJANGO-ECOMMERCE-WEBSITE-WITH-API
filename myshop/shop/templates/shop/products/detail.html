@@ -42,8 +42,9 @@
                 <p class="price">{{product.price}} zł</p>
                 <p class="description">{{product.description}}</p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                    {{cart_product_form}}
                     {% csrf_token %}
+                    {{cart_product_form}}
+
                     <input type="submit" value="Dodaj do koszyka">
                 </form>
             </div>

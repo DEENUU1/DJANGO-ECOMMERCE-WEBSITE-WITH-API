@@ -23,9 +23,9 @@
     <li>
       {{item.quantity }} x {{item.product.name}}
       <span>{{item.total_price}} zł</span>
-      <br>1 x Dostawa InPost 8.99
     </li>
     {% endfor %}
+      <p>1 x Dostawa InPost 8.99</p>
   </ul>
   <p>Wartość całkowita: {{cart.get_total_price_after_discount_and_shipping}} zł</p>
 </div>

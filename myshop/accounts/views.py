@@ -132,7 +132,7 @@ def deleteUser(request):
                     messages.success(request, 'Twoje konto pomyślnie usunięte')
                     return redirect('/accounts/login')
                 else:
-                    messages.error(request, 'Nieudało się usunąć twojego konta. Spróbuj ponownie')
+                    messages.error(request, 'Nie udało się usunąć twojego konta. Spróbuj ponownie')
             except User.DoesNotExist:
                 messages.info(request, 'To konto nie istnieje.')
         else:

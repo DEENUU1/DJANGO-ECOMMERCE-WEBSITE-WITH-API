@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Product, ProductRate
 from cart.forms import CartAddProductForm
 from .forms import RateForm
@@ -80,8 +80,9 @@ def product_rate(request, id, slug):
             rate = form.save(commit=False)
             rate.product = product
             rate.save()
-            return render(request, 'shop/products/detail.html',
-                          {'product': product})
+            # return render(request, 'shop/products/detail.html',
+            #               {'product': product})
+            return redirect('shop:product_detail', id=id, slug=slug)
 
     else:
         form = RateForm()
