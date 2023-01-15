@@ -1,6 +1,6 @@
 from django.db import models
 from shop.models import Product
-
+from .cart import Cart
 
 # This model allows user to write all necessary information
 # All fields are required to complete the form
@@ -27,6 +27,7 @@ class Order(models.Model):
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
+
 
     ORDER_STATUS = [
         (1, 'nowe'),

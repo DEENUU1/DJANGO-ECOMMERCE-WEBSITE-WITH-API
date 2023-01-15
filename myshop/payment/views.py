@@ -1,4 +1,3 @@
-from decimal import Decimal
 from django.conf import settings
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
@@ -27,7 +26,6 @@ def payment_process(request):
 
     host = request.get_host()
     cart = Cart(request)
-    # total_prise = cart.get_total_price_after_discount_and_shipping()
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
@@ -50,3 +48,4 @@ def payment_process(request):
                   {'order': order,
                    'form': form,
                    'cart': cart, })
+
