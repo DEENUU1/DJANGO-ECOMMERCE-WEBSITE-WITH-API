@@ -14,7 +14,9 @@ urlpatterns = [
     path('payment/', include('payment.urls', namespace='payment')),
     url('', include('shop.urls', namespace='shop')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('shop_info/', include('shop_info.urls', namespace='shop_info'))
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('shop_info/', include('shop_info.urls', namespace='shop_info')),
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 
