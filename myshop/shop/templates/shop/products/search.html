@@ -1,25 +1,60 @@
-
 {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/product_search.css' %}">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+</head>
 
+<!-- Navigation Bar -->
 {% include "shop/navbar.html" %}
-<br><br><br>
+<!-- Navigation Bar -->
 
+
+<!-- PRODUCTS -->
+
+<div class="grid">
   {% if products %}
-    <ul>
-      {% for product in products %}
-        <li>
-          <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-          <img src="{% if product.image %}
-          {{product.image.url}}
-          {% else %}
-          {% static 'images/no-image.jpg' %}
-          {% endif %}">
-          <p>Price: {{ product.price }} zł</p>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>There is no results for this :(</p>
-  {% endif %}
+  {% for product in products %}
+  <article>
+      <a href="{{product.get_absolute_url}}">
+      <img src="{% if product.image %}
+                {{product.image.url}}
+                {% else %}
+                {% static 'images/no-image.jpg' %}
+                {% endif %}">
+      </a>
+    <div class="text">
+      <a href="{{product.get_absolute_url}}">
+        <h4 class="product-name">{{product.name|truncatechars:100}}</h4>
+      </a>
+        <p class="product-price"><strong>{{product.price}} zł</strong></p>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+            {{cart_product_form}}
+            {% csrf_token %}
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
+    </div>
+  </article>
+   {% endfor %}
+{% else %}
+  <h1>Przykro nam nie ma takiego produktu</h1>
+{% endif %}
+</div>
+
+
+
+
+<!-- PRODUCTS -->
+
+
+
+<!-- Footer -->
 {% include "shop/footer.html" %}
+<!-- Footer -->

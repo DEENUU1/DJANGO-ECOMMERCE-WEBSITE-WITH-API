@@ -1,0 +1,66 @@
+html {
+	font-family: 'Montserrat';
+	scroll-behavior: smooth;
+}
+
+/* ===== PRODUCT LIST SECTION ===== */
+
+.grid {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px,    1fr));
+  grid-gap: 20px;
+  }
+.grid article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid article img {
+  max-width: 400px;
+  height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+.text {
+  padding: 0 20px 20px;
+}
+
+.text a {
+  text-decoration: none;
+  color: black;
+}
+
+.text .product-price {
+  border: 0;
+  font-size: 25px;
+  color: red;
+  width: 100%;
+  bottom: 0;
+}
+
+/* ===== PRODUCT LIST SECTION ===== */
+
+h1 {
+    margin-top: 300px;
+    margin-bottom: 300px;
+}
+
+
+@media (max-width: 1276px) {
+    .grid img{
+        width: 70%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px,    1fr));
+      grid-gap: 20px;
+    }
+}
