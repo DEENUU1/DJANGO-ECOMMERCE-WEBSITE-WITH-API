@@ -3,53 +3,10 @@ html {
 	scroll-behavior: smooth;
 }
 
-/* ===== PRODUCT FILTER SECTION ===== */
-
-.filters {
-  border-radius: 5px;
-  padding: 20px;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 100px;
-}
-
-.filters li {
-  list-style-type: none;
-}
-
-.filters input[type=number], select {
-  width: 10%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: columns;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.filters input[type=submit] {
-  width: 10%;
-  background-color: #FFCD00;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-   display: inline-block;
-}
-
-filters. input[type=submit]:hover {
-  background-color: #e8bb05;
-}
-
-
-
-/* ===== PRODUCT FILTER SECTION ===== */
-
 /* ===== PRODUCT LIST SECTION ===== */
 
 .grid {
+  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px,    1fr));
   grid-gap: 20px;
@@ -86,15 +43,9 @@ filters. input[type=submit]:hover {
 
 /* ===== PRODUCT LIST SECTION ===== */
 
-
-/* ===== PAGINATION SECTION ===== */
-
-.pagintion-container p {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
+h1 {
+    margin-top: 300px;
+    margin-bottom: 300px;
 }
 
 .text form input {
@@ -109,7 +60,6 @@ filters. input[type=submit]:hover {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 10px;
-
 }
 
 .text form input:hover {
@@ -120,33 +70,7 @@ filters. input[type=submit]:hover {
     display: none;
 }
 
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #4CAF50;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
-/* ===== PAGINATION SECTION ===== */
+/* ADD TO CART BUTTON */
 
 
 @media (max-width: 1276px) {
