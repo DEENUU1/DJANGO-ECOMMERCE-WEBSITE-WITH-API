@@ -22,10 +22,10 @@ urlpatterns = [
     # This url allows admin user to add new coupon
     path('add_coupon', views.add_coupon, name='add_coupon'),
 
+    # This url allows admin user to see customer information from the order
+    path('data_order', views.get_order_data, name='data_order'),
 
-
-
-
-
+    # This url allows admin user to see order information
+    path('data_order_item', views.get_orderItem_data, name='data_order_item'),
 
 ]

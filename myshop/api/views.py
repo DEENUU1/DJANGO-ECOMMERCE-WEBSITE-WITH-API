@@ -2,7 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from shop.models import Product, Category
 from coupons.models import Coupon
-from .serializers import ProductSerializer, CategorySerializer, CouponsSerializer
+from cart.models import Order, OrderItem
+from .serializers import *
 from django.contrib.auth.decorators import user_passes_test
 
 
@@ -64,3 +65,23 @@ def add_coupon(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+# This view allows to display customer information from order
+# in JSON format
+
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['GET'])
+def get_order_data(request):
+    order = Order.objects.all()
+    serializer = OrderSerializer(order, many=True)
+    return Response(serializer.data)
+
+# This view allows to display order information in JSON format
+
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['GET'])
+def get_orderItem_data(request):
+    order_item = OrderItem.objects.all()
+    serializer = OrderItemSerializer(order_item, many=True)
+    return Response(serializer.data)
+
