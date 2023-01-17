@@ -16,6 +16,14 @@ urlpatterns = [
     # This url allows admin user to add new category
     path('add_category', views.add_category, name='add_category'),
 
+    # This url allows admin user to see all available coupons
+    path('data_coupon', views.get_coupon_data, name='data_coupon'),
+
+    # This url allows admin user to add new coupon
+    path('add_coupon', views.add_coupon, name='add_coupon'),
+
+
+
 
 
 

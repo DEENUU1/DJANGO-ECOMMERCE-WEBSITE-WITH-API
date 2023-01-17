@@ -1,12 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from shop.models import Product, Category
-from .serializers import ProductSerializer, CategorySerializer
+from coupons.models import Coupon
+from .serializers import ProductSerializer, CategorySerializer, CouponsSerializer
 from django.contrib.auth.decorators import user_passes_test
 
 
+''' THIS VIEWS ARE ONLY AVAILABLE FOR ADMIN USERS'''
+
 # This view display all products info in JSON format
-# Only admin user can get access to this information
+
 @user_passes_test(lambda u: u.is_superuser)
 @api_view(['GET'])
 def get_product_data(request):
@@ -14,9 +17,8 @@ def get_product_data(request):
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
-
 # This view display all category info in JSON format
-# Only admin user can get access to this information
+
 @user_passes_test(lambda u: u.is_superuser)
 @api_view(['GET'])
 def get_category_data(request):
@@ -24,10 +26,8 @@ def get_category_data(request):
     serializer = CategorySerializer(category, many=True)
     return Response(serializer.data)
 
-''' NIE DZIAŁA'''
-
 # THis view allows to add products in JSON format
-# Only admin user can get access to this function
+
 @user_passes_test(lambda u: u.is_superuser)
 @api_view(['POST', 'GET', 'OPTIONS'])
 def add_product(request):
@@ -36,12 +36,8 @@ def add_product(request):
         serializer.save()
     return Response(serializer.data)
 
-''' NIE DZIAŁA'''
-
-''' NIE DZIAŁA'''
-
 # This view allows to add category in JSON format
-# Only admin user can get access to this function
+
 @ user_passes_test(lambda u: u.is_superuser)
 @api_view(['POST', 'GET', 'OPTIONS'])
 def add_category(request):
@@ -50,5 +46,21 @@ def add_category(request):
         serializer.save()
     return Response(serializer.data)
 
-''' NIE DZIAŁA'''
+# This view allows to display all available coupons in JSON format
 
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['GET'])
+def get_coupon_data(request):
+    coupon = Coupon.objects.all()
+    serializer = CouponsSerializer(coupon, many=True)
+    return Response(serializer.data)
+
+# This view allows to add coupon in JSON format
+
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['POST', 'GET', 'OPTIONS'])
+def add_coupon(request):
+    serializer = CouponsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)

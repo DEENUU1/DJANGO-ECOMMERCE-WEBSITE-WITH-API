@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from shop.models import Product, Category
+from coupons.models import Coupon
 
 
 # This serializer is for Product model
@@ -16,4 +17,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = '__all__'
+
+class CouponsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coupon
         fields = '__all__'
