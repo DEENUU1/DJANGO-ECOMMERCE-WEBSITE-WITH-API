@@ -15,6 +15,7 @@ urlpatterns = [
     url('', include('shop.urls', namespace='shop')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('shop_info/', include('shop_info.urls', namespace='shop_info')),
+    path('api/', include('api.urls', namespace='api_data')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
