@@ -14,8 +14,6 @@ class ProductSerializer(serializers.ModelSerializer):
 # This serializer is for Category model
 # Allows to add and get data from database
 class CategorySerializer(serializers.ModelSerializer):
-    name = serializers.CharField(max_length=200)
-    slug = serializers.SlugField(max_length=200)
     class Meta:
         model = Category
         fields = '__all__'

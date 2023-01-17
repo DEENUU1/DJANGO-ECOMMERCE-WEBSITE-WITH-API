@@ -3,7 +3,6 @@ from rest_framework.decorators import api_view
 from shop.models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render
 
 
 # This view display all products info in JSON format
@@ -30,7 +29,7 @@ def get_category_data(request):
 # THis view allows to add products in JSON format
 # Only admin user can get access to this function
 @user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST'])
+@api_view(['POST', 'GET', 'OPTIONS'])
 def add_product(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
@@ -44,7 +43,7 @@ def add_product(request):
 # This view allows to add category in JSON format
 # Only admin user can get access to this function
 @ user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST'])
+@api_view(['POST', 'GET', 'OPTIONS'])
 def add_category(request):
     serializer = CategorySerializer(data=request.data)
     if serializer.is_valid():
