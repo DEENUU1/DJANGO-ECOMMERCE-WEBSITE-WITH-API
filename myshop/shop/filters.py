@@ -20,7 +20,7 @@ class ProductFilter(django_filters.FilterSet):
 
 class RateFilter(django_filters.FilterSet):
     rate = django_filters.ChoiceFilter(choices=RATE,
-                                       label='Filtrowanie ocen produktu')
+                                       label='Filtruj opinie')
 
     class Meta:
         model = ProductRate

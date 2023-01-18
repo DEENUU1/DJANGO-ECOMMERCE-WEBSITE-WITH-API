@@ -46,6 +46,8 @@
                     {{cart_product_form}}
 
                     <input type="submit" value="Dodaj do koszyka">
+                    <a class="button-add-rate" href="{% url 'shop:product_rate' product.id product.slug %}">Oceń produkt</a>
+
                 </form>
             </div>
         </div>
@@ -59,31 +61,29 @@
 
 <!-- Product rates -->
     <div class="product-rates">
-        <a href="{% url 'shop:product_rate' product.id product.slug %}">Oceń produkt</a>
-        <h3 style="text-align:center">Opinie o produkcie</h3>
-        <h4 style="text-align:center">
-            Średnia ocen: {{ average_rating.rate__avg }}
-            <i class="fa fa-star"></i>
-        </h4>
 
-        <form method="GET" action="{% url 'shop:product_detail' product.id product.slug %}">
-            {% csrf_token%}
-            {{rate_filter.form}}
-            <button type="submit" class="btn btn-primary">Filtruj</button>
-        </form>
+        <div class="rates-info">
 
-        {% if rate_filter.qs.count %}
-            {% for rate in rate_filter.qs %}
-            <div class="rate" style="text-align:center">
-                {{ rate.user_name }}
-                {{ rate.text }}
-                {{ rate.rate }} <i class="fa fa-star"></i>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p style="text-align:center">Ten produkt nie ma jeszcze żadnych opinii lub opinia którą wybrałeś nie istnieje.</p>
-        {% endif %}
+            <form method="GET" action="{% url 'shop:product_detail' product.id product.slug %}" class="filter-form">
+                {% csrf_token%}
+                {{rate_filter.form}}
+                <button type="submit" class="filter-button">Filtruj</button>
+            </form>
+        </div>
 
+        <div class="user-rates">
+            {% if rate_filter.qs.count %}
+                {% for rate in rate_filter.qs %}
+                <div class="single-rate">
+                    <h6>{{ rate.user_name }}
+                    {{ rate.rate }} <i class="fa fa-star"></i></h6>
+                    <p>{{ rate.text }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Ten produkt nie ma jeszcze żadnych opinii lub opinia którą wybrałeś nie istnieje.</p>
+            {% endif %}
+        </div>
     </div>
 
 <!-- Product rates -->
