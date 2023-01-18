@@ -19,7 +19,7 @@
 
 <!-- To odpowiada za wyświetlanie filtra ceny i kategorii -->
 <div class="filters">
-    <form method="GET" action="{% url 'shop:product_list' %}">
+    <form method="GET" action="{% url 'shop:product_list' %}" class="inline-form">
       {% csrf_token %}
       <ul>
           <li>
@@ -77,13 +77,13 @@
         <div class="pagination">
 
         {% if products_list.has_previous %}
-            <a href="?page=1">Pierwsza</a>
-            <a href="?page={{products_list.previous_page_number}}">Poprzednia</a>
+            <a href="?page=1"> << </a>
+            <a href="?page={{products_list.previous_page_number}}"> < </a>
         {% endif %}
 
         {% if products_list.has_next %}
-            <a href="?page={{products_list.next_page_number}}">Następna</a>
-            <a href="?page={{products_list.paginator.num_pages}}">Ostatnia</a>
+            <a href="?page={{products_list.next_page_number}}"> > </a>
+            <a href="?page={{products_list.paginator.num_pages}}"> >> </a>
         {% endif %}
         </div>
     <p>Strona: {{ products_list.number }} z {{ products_list.paginator.num_pages }}</p>

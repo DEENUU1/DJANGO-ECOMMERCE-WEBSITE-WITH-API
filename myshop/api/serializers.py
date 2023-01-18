@@ -19,16 +19,22 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+# This serializer is for Coupon model
+# Allows to add and get data from database
 class CouponsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coupon
         fields = '__all__'
 
+# This serializer is for Order model
+# Allows to get data from database
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
 
+# This serializer is for OrderItem model
+# Allows to get data from database
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem

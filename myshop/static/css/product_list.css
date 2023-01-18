@@ -6,43 +6,67 @@ html {
 /* ===== PRODUCT FILTER SECTION ===== */
 
 .filters {
-  border-radius: 5px;
-  padding: 20px;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 100px;
+    border-radius: 5px;
+    padding: 20px;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 100px;
 }
 
 .filters li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 .filters input[type=number], select {
-  width: 10%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: columns;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    width: 15%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    display: columns;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .filters input[type=submit] {
-  width: 10%;
-  background-color: #FFCD00;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-   display: inline-block;
+    width: 15%;
+    color: black;
+    padding: 14px 20px;
+    background-color: #FFCD00;
+    border: none;
+    color: black;
+    font-weight: 600;
+    padding: 15px 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
-filters. input[type=submit]:hover {
-  background-color: #e8bb05;
+.filters input[type=submit]:hover {
+    background-color: #e8bb05;
 }
 
+/* Add a media query for screens smaller than 768px */
+@media only screen and (max-width: 1650px) {
+    .filters {
+        width: 80%;
+    }
+
+    .filters li {
+        flex-direction: column;
+    }
+
+    .filters input[type=number], select {
+        width: 100%;
+    }
+
+    .filters input[type=submit] {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
 
 
 /* ===== PRODUCT FILTER SECTION ===== */
