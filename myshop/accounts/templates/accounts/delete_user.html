@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static '/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static '/css/delete_user.css' %}">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,13 +24,24 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{ form.as_p }}
-    {% for message in messages %}
-    <div class="messages">
-        <p>{{message}}</p>
+    <div class="form-row">
+<!--        {{ form.as_p }}-->
+        <label for="id_email">Adres email</label>
+        <input id="id_email" type="email" name="email">
+
+        <label for="id_password">Hasło</label>
+        <input id="id_password" type="password" name="password">
+
+        {% for message in messages %}
+        <div class="messages">
+            <p>{{message}}</p>
+        </div>
+        {% endfor %}
+
+        <div class="delete-button">
+            <input type="submit" value="Usuń konto">
+        </div>
     </div>
-    {% endfor %}
-    <button type="submit">Resetuj hasło</button>
 </form>
 
 
