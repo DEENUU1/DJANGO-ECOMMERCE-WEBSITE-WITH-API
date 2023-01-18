@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <link rel="stylesheet" href="{% static '/css/profile.css' %}">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,18 +19,22 @@
 
 
 <!-- LOGIN FORM -->
+<div class="header">
+    <h1 class="header-title">Twój profil</h1>
+    <div class="buttons">
+        <a class="button-left" href="{% url 'accounts:reset' %}">Zmień hasło</a>
+        <a class="button-right" href="{% url 'accounts:delete' %}">Usuń konto</a>
+    </div>
+</div>
 
-<h1>Twój profil</h1>
-
-<a href="{% url 'accounts:reset' %}">Zmień hasło</a>
-<a href="{% url 'accounts:delete' %}">Usuń konto</a>
-
-<div class="container">
+<div class="main-container">
+    <h1 class="container-header">Twoje zamówienia</h1>
+    <p class="container-header">Do sumy każdego zamówienia należy dodać dostawę w cenie 8.99 zł</p>
     {% for order in orders %}
-    <span>Zamówienie numer: {{ order.id }}</span>
 
         <div class="order-container">
-            <h2>Dane kontaktowe do zamówienia</h2>
+            <h2>Zamówienie numer: {{ order.id }}</h2>
+            <h3>Dane kontaktowe do zamówienia</h3>
 
             <p>Numer zamówienia: {{ order.id }}</p>
             <p>Imię: {{ order.first_name }}</p>
@@ -44,7 +48,7 @@
             <p>Status zamówienia: {{ order.get_order_status_display }}</p>
 
 
-            <h2>Szczegóły zamówienia:</h2>
+            <h3>Szczegóły zamówienia:</h3>
             <table>
                 <thead>
                     <tr>
@@ -58,14 +62,14 @@
                     {% for item in order.items.all %}
                         <tr>
                             <td>{{ item.product.name }}</td>
-                            <td>{{ item.price }}</td>
+                            <td>{{ item.price }} zł</td>
                             <td>{{ item.quantity }}</td>
-                            <td>{{ item.get_cost }}</td>
+                            <td>{{ item.get_cost }} zł</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Suma zamówienia: {{ order.get_total_cost }}</p>
+            <p>Suma zamówienia: {{ order.get_total_cost }} zł</p>
         </div>
     {% endfor %}
 </div>
