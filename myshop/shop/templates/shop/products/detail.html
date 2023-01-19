@@ -40,7 +40,6 @@
         <div class="right">
             <div class="content">
                 <p class="price">{{product.price}} zł</p>
-                <p class="description">{{product.description}}</p>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {% csrf_token %}
                     {{cart_product_form}}
@@ -49,6 +48,8 @@
                     <a class="button-add-rate" href="{% url 'shop:product_rate' product.id product.slug %}">Oceń produkt</a>
 
                 </form>
+                <p class="description">{{product.description}}</p>
+
             </div>
         </div>
 
