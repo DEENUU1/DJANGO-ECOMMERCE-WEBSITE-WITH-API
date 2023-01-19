@@ -40,14 +40,18 @@
 	<div class="login-button">
 	    <input type="submit" value="Login">
     </div>
+
+    <p class="info-block">Jeśli nie masz konta
+        <a href="{% url 'accounts:register' %}"> Zarejestruj się</a>
+    </p>
+    <p class="info-block">Jeśli nie pamiętasz hasła
+        <a href="{% url 'accounts:reset' %}"> Zmień hasło</a>
+    </p>
+
     </div>
 </form>
 
-<div class="register-button">
-    <a href="{% url 'accounts:register' %}">Zarejestruj się</a>
-    <a href="{% url 'accounts:reset' %}">Zmień hasło</a>
 
-</div>
 
 
 <!-- Footer -->

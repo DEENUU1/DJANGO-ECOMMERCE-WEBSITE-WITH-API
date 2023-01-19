@@ -42,13 +42,17 @@
 
         <div class="register-button">
             <input type="submit" value="Zarejestruj się">
+
         </div>
+
+    <p class="info-block">Jeśli masz już konto
+        <a href="{% url 'accounts:login' %}"> Zaloguj się</a>
+    </p>
+
     </div>
 
 </form>
 
-<div class="login-button">
-    <a href="{% url 'accounts:login' %}">Zaloguj się</a>
 </div>
 <!-- Footer -->
 {% include "shop/footer.html" %}

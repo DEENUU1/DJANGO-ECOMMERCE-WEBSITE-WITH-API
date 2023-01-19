@@ -13,6 +13,7 @@ h1 {
 .form-row {
   display: grid;
   width: 100%;
+  margin-bottom: 200px;
 }
 
 label {
@@ -20,15 +21,25 @@ label {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-  width: 100%;
+  width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
+  margin: 0 auto;
   font-size: 20px;
 }
+
+
+@media screen and (max-width: 800px) {
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 80%;
+  }
+}
+
+
 
 .form-row .messages {
     color: red;
@@ -36,10 +47,12 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 .reset-button {
-    display: grid;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     text-align: center;
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .reset-button input[type='submit']{
