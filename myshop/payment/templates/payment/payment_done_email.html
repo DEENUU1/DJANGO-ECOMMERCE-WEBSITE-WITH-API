@@ -1,0 +1,23 @@
+{{order.first_name}} dziękujemy za złożenie zamówienia w naszym sklepie
+Zamówienie zostanie wysłane najszybciej jak to możliwe.
+
+Szczegóły zamówienia
+
+Imię: {{order.fist_name}}
+Nazwisko: {{order.last_name}}
+Adres email: {{order.email}}
+Numer telefonu: {{order.phone_number}}
+Adres dostawy: {{order.address}} {{order.postal_code}} {{order.city}}
+
+
+{% for item in order.items.all %}
+Produkt: {{item.product.name}}
+Cena: {{item.price}} zł
+Ilość: {{item.quantity}}
+Koszt: {{item.get_cost}} zł
+{% endfor %}
+
+Dostawa InPost: 8.99 zł
+
+Wartość całkowita zamówienia: {{order.get_total_cost|floatformat:"2"}} zł
+
