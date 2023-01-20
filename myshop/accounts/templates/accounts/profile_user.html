@@ -29,8 +29,6 @@
 
 <div class="main-container">
     <h1 class="container-header">Twoje zamówienia</h1>
-    <p class="container-header">Do sumy każdego zamówienia należy dodać dostawę w cenie 8.99 zł</p>
-    {% for order in orders %}
 
         <div class="order-container">
             <h2>Zamówienie numer: {{ order.id }}</h2>
@@ -68,8 +66,16 @@
                         </tr>
                     {% endfor %}
                 </tbody>
+                <tbody>
+                    <tr>
+                        <td>Dostawa InPost</td>
+                        <td>8.99 zł</td>
+                        <td>1</td>
+                        <td>8.99 zł</td>
+                    </tr>
+                </tbody>
             </table>
-            <p>Suma zamówienia: {{ order.get_total_cost }} zł</p>
+            <p> Suma zamówienia {{ order.get_total_cost|floatformat:"2"}}</p>
         </div>
     {% endfor %}
 </div>
