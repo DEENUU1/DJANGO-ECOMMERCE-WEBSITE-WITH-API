@@ -13,8 +13,11 @@ body {
 
 
 .banner {
-  background: #009579;
+  background: #DC6C02;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   margin-top: 50px;
 }
 
