@@ -29,7 +29,7 @@
 
 <div class="main-container">
     <h1 class="container-header">Twoje zamówienia</h1>
-
+    {% for order in orders %}
         <div class="order-container">
             <h2>Zamówienie numer: {{ order.id }}</h2>
             <h3>Dane kontaktowe do zamówienia</h3>

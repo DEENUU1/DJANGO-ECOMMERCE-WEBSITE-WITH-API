@@ -38,7 +38,7 @@ def payment_canceled(request):
     template = render_to_string('payment/payment_done_email.html',
                                 {'order': order})
     email = EmailMessage(
-        'SHADOK | Twoje zamówienie nie powiodło się',
+        'SHADOK | Twoja płatność nie powiodła się',
         template,
         settings.EMAIL_HOST_USER,
         [order.email],
