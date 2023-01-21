@@ -20,7 +20,6 @@
 
 .row {
     width: 100%;
-    max-width: 2000px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 50px 30px;
@@ -34,9 +33,9 @@
 }
 
 .row .left img{
-    max-width: 100%; /*width: 80% */
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
     margin-top: 30px;
 }
 
@@ -73,9 +72,9 @@
         margin: 0 auto;
     }
     .row .left img{
-        width: 70%;
-        height: 100%;
-        object-fit: cover;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
         margin-top: 30px;
         margin-left: auto;
         margin-right: auto;
