@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'coupons',
     'paypal.standard.ipn',
     'payment',
-    'phone_field',
     'accounts',
     'shop_info',
 ]

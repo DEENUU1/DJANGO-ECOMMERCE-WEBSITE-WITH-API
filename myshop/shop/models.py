@@ -38,6 +38,10 @@ class Product(models.Model):
                             db_index=True,
                             help_text='You can write any name you want. It does not matter on the URL')
 
+    tag = models.CharField(max_length=200,
+                           db_index=True,
+                           help_text='Write product tags that allows user to search by them')
+
     slug = models.SlugField(max_length=200,
                             db_index=True,
                             help_text='It is generating automatically. Do not change that!!!')

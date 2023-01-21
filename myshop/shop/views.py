@@ -25,7 +25,7 @@ def product_list(request, category_slug=None):
 
     # Set up Pagination
 
-    p = Paginator(product_filter.qs, 5)
+    p = Paginator(product_filter.qs, 9)
     page = request.GET.get('page')
     products_list = p.get_page(page)
 
@@ -107,7 +107,7 @@ def search(request):
     query = request.GET.get('q')
     if query:
         products = Product.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
+            Q(name__icontains=query) | Q(tag__icontains=query)
         ).filter(available=True)
     else:
         products = Product.objects.none()
