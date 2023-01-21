@@ -31,10 +31,9 @@
     <h1 class="container-header">Twoje zamówienia</h1>
     {% for order in orders %}
         <div class="order-container">
-            <h2>Zamówienie numer: {{ order.id }}</h2>
+            <h2>Zamówienie numer: {{ order.id }}</h2> <h2>Status zamówienia: {{ order.get_order_status_display }}</h2>
             <h3>Dane kontaktowe do zamówienia</h3>
 
-            <p>Numer zamówienia: {{ order.id }}</p>
             <p>Imię: {{ order.first_name }}</p>
             <p>Nazwisko: {{ order.last_name }}</p>
             <p>Numer telefonu: {{ order.phone_number }}</p>
@@ -43,7 +42,7 @@
             <p>Miasto: {{ order.city }}</p>
             <p>Kod pocztowy: {{ order.postal_code }}</p>
             <p>Data utworzenia: {{ order.created }}</p>
-            <p>Status zamówienia: {{ order.get_order_status_display }}</p>
+
 
 
             <h3>Szczegóły zamówienia:</h3>
