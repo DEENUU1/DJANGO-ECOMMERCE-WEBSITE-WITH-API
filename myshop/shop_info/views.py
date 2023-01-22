@@ -7,23 +7,15 @@ def about(request):
 
 # This view is responsible for statute of the shop
 
-def statute(request):
-    return render(request, 'statute.html')
+def all_documents(request):
+    return render(request, 'all_documents.html')
 
-# This view is responsible for shop privacy and policy
-
-def privacy_policy(request):
-    return render(request, 'privacy.html')
 
 # This view is responsible for shipping information
 
 def shipping(request):
     return render(request, 'shipping.html')
 
-# This view is responsible for returns information
-
-def returns_complaints(request):
-    return render(request, 'returns.html')
 
 # This view is responsible for FAQ of the shop
 

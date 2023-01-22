@@ -33,3 +33,5 @@ class ProductRateAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['rate', 'product', 'date']
 
     list_filter = ['rate', 'product', 'date']
+
+

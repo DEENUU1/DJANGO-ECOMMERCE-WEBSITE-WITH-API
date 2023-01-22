@@ -12,12 +12,15 @@
 
 </head>
 
-{% include "shop/navbar.html" %}
+{% include "nav_footer/navbar.html" %}
 
 <div class="info">
-    <h1>Dostawy na stronie SHADOK</h1>
-    <p>Wszystkie nasze dostawy są realizowane poprzez dostawcę InPost
-        cena przesyłki niezależnie od produktu wynosi 8.99 zł</p>
+    <h1>Dostawy na naszej stronie</h1>
+    {% if shipping_text %}
+    <p>{{shipping_text}}</p>
+    {% else %}
+    <p>Brak...</p>
+    {% endif %}
 </div>
 
-{% include "shop/footer.html" %}
+{% include "nav_footer/footer.html" %}

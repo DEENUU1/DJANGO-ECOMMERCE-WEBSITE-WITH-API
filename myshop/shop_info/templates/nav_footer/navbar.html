@@ -15,7 +15,11 @@
     <div class="banner">
     <div class="banner__content">
         <div class="banner__text">
-            <Strong>Przypominamy:</Strong> z kodem święta masz 20% zniżki na wszystkie produkty
+            {% if banner_text %}
+            <Strong>{{banner_text}}</Strong>
+            {% else %}
+            <Strong>Witaj na naszej stronie!</Strong>
+            {% endif %}
 
         </div>
         <button class="banner__close" type="button">

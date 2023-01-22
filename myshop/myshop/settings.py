@@ -95,7 +95,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
-                'django.template.context_processors.request'
+                'django.template.context_processors.request',
+                'shop_info.context_processors.banner_text', # shop_info
+                'shop_info.context_processors.about_descr', # shop_info
+                'shop_info.context_processors.shipping_info', # shop_info
+                'shop_info.context_processors.footer_descr', # shop_info
+                'shop_info.context_processors.footer_contact', # shop_info
+
             ],
         },
     },

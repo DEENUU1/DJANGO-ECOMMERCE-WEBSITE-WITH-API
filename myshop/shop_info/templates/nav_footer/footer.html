@@ -17,7 +17,11 @@
     <section class="container">
         <div class="about">
             <h3>O nas</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            {% if footer_descr %}
+            <p>{{footer_descr}}</p>
+            {% else %}
+            <p> Przykro nam, nic tutaj nie ma...</p>
+            {% endif %}
             </div>
         <div class="services">
             <h3>Obsługa</h3>
@@ -29,10 +33,10 @@
                     <a href="{% url 'contact' %}">Kontakt</a>
                 </li>
                 <li>
-                    <a href="{% url 'shop_info:statute' %}">Regulamin</a>
+                    <a href="{% url 'shop_info:all_documents' %}">Regulamin</a>
                 </li>
                 <li>
-                    <a href="{% url 'shop_info:privacy' %}">Polityka prywatności</a>
+                    <a href="{% url 'shop_info:all_documents' %}">Polityka prywatności</a>
                 </li>
             </ul>
         </div>
@@ -44,7 +48,7 @@
                     <a href="{% url 'shop_info:shipping' %}">Dostawa</a>
                 </li>
                 <li>
-                    <a href="{% url 'shop_info:returns' %}">Zwroty i reklamacje</a>
+                    <a href="{% url 'shop_info:all_documents' %}">Zwroty i reklamacje</a>
                 </li>
                 <li>
                     <a href="{% url 'shop_info:faq' %}">FAQ</a>
@@ -56,13 +60,25 @@
             <h3>Kontakt</h3>
             <ul>
                 <li>
-                    Adres: 935 Pennsylvania Avenue NW, Washington, DC 20535, Stany Zjednoczone
+                    {% if footer_contact_info.address %}
+                    Adres: {{footer_contact_info.address}}
+                    {% else %}
+                    Adres: BRAK
+                    {% endif %}
                 </li>
                 <li>
-                    Numer telefonu: 123-123-123
+                    {% if footer_contact_info.phone_number %}
+                    Numer telefonu: {{footer_contact_info.phone_number}}
+                    {% else %}
+                    Adres: BRAK
+                    {% endif %}
                 </li>
                 <li>
-                    Email: bestshop@gmai.com
+                    {% if footer_contact_info.phone_number %}
+                    Email: {{footer_contact_info.email}}
+                    {% else %}
+                    Email: BRAK
+                    {% endif %}
                 </li>
             </ul>
         </div>
