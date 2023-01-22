@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 from .models import Coupon
 from .forms import CouponForm
 
+
+# This view is checking if the coupon added in cart is available
 
 @require_POST
 def coupon_apply(request):

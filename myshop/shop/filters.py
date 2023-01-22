@@ -17,7 +17,6 @@ class ProductFilter(django_filters.FilterSet):
 
 # This class allows to filter product rates by date and rate
 
-
 class RateFilter(django_filters.FilterSet):
     rate = django_filters.ChoiceFilter(choices=RATE,
                                        label='Filtruj opinie')

@@ -4,10 +4,9 @@ from django.urls import reverse
 from shop.models import Product
 from .cart import Cart
 from cart.forms import CartAddProductForm
-from .models import OrderItem, Order
+from .models import OrderItem
 from .forms import OrderCreateForm
 from coupons.forms import CouponForm
-from .tasks import order_created
 
 
 # This view represents adding to cart function
@@ -87,7 +86,7 @@ def order_create(request):
 
             cart.clear()
 
-            order_created.delay(order.id)
+            # order_created.delay(order.id)
 
             request.session['order_id'] = order.id
 

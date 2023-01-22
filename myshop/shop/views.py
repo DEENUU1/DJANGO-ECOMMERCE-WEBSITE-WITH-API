@@ -80,8 +80,6 @@ def product_rate(request, id, slug):
             rate = form.save(commit=False)
             rate.product = product
             rate.save()
-            # return render(request, 'shop/products/detail.html',
-            #               {'product': product})
             return redirect('shop:product_detail', id=id, slug=slug)
 
     else:
@@ -101,7 +99,7 @@ def product_rate(request, id, slug):
 
 # This view is to display search bar
 # And search result
-# It searching products by the name and description
+# It searching products by the name and product's tags
 
 def search(request):
     query = request.GET.get('q')

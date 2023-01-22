@@ -1,8 +1,8 @@
 from django.db import models
-from django.utils.html import mark_safe
 
 # Contact model
-# Email, subject, text are required it's declared in 'contact.html'
+# Email, subject, text are required
+# User is choosing message topics from the topics in variable SUBJECTS
 
 SUBJECTS = [
     (1, 'Pytanie o produkt'),

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from paypal.standard.forms import PayPalPaymentsForm
@@ -8,6 +7,9 @@ from cart.cart import Cart
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+
+# This view is displayed after successful payment
+# This view also is sending email to the customer
 
 @csrf_exempt
 def payment_done(request):
@@ -29,6 +31,8 @@ def payment_done(request):
     return render(request,
                   'payment/done.html')
 
+# This view is displayed after cancelled payment
+# This view also is sending email to the customer
 
 @csrf_exempt
 def payment_canceled(request):
@@ -50,6 +54,8 @@ def payment_canceled(request):
     return render(request,
                   'payment/canceled.html')
 
+# This view is displaying payment process
+# It takes information from cart forwards them to PayPal API
 
 def payment_process(request):
     order_id = request.session.get('order_id')
@@ -62,7 +68,6 @@ def payment_process(request):
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
         'amount': order.get_total_cost(),
-        'shipping': 8.99,
         'item_name': order.id,
         'invoice': str(order.id),
         'currency_code': 'PLN',
@@ -80,4 +85,5 @@ def payment_process(request):
                   {'order': order,
                    'form': form,
                    'cart': cart, })
+
 

@@ -84,6 +84,8 @@ RATE = [
     (5, '5'),
 ]
 
+# This model allows to rate products
+# User has to add his username, choose rate from 1 to 5 and write text
 
 class ProductRate(models.Model):
     objects = None
