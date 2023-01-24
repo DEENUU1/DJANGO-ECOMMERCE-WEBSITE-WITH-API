@@ -34,4 +34,3 @@ class ProductRateAdmin(ExportActionMixin, admin.ModelAdmin):
 
     list_filter = ['rate', 'product', 'date']
 
-

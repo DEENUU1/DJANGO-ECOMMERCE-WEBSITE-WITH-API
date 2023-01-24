@@ -18,8 +18,9 @@ def payment_done(request):
                               id=order_id)
     template = render_to_string('payment/payment_done_email.html',
                                 {'order': order})
+    subject_email = 'SHADOK | Dziękujemy za zakupy w naszym sklepie'
     email = EmailMessage(
-        'SHADOK | Dziękujemy za zakupy w naszym sklepie',
+        subject_email,
         template,
         settings.EMAIL_HOST_USER,
         [order.email],
@@ -41,8 +42,9 @@ def payment_canceled(request):
                               id=order_id)
     template = render_to_string('payment/payment_done_email.html',
                                 {'order': order})
+    subject_email = 'SHADOK | Twoja płatność nie powiodła się'
     email = EmailMessage(
-        'SHADOK | Twoja płatność nie powiodła się',
+        subject_email,
         template,
         settings.EMAIL_HOST_USER,
         [order.email],
@@ -67,7 +69,7 @@ def payment_process(request):
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': order.get_total_cost(),
+        'amount': order.get_total_cost(request),
         'item_name': order.id,
         'invoice': str(order.id),
         'currency_code': 'PLN',

@@ -19,7 +19,7 @@ class Cart(object):
     # If you want you can change that value
 
     def shipping_value(self):
-        return Decimal('8.99')
+        return Decimal('8.99') # Here is the price of the delivery
 
     # This function add products to cart and can change the value of them
     # At default it add 1 product to card

@@ -43,8 +43,8 @@ def cart_detail(request):
     coupon_apply_form = CouponForm()
 
     return render(request, 'cart/detail.html',
-                  {'cart': cart,
-                   'coupon_apply_form': coupon_apply_form})
+        {'cart': cart,
+        'coupon_apply_form': coupon_apply_form})
 
 
 # This view allows user to click on the product and go back to the detail of the product

@@ -57,7 +57,6 @@
         {% endfor %}
 
 
-
         {% if cart.coupon %}
             <tr class="subtotal">
                 <td>Wartość całkowita produktów</td>
@@ -106,15 +105,5 @@
     <a href="{% url 'cart:order_create' %}" class="button-1">Przejdź do płatności</a>
 </div>
 
-            <tr class="delivery">
-                <td>Dostawa</td>
-                <td>
-                <form action="{% url 'cart:cart_detail' %}" method="post">
-                    {% csrf_token %}
-                    {{ delivery_form.as_p }}
-                    <input type="submit" value="Save">
-                </form>
-                </td>
-            </tr>
 
 {% include "nav_footer/footer.html" %}

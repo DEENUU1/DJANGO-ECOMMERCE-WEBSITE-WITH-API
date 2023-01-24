@@ -3,6 +3,7 @@ from shop.models import Product
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
 from coupons.models import Coupon
+from .cart import Cart
 
 # This model allows user to write all necessary information
 # All fields are required to complete the form
@@ -33,9 +34,11 @@ class Order(models.Model):
     class Meta:
         ordering = ('-created',)
 
-    def get_total_cost(self):
+    def get_total_cost(self, request):
         total_cost = sum(item.get_cost() for item in self.items.all())
-        return Decimal('8.99') + total_cost - total_cost * (self.discount / Decimal('100'))
+        cart = Cart(request)
+        shipping_price = cart.shipping_value()
+        return shipping_price + total_cost - total_cost * (self.discount / Decimal('100'))
     def __str__(self):
         return 'Order {}'.format(self.id)
 

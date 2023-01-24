@@ -31,7 +31,8 @@ def registerPage(request):
                 email = form.cleaned_data.get('email')
 
                 html_file = get_template('accounts/email_register.html')
-                email_subject, shop_email, user_email = 'SHADOK | Witaj', settings.EMAIL_HOST_USER, email
+                subject_email = 'SHADOK | Witaj'
+                email_subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
                 html_content = html_file.render({'username': username})
                 message = EmailMultiAlternatives(email_subject, html_content, shop_email, [user_email])
                 message.attach_alternative(html_content, 'text/html')
@@ -101,7 +102,8 @@ def changePassword(request):
                     email = form.cleaned_data.get('email')
 
                     html_file = get_template('accounts/email_changePassword.html')
-                    subject, shop_email, user_email = 'SHADOK | Zmiana hasła', settings.EMAIL_HOST_USER, email
+                    subject_email = 'SHADOK | Zmiana hasła'
+                    subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
                     html_content = html_file.render({'username': username})
                     message = EmailMultiAlternatives(subject, html_content, shop_email, [user_email])
                     message.attach_alternative(html_content, 'text/html')
