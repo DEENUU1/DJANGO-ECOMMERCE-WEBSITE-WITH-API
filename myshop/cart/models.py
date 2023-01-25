@@ -3,10 +3,11 @@ from shop.models import Product
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
 from coupons.models import Coupon
-from .cart import Cart
+from .cart import Shipping
 
 # This model allows user to write all necessary information
 # All fields are required to complete the form
+
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -31,18 +32,6 @@ class Order(models.Model):
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
 
-    class Meta:
-        ordering = ('-created',)
-
-    def get_total_cost(self, request):
-        total_cost = sum(item.get_cost() for item in self.items.all())
-        cart = Cart(request)
-        shipping_price = cart.shipping_value()
-        return shipping_price + total_cost - total_cost * (self.discount / Decimal('100'))
-    def __str__(self):
-        return 'Order {}'.format(self.id)
-
-
     ORDER_STATUS = [
         (1, 'nowe'),
         (2, 'w realizacji'),
@@ -54,8 +43,23 @@ class Order(models.Model):
 
     order_status = models.PositiveIntegerField(choices=ORDER_STATUS, default=1)
 
+    def get_total_cost(self, request):
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        shipping = Shipping()
+        shipping_price = shipping.shipping_value()
+        return shipping_price + total_cost - total_cost * (self.discount / Decimal('100'))
+
+    def __str__(self):
+        return 'Order {}'.format(self.id)
+
+    class Meta:
+        ordering = ('-created',)
+
+
+
 
 # This model allows website to save users order
+
 class OrderItem(models.Model):
     objects = None
     object = None

@@ -131,6 +131,8 @@ def changePassword(request):
 def profileUser(request):
     if request.user.is_authenticated:
         orders = Order.objects.filter(email=request.user.email)
+        for order in orders:
+            order.total_cost = order.get_total_cost(request)
     else:
         orders = []
     return render(request,

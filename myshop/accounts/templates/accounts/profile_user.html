@@ -75,7 +75,7 @@
                     </tr>
                 </tbody>
             </table>
-            <p> Suma zamówienia {{ order.get_total_cost|floatformat:"2"}}</p>
+            <p> Suma zamówienia {{ order.total_cost|floatformat:"2"}}</p>
         </div>
     {% endfor %}
 </div>
