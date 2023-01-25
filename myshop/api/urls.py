@@ -28,4 +28,12 @@ urlpatterns = [
     # This url allows admin user to see order information
     path('data_order_item', views.get_orderItem_data, name='data_order_item'),
 
+    # This url allows admin user to see delivery information
+    path('data_delivery', views.get_delivery_data, name='data_delivery'),
+
+    # This url allows admin user to add new delivery price
+    path('add_delivery', views.add_delivery, name='add_delivery'),
+
+
+
 ]

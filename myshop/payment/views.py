@@ -1,9 +1,8 @@
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from paypal.standard.forms import PayPalPaymentsForm
-from cart.models import Order, OrderItem
+from order.models import Order, OrderItem
 from django.views.decorators.csrf import csrf_exempt
-from cart.cart import Cart
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string

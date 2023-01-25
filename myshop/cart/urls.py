@@ -19,8 +19,5 @@ urlpatterns = [
 
     path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
 
-    # This url represent completing order
-
-    path('create/', views.order_create, name='order_create'),
 
 ]
