@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from cart.models import OrderItem, Order
+from order.models import OrderItem, Order
 from .forms import PasswordResetForm, DeleteUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
-from cart.models import Order
+from order.models import Order
 
 
 # This signal allows to get information about order

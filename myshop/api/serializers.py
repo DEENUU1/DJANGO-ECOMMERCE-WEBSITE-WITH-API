@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from shop.models import Product, Category
 from coupons.models import Coupon
-from cart.models import Order, OrderItem
+from order.models import Order, OrderItem
 
 # This serializer is for Product model
 # Allows to add and get data from database

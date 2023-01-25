@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'payment',
     'accounts',
     'shop_info',
+    'order',
 ]
 
 ''' SESSIONS '''

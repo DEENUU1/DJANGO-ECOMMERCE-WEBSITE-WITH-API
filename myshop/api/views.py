@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from shop.models import Product, Category
 from coupons.models import Coupon
-from cart.models import Order, OrderItem
+from order.models import Order, OrderItem
 from .serializers import *
 from django.contrib.auth.decorators import user_passes_test
 
