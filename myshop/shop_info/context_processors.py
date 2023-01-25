@@ -1,4 +1,4 @@
-from .models import BannerInfo, AboutShopDescription, DeliveryInfo, FooterDescription, FooterContactInfo
+from .models import BannerInfo, AboutShopDescription, DeliveryInfo, FooterDescription, FooterContactInfo, NavbarLogo
 
 # This context processor works with models and allows admin user to change some information
 # That on first sight look static, but they are easily modifiable
@@ -37,3 +37,10 @@ def footer_contact(request):
         return {'footer_contact_info': footer_cont}
     else:
         return {'footer_contact_info': ''}
+
+def navbar_logo(request):
+    navbar_name = NavbarLogo.objects.last()
+    if navbar_name:
+        return {'navbar_log': navbar_name}
+    else:
+        return {'navbar_log': ''}

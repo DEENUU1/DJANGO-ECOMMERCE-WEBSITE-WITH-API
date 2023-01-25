@@ -32,7 +32,12 @@
 
 <nav class="nav">
       <i class="uil uil-bars navOpenBtn"></i>
-      <a href="{% url 'shop:product_list' %}" class="logo">SHADOK</a>
+      <a href="{% url 'shop:product_list' %}" class="logo">
+          {% if navbar_log %}
+          {{navbar_log}}
+          {% else %}
+          Logo
+          {% endif %}</a>
 
       <ul class="nav-links">
         <i class="uil uil-times navCloseBtn"></i>

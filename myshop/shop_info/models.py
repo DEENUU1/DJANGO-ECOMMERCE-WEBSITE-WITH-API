@@ -44,3 +44,11 @@ class FooterContactInfo(models.Model):
 
     def __str__(self):
         return self.email
+
+# Change the shop name in navigation bar
+
+class NavbarLogo(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name

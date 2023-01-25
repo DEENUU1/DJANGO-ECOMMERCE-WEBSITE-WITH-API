@@ -101,6 +101,7 @@ TEMPLATES = [
                 'shop_info.context_processors.shipping_info', # shop_info
                 'shop_info.context_processors.footer_descr', # shop_info
                 'shop_info.context_processors.footer_contact', # shop_info
+                'shop_info.context_processors.navbar_logo', # shop_info
 
             ],
         },
