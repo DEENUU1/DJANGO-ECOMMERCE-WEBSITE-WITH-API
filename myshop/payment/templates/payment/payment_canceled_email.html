@@ -1,2 +1,8 @@
-{{order.first_name}} twoje zamówienie zostało anulowane.
-Spróbuj ponownie.
+{{order.first_name}}
+
+
+{% if email_cancel_content %}
+{{email_cancel_content}}
+{% else %}
+Testowy email
+{% endif %}
