@@ -57,20 +57,20 @@
         {% endfor %}
 
 
-        {% if cart.coupon %}
+        {% if discount.coupon %}
             <tr class="subtotal">
                 <td>Wartość całkowita produktów</td>
                 <td colspan="4"></td>
-                <td class="num">{{ cart.get_total_price }} zł</td>
+                <td class="num">{{ total_price.get_total_price }} zł</td>
             </tr>
             <tr>
                 <td>
-                    Wartość kuponu "{{ cart.coupon.code }}"
-                    ({{ cart.coupon.discount }}% rabatu)
+                    Wartość kuponu "{{ discount.coupon.code }}"
+                    ({{ discount.coupon.discount }}% rabatu)
                 </td>
                 <td colspan="4"></td>
                 <td class="num neg">
-                    - {{ cart.get_discount|floatformat:"2" }} zł
+                    - {{ coupon_discount|floatformat:2 }} zł
                 </td>
             </tr>
         {% endif %}
@@ -83,7 +83,7 @@
             <td>Kwota do zapłaty</td>
             <td colspan="4"></td>
             <td class="num">
-                {{ cart.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł
+                {{ total_price.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł
             </td>
         </tr>
 

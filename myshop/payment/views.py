@@ -65,7 +65,6 @@ def payment_process(request):
                               id=order_id)
 
     host = request.get_host()
-    cart = Cart(request)
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
@@ -85,7 +84,6 @@ def payment_process(request):
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'payment/process.html',
                   {'order': order,
-                   'form': form,
-                   'cart': cart, })
+                   'form': form})
 
 

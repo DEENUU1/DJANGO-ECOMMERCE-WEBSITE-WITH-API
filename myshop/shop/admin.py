@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductRate
+from .models import Category, Product, ProductRate, Delivery
 from import_export.admin import ExportActionMixin
 
 
@@ -34,3 +34,5 @@ class ProductRateAdmin(ExportActionMixin, admin.ModelAdmin):
 
     list_filter = ['rate', 'product', 'date']
 
+
+admin.site.register(Delivery)

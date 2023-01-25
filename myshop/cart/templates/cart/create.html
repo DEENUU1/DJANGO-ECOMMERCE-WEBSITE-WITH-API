@@ -28,7 +28,7 @@
     {% endfor %}
       <p>1 x Dostawa InPost 8.99</p>
   </ul>
-  <p>Wartość całkowita: {{cart.get_total_price_after_discount_and_shipping}} zł</p>
+  <p>Wartość całkowita: {{total_price.get_total_price_after_discount_and_shipping|floatformat:"2"}} zł</p>
 </div>
 
 <form action="." method="post" class="order-form">

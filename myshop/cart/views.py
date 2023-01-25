@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 from shop.models import Product
-from .cart import Cart
+from .cart import Cart, Discount, Shipping, TotalPrice
 from cart.forms import CartAddProductForm
 from .models import OrderItem
 from .forms import OrderCreateForm
@@ -10,6 +10,7 @@ from coupons.forms import CouponForm
 
 
 # This view represents adding to cart function
+
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
@@ -25,6 +26,7 @@ def cart_add(request, product_id):
 
 
 # This view represent remove from cart option
+
 def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
@@ -33,8 +35,14 @@ def cart_remove(request, product_id):
 
 
 # This view represent the whole cart
+
 def cart_detail(request):
     cart = Cart(request)
+    discount = Discount(request.session)
+    shipping = Shipping()
+    total_price = TotalPrice(cart, discount, shipping)
+    coupon_discount = discount.get_discount(total_price.get_total_price())
+
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(
             initial={'quantity': item['quantity'],
@@ -44,31 +52,30 @@ def cart_detail(request):
 
     return render(request, 'cart/detail.html',
         {'cart': cart,
-        'coupon_apply_form': coupon_apply_form})
-
-
-# This view allows user to click on the product and go back to the detail of the product
-def product_detail(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=True)
-
-    cart_product_form = CartAddProductForm()
-    return render(request,
-                  'shop/templates/detail.html',
-                  {'product': product,
-                   'cart_product_form': cart_product_form})
+        'coupon_apply_form': coupon_apply_form,
+         'discount': discount,
+         'shipping': shipping,
+         'total_price': total_price,
+         'coupon_discount': coupon_discount})
 
 
 # This view allows user to complete order and write all necessary information
+
 def order_create(request):
     cart = Cart(request)
+    discount = Discount(request.session)
+    shipping = Shipping()
+    total_price = TotalPrice(cart, discount, shipping)
+
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
-
         if form.is_valid():
             order = form.save(commit=False)
-            if cart.coupon:
-                order.coupon = cart.coupon
-                order.discount = cart.coupon.discount
+            order.total_price = total_price.get_total_price_after_discount_and_shipping()
+
+            if discount.coupon:
+                order.coupon = discount.coupon
+                order.discount = discount.coupon.discount
             order.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
@@ -86,8 +93,6 @@ def order_create(request):
 
             cart.clear()
 
-            # order_created.delay(order.id)
-
             request.session['order_id'] = order.id
 
             return redirect(reverse('payment:process'))
@@ -98,4 +103,7 @@ def order_create(request):
     return render(request,
                   'cart/create.html',
                   {'cart': cart,
-                   'form': form})
+                   'form': form,
+                   'discount': discount,
+                   'shipping': shipping,
+                   'total_price': total_price})

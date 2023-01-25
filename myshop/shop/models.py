@@ -94,3 +94,12 @@ class ProductRate(models.Model):
     user_name = models.CharField(max_length=30)
     date = models.DateTimeField(auto_now_add=True)
     rate = models.PositiveIntegerField(choices=RATE)
+
+
+# This model allows administrator to change the value of delivery
+
+class Delivery(models.Model):
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return self.price
