@@ -1,4 +1,3 @@
-from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -22,6 +21,8 @@ class PasswordResetForm(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput)
     new_password = forms.CharField(widget=forms.PasswordInput)
 
+# Form for deleting account
+# Display fields like email and password
 
 class DeleteUserForm(forms.Form):
     email = forms.EmailField()

@@ -1,6 +1,6 @@
 from .models import BannerInfo, AboutShopDescription, DeliveryInfo, FooterDescription, FooterContactInfo, NavbarLogo
 
-# This context processor works with models and allows admin user to change some information
+# This context processors work with models and allows admin user to change some information
 # That on first sight look static, but they are easily modifiable
 
 def banner_text(request):

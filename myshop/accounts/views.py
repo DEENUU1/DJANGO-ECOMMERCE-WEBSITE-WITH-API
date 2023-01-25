@@ -13,6 +13,7 @@ from django.conf import settings
 # User registration view
 # User has to add username, email and password
 # If email is already in database user will get a message
+
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('/product_list/')
@@ -22,6 +23,7 @@ def registerPage(request):
         if request.method == 'POST':
             form = CreateUserForm(request.POST)
 
+            # This code check if email address already exist in database
             if User.objects.filter(email=form.data['email']).exists():
                 messages.error(request, 'Podany email już istnieje!')
 
@@ -30,13 +32,15 @@ def registerPage(request):
                 username = form.cleaned_data.get('username')
                 email = form.cleaned_data.get('email')
 
+                # Sending email function
                 html_file = get_template('accounts/email_register.html')
-                subject_email = 'SHADOK | Witaj'
+                subject_email = 'Rejestracja konta'
                 email_subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
                 html_content = html_file.render({'username': username})
                 message = EmailMultiAlternatives(email_subject, html_content, shop_email, [user_email])
                 message.attach_alternative(html_content, 'text/html')
                 message.send()
+
 
                 messages.success(request, f'{username} Twoje konto zostało utworzone')
                 return redirect('/accounts/login/')
@@ -52,6 +56,7 @@ def registerPage(request):
 
 # User login view
 # User can log in using his username and password
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('/product_list/')
@@ -78,6 +83,7 @@ def loginPage(request):
 
 
 # This view doesn't have template it works as a function
+
 @login_required()
 def logoutUser(request):
     logout(request)
@@ -96,18 +102,19 @@ def changePassword(request):
                 user = User.objects.get(email=email)
                 if user.check_password(old_password):
                     user.set_password(form.cleaned_data['new_password'])
-                    user.save()
-
                     username = form.cleaned_data.get('username')
                     email = form.cleaned_data.get('email')
+                    user.save()
 
+                    # Email sending
                     html_file = get_template('accounts/email_changePassword.html')
-                    subject_email = 'SHADOK | Zmiana hasła'
+                    subject_email = 'Zmiana hasła'
                     subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
                     html_content = html_file.render({'username': username})
                     message = EmailMultiAlternatives(subject, html_content, shop_email, [user_email])
                     message.attach_alternative(html_content, 'text/html')
                     message.send()
+
 
                     login(request, user)
                     return redirect('/accounts/login')
@@ -127,6 +134,7 @@ def changePassword(request):
 
 # This view display profile of a user
 # Logged user can browse his orders and other information
+
 @login_required()
 def profileUser(request):
     if request.user.is_authenticated:

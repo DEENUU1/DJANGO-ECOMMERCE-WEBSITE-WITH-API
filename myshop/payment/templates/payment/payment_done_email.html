@@ -17,7 +17,7 @@ Ilość: {{item.quantity}}
 Koszt: {{item.get_cost}} zł
 {% endfor %}
 
-Dostawa InPost: 8.99 zł
+Dostawa InPost: {{shipping.shipping_value}} zł
 
-Wartość całkowita zamówienia: {{order.get_total_cost|floatformat:"2"}} zł
+Całkowita suma zamówienia: {{order.total_cost}} zl
 
