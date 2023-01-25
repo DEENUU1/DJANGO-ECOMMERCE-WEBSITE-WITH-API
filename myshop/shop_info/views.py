@@ -1,30 +1,48 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
+from django.views import View
+from rest_framework.permissions import IsAdminUser
+from rest_framework.views import APIView
 
-# This view is responsible for displaying page with information about shop
-def about(request):
-    return render(request, 'about.html')
+# This is a main class that render the template
 
-# This view is responsible for statute of the shop
+class BaseView(View):
+    template_name : str = ""
 
-def all_documents(request):
-    return render(request, 'all_documents.html')
+    def get(self, request):
+        return render(request, self.template_name)
 
+# This is a child class of BaseView
+# Returns page -> about
 
-# This view is responsible for shipping information
+class AboutView(BaseView):
+    template_name = 'about.html'
 
-def shipping(request):
-    return render(request, 'shipping.html')
+# This is a child class of BaseView
+# Returns page -> documents
 
+class DocumentsView(BaseView):
+    template_name = 'all_documents'
 
-# This view is responsible for FAQ of the shop
+# This is a child class of BaseView
+# Returns page -> shipping information
 
-def faq(request):
-    return render(request, 'faq.html')
+class ShippingView(BaseView):
+    template_name = 'shipping.html'
 
-# This view is responsible for displaying all available APIs
-# Only registered users are able to get this page
+# This is a child class of BaseView
+# Returns page -> FAQ
 
-@user_passes_test(lambda u: u.is_superuser)
-def main_api(request):
-    return render(request, 'main_api.html')
+class FaqView(BaseView):
+    template_name = 'faq.html'
+
+# This is a child class of BaseView
+# Returns page -> with all available API
+# Is available only for registered users
+
+class MainAPI(APIView):
+    permission_classes = (IsAdminUser, )
+    template_name = 'main_api.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
