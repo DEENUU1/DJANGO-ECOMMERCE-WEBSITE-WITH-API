@@ -7,6 +7,8 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            file = request.FILES.get('file')
+            form.instance.file = file
             form.save()
             return render(request, 'contact_sent.html')
     else:

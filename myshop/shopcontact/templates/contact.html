@@ -20,7 +20,7 @@
 <h1>Napisz do nas</h1>
 
 <div class="contact-form">
-    <form method="post" action="{% url 'contact' %}">
+    <form method="post" action="{% url 'contact' %}" enctype="multipart/form-data">
       {% csrf_token %}
       <label>Adres e-mail</label>
         {{ form.email }}
@@ -28,6 +28,8 @@
         {{ form.subject }}
       <label>Twoja wiadomość</label>
         {{ form.text }}
+      <label>Dodaj zdjęcie</label>
+        {{ form.file }}
         <button type="submit" value="Submit">Wyślij wiadomość</button>
     </form>
 </div>

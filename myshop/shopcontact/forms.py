@@ -8,4 +8,4 @@ from .models import Contact
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ('email', 'subject', 'text')
+        fields = ('email', 'subject', 'text', 'file')
