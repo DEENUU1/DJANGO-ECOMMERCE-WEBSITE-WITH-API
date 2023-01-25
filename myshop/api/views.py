@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from shop.models import Product, Category
+from shop.models import Product, Category, Delivery
 from coupons.models import Coupon
 from order.models import Order, OrderItem
 from .serializers import *
@@ -85,3 +85,20 @@ def get_orderItem_data(request):
     serializer = OrderItemSerializer(order_item, many=True)
     return Response(serializer.data)
 
+# This view allows to display delivery data
+
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['GET'])
+def get_delivery_data(request):
+    delivery = Delivery.objects.all()
+    serializer = DeliverySerializer(delivery, many=True)
+    return Response(serializer.data)
+
+# This view allows to add delivery
+@user_passes_test(lambda u: u.is_superuser)
+@api_view(['POST', 'GET', 'OPTIONS'])
+def add_delivery(request):
+    serializer = DeliverySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
