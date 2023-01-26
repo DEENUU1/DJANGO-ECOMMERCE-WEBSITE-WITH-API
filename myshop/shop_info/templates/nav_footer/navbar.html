@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static '/css/navbar.css' %}">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+    <script src="{% static '/script/navigation_bar.js' %}" defer></script>
 </head>
 <body>
 
@@ -59,7 +57,6 @@
               </div>
           </li>
       </ul>
-
       <i class="uil uil-search search-icon" id="searchIcon"></i>
       <div class="search-box">
         <form method="get" action="{% url 'shop:search' %}">
@@ -68,40 +65,6 @@
         </form>
       </div>
 </nav>
-
-
-<script>
-const nav = document.querySelector(".nav"),
-  searchIcon = document.querySelector("#searchIcon"),
-  navOpenBtn = document.querySelector(".navOpenBtn"),
-  navCloseBtn = document.querySelector(".navCloseBtn");
-
-searchIcon.addEventListener("click", () => {
-  nav.classList.toggle("openSearch");
-  nav.classList.remove("openNav");
-  if (nav.classList.contains("openSearch")) {
-    return searchIcon.classList.replace("uil-search", "uil-times");
-  }
-  searchIcon.classList.replace("uil-times", "uil-search");
-});
-
-navOpenBtn.addEventListener("click", () => {
-  nav.classList.add("openNav");
-  nav.classList.remove("openSearch");
-  searchIcon.classList.replace("uil-times", "uil-search");
-});
-navCloseBtn.addEventListener("click", () => {
-  nav.classList.remove("openNav");
-});
-
-</script>
-
-<script>
-    document.querySelector(".banner__close").addEventListener("click", function () {
-  this.closest(".banner").style.display = "none";
-});
-</script>
-
 
 </body>
 </html>

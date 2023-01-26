@@ -1,3 +1,6 @@
+// Navigation bar code
+
+
 const nav = document.querySelector(".nav"),
   searchIcon = document.querySelector("#searchIcon"),
   navOpenBtn = document.querySelector(".navOpenBtn"),
@@ -19,4 +22,12 @@ navOpenBtn.addEventListener("click", () => {
 });
 navCloseBtn.addEventListener("click", () => {
   nav.classList.remove("openNav");
+});
+
+
+
+// Baner under the navigation bar code
+
+    document.querySelector(".banner__close").addEventListener("click", function () {
+  this.closest(".banner").style.display = "none";
 });
