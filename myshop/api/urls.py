@@ -1,38 +1,38 @@
 from django.urls import path
-from . import views
+from .views import *
 
 app_name = 'api_data'
 
 urlpatterns = [
     # This url allows admin user to see all product data
-    path('data_product', views.get_product_data, name='data_product'),
+    path('product_list', ProductListView.as_view(), name='data_product'),
 
     # This url allows admin user to see all category data
-    path('data_category', views.get_category_data, name='data_category'),
+    path('data_category', CategoryListView.as_view(), name='data_category'),
 
     # This url allows admin user to add new products
-    path('add_product', views.add_product, name='add_product'),
+    path('add_product', AddProductView.as_view(), name='add_product'),
 
     # This url allows admin user to add new category
-    path('add_category', views.add_category, name='add_category'),
+    path('add_category', AddCategoryView.as_view(), name='add_category'),
 
     # This url allows admin user to see all available coupons
-    path('data_coupon', views.get_coupon_data, name='data_coupon'),
+    path('data_coupon', CouponListView.as_view(), name='data_coupon'),
 
     # This url allows admin user to add new coupon
-    path('add_coupon', views.add_coupon, name='add_coupon'),
+    path('add_coupon', AddCouponView.as_view(), name='add_coupon'),
 
     # This url allows admin user to see customer information from the order
-    path('data_order', views.get_order_data, name='data_order'),
+    path('data_order', OrderListView.as_view(), name='data_order'),
 
     # This url allows admin user to see order information
-    path('data_order_item', views.get_orderItem_data, name='data_order_item'),
+    path('data_order_item', OrderItemListView.as_view(), name='data_order_item'),
 
     # This url allows admin user to see delivery information
-    path('data_delivery', views.get_delivery_data, name='data_delivery'),
+    path('data_delivery', DeliveryListView.as_view(), name='data_delivery'),
 
     # This url allows admin user to add new delivery price
-    path('add_delivery', views.add_delivery, name='add_delivery'),
+    path('add_delivery', AddDeliveryView.as_view(), name='add_delivery'),
 
 
 

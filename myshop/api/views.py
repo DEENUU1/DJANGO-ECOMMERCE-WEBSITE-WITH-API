@@ -1,104 +1,90 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from shop.models import Product, Category, Delivery
 from coupons.models import Coupon
 from order.models import Order, OrderItem
 from .serializers import *
-from django.contrib.auth.decorators import user_passes_test
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 
 
-''' THIS VIEWS ARE ONLY AVAILABLE FOR ADMIN USERS'''
+# This view display all available products
 
-# This view display all products info in JSON format
+class ProductListView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsAdminUser]
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_product_data(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
 
-# This view display all category info in JSON format
+# This view display all available category
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_category_data(request):
-    category = Category.objects.all()
-    serializer = CategorySerializer(category, many=True)
-    return Response(serializer.data)
+class CategoryListView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAdminUser]
 
-# THis view allows to add products in JSON format
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST', 'GET', 'OPTIONS'])
-def add_product(request):
-    serializer = ProductSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# This view display all available coupons
 
-# This view allows to add category in JSON format
+class CouponListView(generics.ListAPIView):
+    queryset = Coupon.objects.all()
+    serializer_class = CouponsSerializer
+    permission_classes = [IsAdminUser]
 
-@ user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST', 'GET', 'OPTIONS'])
-def add_category(request):
-    serializer = CategorySerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
 
-# This view allows to display all available coupons in JSON format
+# This view display all available orders
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_coupon_data(request):
-    coupon = Coupon.objects.all()
-    serializer = CouponsSerializer(coupon, many=True)
-    return Response(serializer.data)
+class OrderListView(generics.ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAdminUser]
 
-# This view allows to add coupon in JSON format
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST', 'GET', 'OPTIONS'])
-def add_coupon(request):
-    serializer = CouponsSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# This view display all available order items
 
-# This view allows to display customer information from order
-# in JSON format
+class OrderItemListView(generics.ListAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+    permission_classes = [IsAdminUser]
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_order_data(request):
-    order = Order.objects.all()
-    serializer = OrderSerializer(order, many=True)
-    return Response(serializer.data)
 
-# This view allows to display order information in JSON format
+# This view display all available delivery options
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_orderItem_data(request):
-    order_item = OrderItem.objects.all()
-    serializer = OrderItemSerializer(order_item, many=True)
-    return Response(serializer.data)
+class DeliveryListView(generics.ListAPIView):
+    queryset = Delivery.objects.all()
+    serializer_class = DeliverySerializer
+    permission_classes = [IsAdminUser]
 
-# This view allows to display delivery data
 
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['GET'])
-def get_delivery_data(request):
-    delivery = Delivery.objects.all()
-    serializer = DeliverySerializer(delivery, many=True)
-    return Response(serializer.data)
+# This view allows to add products
 
-# This view allows to add delivery
-@user_passes_test(lambda u: u.is_superuser)
-@api_view(['POST', 'GET', 'OPTIONS'])
-def add_delivery(request):
-    serializer = DeliverySerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+class AddProductView(generics.CreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsAdminUser]
+    http_method_names = ['post', 'get', 'options']
+
+
+# This view allows to add category
+
+class AddCategoryView(generics.CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAdminUser]
+    http_method_names = ['post', 'get', 'options']
+
+
+# This view allows to add coupon
+
+class AddCouponView(generics.CreateAPIView):
+    queryset = Coupon.objects.all()
+    serializer_class = CouponsSerializer
+    permission_classes = [IsAdminUser]
+    http_method_names = ['post', 'get', 'options']
+
+
+# This view allows to add delivery option
+
+class AddDeliveryView(generics.CreateAPIView):
+    queryset = Delivery.objects.all()
+    serializer_class = DeliverySerializer
+    permission_classes = [IsAdminUser]
+    http_method_names = ['post', 'get', 'options']

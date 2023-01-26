@@ -15,7 +15,7 @@ urlpatterns = [
     path('add/<int:product_id>/', views.cart_add, name='cart_add'),
 
     # This url doesn't have template
-    # It's display in cart to allows user delete product from cart
+    # It's display in cart to allow user delete product from cart
 
     path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
 
