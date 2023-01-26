@@ -6,9 +6,8 @@ from order.models import OrderItem, Order
 from .forms import PasswordResetForm, DeleteUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
-from django.conf import settings
+from .email import send_email
+
 
 # User registration view
 # User has to add username, email and password
@@ -29,17 +28,14 @@ def registerPage(request):
 
             if form.is_valid():
                 form.save()
+
+
                 username = form.cleaned_data.get('username')
                 email = form.cleaned_data.get('email')
-
-                # Sending email function
-                html_file = get_template('accounts/email_register.html')
-                subject_email = 'Rejestracja konta'
-                email_subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
-                html_content = html_file.render({'username': username})
-                message = EmailMultiAlternatives(email_subject, html_content, shop_email, [user_email])
-                message.attach_alternative(html_content, 'text/html')
-                message.send()
+                send_email('To jest temat wiadomości',
+                           'emails/email_register.html',
+                           username,
+                           email)
 
 
                 messages.success(request, f'{username} Twoje konto zostało utworzone')
@@ -102,18 +98,14 @@ def changePassword(request):
                 user = User.objects.get(email=email)
                 if user.check_password(old_password):
                     user.set_password(form.cleaned_data['new_password'])
-                    username = form.cleaned_data.get('username')
-                    email = form.cleaned_data.get('email')
                     user.save()
 
-                    # Email sending
-                    html_file = get_template('accounts/email_changePassword.html')
-                    subject_email = 'Zmiana hasła'
-                    subject, shop_email, user_email = subject_email, settings.EMAIL_HOST_USER, email
-                    html_content = html_file.render({'username': username})
-                    message = EmailMultiAlternatives(subject, html_content, shop_email, [user_email])
-                    message.attach_alternative(html_content, 'text/html')
-                    message.send()
+                    username = form.cleaned_data.get('username')
+                    email = form.cleaned_data.get('email')
+                    send_email('To jest temat wiadomości',
+                               'emails/email_changePassword.html',
+                               username,
+                               email)
 
 
                     login(request, user)

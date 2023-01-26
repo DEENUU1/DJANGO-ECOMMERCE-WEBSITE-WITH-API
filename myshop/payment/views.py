@@ -3,41 +3,17 @@ from django.shortcuts import render, get_object_or_404
 from paypal.standard.forms import PayPalPaymentsForm
 from order.models import Order, OrderItem
 from django.views.decorators.csrf import csrf_exempt
-from django.core.mail import EmailMessage
 from django.conf import settings
-from django.template.loader import render_to_string
-from cart.cart import Shipping, TotalPrice, Cart, Discount
+from .email import send_email
 
 # This view is displayed after successful payment
 # This view also is sending email to the customer
 
 @csrf_exempt
 def payment_done(request):
-    order_id = request.session.get('order_id')
-    order = get_object_or_404(Order,
-                              id=order_id)
-    order.total_cost = order.get_total_cost(request)
-    cart = Cart(request)
-    discount = Discount(request.session)
-    shipping = Shipping()
-    total_price = TotalPrice(cart, discount, shipping)
-
-
-    # Email sending
-    template = render_to_string('payment/payment_done_email.html',
-                                {'order': order,
-                                 'shipping': shipping,
-                                 'total_price': total_price})
-    subject_email = 'Dziękujemy za zakupy w naszym sklepie'
-    email = EmailMessage(
-        subject_email,
-        template,
-        settings.EMAIL_HOST_USER,
-        [order.email],
-    )
-    email.fail_silently=False
-    email.send()
-
+    send_email(request,
+               'Tu jest temat wiadomości',
+               'emails/payment_done_email.html')
 
     return render(request,
                   'payment/done.html')
@@ -47,23 +23,9 @@ def payment_done(request):
 
 @csrf_exempt
 def payment_canceled(request):
-    order_id = request.session.get('order_id')
-    order = get_object_or_404(Order,
-                              id=order_id)
-
-    # Email sending
-    template = render_to_string('payment/payment_done_email.html',
-                                {'order': order})
-    subject_email = 'Twoja płatność nie powiodła się'
-    email = EmailMessage(
-        subject_email,
-        template,
-        settings.EMAIL_HOST_USER,
-        [order.email],
-    )
-    email.fail_silently=False
-    email.send()
-
+    send_email(request,
+               'Tu jest temat wiadomości',
+               'emails/payment_canceled_email.html')
 
     return render(request,
                   'payment/canceled.html')

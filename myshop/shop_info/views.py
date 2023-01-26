@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
 from django.views import View
 from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
