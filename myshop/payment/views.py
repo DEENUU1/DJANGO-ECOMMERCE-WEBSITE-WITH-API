@@ -13,10 +13,10 @@ from .email import send_email
 def payment_done(request):
     send_email(request,
                'Tu jest temat wiadomości',
-               'emails/payment_done_email.html')
+               'emails/email_paymentDone.html')
 
     return render(request,
-                  'payment/done.html')
+                  'payment/payment_done.html')
 
 # This view is displayed after cancelled payment
 # This view also is sending email to the customer
@@ -25,10 +25,10 @@ def payment_done(request):
 def payment_canceled(request):
     send_email(request,
                'Tu jest temat wiadomości',
-               'emails/payment_canceled_email.html')
+               'emails/email_paymentCancelled.html')
 
     return render(request,
-                  'payment/canceled.html')
+                  'payment/payment_cancelled.html')
 
 # This view is displaying payment process
 # It takes information from cart forwards them to PayPal API
@@ -54,7 +54,7 @@ def payment_process(request):
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'payment/process.html',
+    return render(request, 'payment/payment_process.html',
                   {'order': order,
                    'form': form})
 

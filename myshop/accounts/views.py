@@ -46,7 +46,7 @@ def registerPage(request):
             form = CreateUserForm()
 
     return render(request,
-                  'accounts/register.html',
+                  'accounts/user_register.html',
                   {'form': form})
 
 
@@ -72,10 +72,10 @@ def loginPage(request):
             else:
                 messages.info(request, 'Nazwa użytkownika lub hasło są nieprawidłowe')
                 return render(request,
-                              'accounts/login.html')
+                              'accounts/user_login.html')
 
     return render(request,
-                  'accounts/login.html', )
+                  'accounts/user_login.html', )
 
 
 # This view doesn't have template it works as a function
@@ -120,7 +120,7 @@ def changePassword(request):
         form = PasswordResetForm()
 
     return render(request,
-                  'accounts/password_reset.html',
+                  'accounts/user_passwordReset.html',
                   {'form': form})
 
 
@@ -136,7 +136,7 @@ def profileUser(request):
     else:
         orders = []
     return render(request,
-                  'accounts/profile_user.html',
+                  'accounts/user_profile.html',
                   {'orders': orders})
 
 
@@ -167,5 +167,5 @@ def deleteUser(request):
         form = DeleteUserForm()
 
     return render(request,
-                  'accounts/delete_user.html',
+                  'accounts/user_delete.html',
                   {'form': form})

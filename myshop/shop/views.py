@@ -29,7 +29,7 @@ def product_list(request, category_slug=None):
     page = request.GET.get('page')
     products_list = p.get_page(page)
 
-    return render(request, 'shop/products/list.html',
+    return render(request, 'shop/products/product_list.html',
                   {'category': category,
                    'form': product_filter.form,
                    'cart_product_form': cart_product_form,
@@ -59,7 +59,7 @@ def product_detail(request, id, slug):
     # It allows to display avg of all rates
     average_rating = rates.aggregate(Avg('rate'))
 
-    return render(request, 'shop/products/detail.html',
+    return render(request, 'shop/products/product_detail.html',
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'rate_filter': rate_filter,
@@ -85,7 +85,7 @@ def product_rate(request, id, slug):
     else:
         form = RateForm()
 
-    template = loader.get_template('shop/products/rate.html')
+    template = loader.get_template('shop/products/product_rate.html')
 
     context = {
         'form': form,
@@ -109,4 +109,4 @@ def search(request):
         ).filter(available=True)
     else:
         products = Product.objects.none()
-    return render(request, 'shop/products/search.html', {'products': products})
+    return render(request, 'shop/products/product_search.html', {'products': products})
