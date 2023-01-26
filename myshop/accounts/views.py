@@ -2,170 +2,200 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from order.models import OrderItem, Order
+from order.models import Order
 from .forms import PasswordResetForm, DeleteUserForm
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from .email import send_email
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 # User registration view
 # User has to add username, email and password
 # If email is already in database user will get a message
 
-def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('/product_list/')
-    else:
-        form = CreateUserForm()
+class SignUpView(View):
+    form_class = CreateUserForm
+    template_name = 'accounts/user_register.html'
 
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('/product_list')
+        return super().dispatch(request, *args, **kwargs)
 
-            # This code check if email address already exist in database
-            if User.objects.filter(email=form.data['email']).exists():
-                messages.error(request, 'Podany email już istnieje!')
+    def get(self, request, *args, **kwargs):
+        form = self.form_class
+        return render(request, self.template_name, {'form': form})
 
-            if form.is_valid():
-                form.save()
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
 
+        if User.objects.filter(email=form.data['email']).exists():
+            messages.error(request,
+                           'Ten email jest już zarejestrowany')
 
-                username = form.cleaned_data.get('username')
-                email = form.cleaned_data.get('email')
-                send_email('To jest temat wiadomości',
-                           'emails/email_register.html',
-                           username,
-                           email)
+        if form.is_valid():
+            form.save()
 
-
-                messages.success(request, f'{username} Twoje konto zostało utworzone')
-                return redirect('/accounts/login/')
-            else:
-                messages.error(request, 'Wystąpił błąd w trakcie zakładania konta. Spróbuj ponownie')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            send_email('To jest temat wiadomości',
+                       'emails/email_register.html',
+                       username,
+                       email)
+            messages.success(request,
+                             'Twoje konto zostało utworzone')
+            return redirect('/accounts/login')
         else:
-            form = CreateUserForm()
+            messages.error(request,
+                           'Nie udało się założyć konta')
 
-    return render(request,
-                  'accounts/user_register.html',
-                  {'form': form})
+        return render(request, self.template_name, {'form': form})
 
 
 # User login view
 # User can log in using his username and password
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('/product_list/')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+class SignInView(LoginView):
+    template_name = 'accounts/user_login.html'
 
-            user = authenticate(request,
-                                username=username,
-                                password=password)
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/product_list')
+        return render(request, self.template_name)
 
-            if user is not None:
-                login(request, user)
-                return redirect('/product_list/')
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            else:
-                messages.info(request, 'Nazwa użytkownika lub hasło są nieprawidłowe')
-                return render(request,
-                              'accounts/user_login.html')
+        user = authenticate(request,
+                            username=username,
+                            password=password)
 
-    return render(request,
-                  'accounts/user_login.html', )
+        if user is not None:
+            login(request, user)
+            return redirect('/product_list/')
+        else:
+            messages.info(request,
+                          'Logowanie nieudane. Spróbuj ponownie')
+            return render(request,
+                        self.template_name)
+
 
 
 # This view doesn't have template it works as a function
 
-@login_required()
-def logoutUser(request):
-    logout(request)
-    return redirect('/accounts/login/')
+class LogoutUserView(LogoutView):
+
+    def get(self, request):
+        logout(request)
+        return redirect('shop:product_list')
+
 
 # User can change his password by writing his email address and old password
 # If email or old password doesn't match it will return a message
 
-def changePassword(request):
-    if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
+class PasswordResetView(View):
+    template_name = 'accounts/user_passwordReset.html'
+    form_class = PasswordResetForm
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
         if form.is_valid():
             email = form.cleaned_data['email']
             old_password = form.cleaned_data['old_password']
+            username = form.cleaned_data.get('username')
+
             try:
                 user = User.objects.get(email=email)
+
                 if user.check_password(old_password):
                     user.set_password(form.cleaned_data['new_password'])
                     user.save()
 
-                    username = form.cleaned_data.get('username')
-                    email = form.cleaned_data.get('email')
                     send_email('To jest temat wiadomości',
                                'emails/email_changePassword.html',
                                username,
                                email)
 
-
                     login(request, user)
                     return redirect('/accounts/login')
                 else:
-                    messages.error(request, 'Błędna nazwa użytkownika lub hasło. Spróbuj ponownie')
+                    messages.error(request,
+                                   'Nie udało się zmienić hasła')
             except User.DoesNotExist:
                 pass
-        else:
-            messages.error(request, 'Błędna nazwa użytkownika lub hasło. Spróbuj ponownie')
-    else:
-        form = PasswordResetForm()
 
-    return render(request,
-                  'accounts/user_passwordReset.html',
-                  {'form': form})
+        return render(request,
+                      self.template_name,
+                      {'form': form})
 
 
 # This view display profile of a user
 # Logged user can browse his orders and other information
 
-@login_required()
-def profileUser(request):
-    if request.user.is_authenticated:
-        orders = Order.objects.filter(email=request.user.email)
-        for order in orders:
-            order.total_cost = order.get_total_cost(request)
-    else:
-        orders = []
-    return render(request,
-                  'accounts/user_profile.html',
-                  {'orders': orders})
+class ProfilView(LoginRequiredMixin, View):
+    template_name = 'accounts/user_profile.html'
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            orders = Order.objects.filter(email=request.user.email)
+            for order in orders:
+                order.total_cost = order.get_total_cost(request)
+        else:
+            orders = []
+
+        return render(request,
+                      self.template_name,
+                      {'orders': orders})
 
 
 # This view allows user to delete account
 # User has to be log in to delete account in his profile
 
-@login_required()
-def deleteUser(request):
-    if request.user.is_authenticated:
-        form = DeleteUserForm(request.POST)
+class DeleteUserView(LoginRequiredMixin, View):
+    template_name = 'accounts/user_delete.html'
+    form_class = DeleteUserForm
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+
             try:
                 user = User.objects.get(email=email)
                 if user.check_password(password):
                     user.delete()
                     logout(request)
-                    messages.success(request, 'Twoje konto pomyślnie usunięte')
+                    messages.success(request,
+                                     'Usunięto konto')
                     return redirect('/accounts/login')
-                else:
-                    messages.error(request, 'Nie udało się usunąć twojego konta. Spróbuj ponownie')
-            except User.DoesNotExist:
-                messages.info(request, 'To konto nie istnieje.')
-        else:
-            messages.error(request, 'Błędna nazwa użytkownika lub hasło. Spróbuj ponownie.')
-    else:
-        form = DeleteUserForm()
 
-    return render(request,
-                  'accounts/user_delete.html',
-                  {'form': form})
+                else:
+                    messages.error(request,
+                                   'Usuwanie konta nie powiodło się')
+            except User.DoesNotExist:
+                messages.info(request,
+                              'To konto nie istnieje')
+        else:
+            messages.error(request, 'Usuwanie konta nie powiodło się')
+
+        return render(request,
+                      self.template_name,
+                      {'form': form})
+
+
+
+
