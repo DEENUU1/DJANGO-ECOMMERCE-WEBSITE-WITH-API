@@ -4,6 +4,7 @@ from django.urls import reverse
 
 # This class creates categories
 # And joins them products
+
 class Category(models.Model):
     name = models.CharField(max_length=200,
                             db_index=True,
@@ -22,12 +23,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('shop:product_list_by_category', args=[self.slug])
-
 
 # This class creates products
 # I used DecimalField here to prevent rounding prices
+
 class Product(models.Model):
     objects = None
     category = models.ForeignKey(Category,
