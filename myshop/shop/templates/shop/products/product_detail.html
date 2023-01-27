@@ -4,10 +4,8 @@
     <title>SHADOK | {{product.name}}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static '/css/product_detail.css' %}">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -24,7 +22,7 @@
 <section id="product" class="product container">
     <div class="product-info">
         <h1 class="product-info-heading">{{product.name}}</h1>
-        <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg }}<i class="fa fa-star"></i></h4>
+        <h4 style="text-align:center">Średnia ocen: {{ average_rating.rate__avg|floatformat:2}}<i class="fa fa-star"></i></h4>
 
     </div>
 
