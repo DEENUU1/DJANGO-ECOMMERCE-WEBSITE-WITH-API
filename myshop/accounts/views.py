@@ -62,7 +62,7 @@ class SignInView(LoginView):
 
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('/product_list')
+            return redirect('shop:product_list')
         return render(request, self.template_name)
 
     def post(self, request):
@@ -75,7 +75,7 @@ class SignInView(LoginView):
 
         if user is not None:
             login(request, user)
-            return redirect('/product_list/')
+            return redirect('shop:product_list')
         else:
             messages.info(request,
                           'Logowanie nieudane. Spróbuj ponownie')

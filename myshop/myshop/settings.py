@@ -56,7 +56,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_CART = 'cart'
 
 ''' PAYPAL '''
-PAYPAL_RECEIVER_EMAIL = 'sb-nboak24765401@business.example.com'
+PAYPAL_RECEIVER_EMAIL = 'YOUR_PAYPAL_EMAIL'
 PAYPAL_TEST = True
 
 ''' EMAIL '''
@@ -64,8 +64,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'kacperwlodarczyk8@gmail.com'
-EMAIL_HOST_PASSWORD = 'seaiehmwpsvmkcen'
+EMAIL_HOST_USER = 'YOUR_GMAIL_HERE'
+EMAIL_HOST_PASSWORD = 'YOUR_PASSWORD_HERE'
 
 ''' RATING SYSTEM '''
 START_RATINGS_RATING_MODEL = 'shop.MyRating'
@@ -115,12 +115,27 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# PostgreSQL
+# This database configuration is for docker
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ecommerce',
+#         'USER': 'ecommerce',
+#         'PASSWORD': 'ecommerce123',
+#         'HOST': 'db',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation

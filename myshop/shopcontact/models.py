@@ -16,7 +16,8 @@ class Contact(models.Model):
     email = models.EmailField()
     subject = models.PositiveIntegerField(choices=SUBJECTS)
     text = models.TextField()
-    file = models.FileField(blank=True)
+    file = models.FileField(blank=True,
+                            upload_to='media/contact_files/',)
     sent_date = models.DateTimeField(auto_now_add=True)
 
     def __int__(self):
