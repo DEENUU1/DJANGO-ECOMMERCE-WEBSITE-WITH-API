@@ -7,6 +7,7 @@ from import_export.admin import ExportActionMixin
 # It doesn't display in main admin panel
 # It display in 'Orders' cart as a detail information
 
+
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
 
@@ -17,8 +18,8 @@ class OrderItemInline(admin.TabularInline):
 # The button 'sent' says if the order is completed or not
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ['order_status', 'paid', 'created', 'email']
+    list_display = ["order_status", "paid", "created", "email"]
 
-    list_filter = ['order_status', 'created']
+    list_filter = ["order_status", "created"]
 
     inlines = [OrderItemInline]

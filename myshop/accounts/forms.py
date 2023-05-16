@@ -7,22 +7,26 @@ from django import forms
 # Display fields like: username, email, password1, password2
 # password1 and 2 have to be the same to complite the form
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ["username", "email", "password1", "password2"]
 
 
 # Form for password reset
 # Display fields like email and password
+
 
 class PasswordResetForm(forms.Form):
     email = forms.EmailField()
     old_password = forms.CharField(widget=forms.PasswordInput)
     new_password = forms.CharField(widget=forms.PasswordInput)
 
+
 # Form for deleting account
 # Display fields like email and password
+
 
 class DeleteUserForm(forms.Form):
     email = forms.EmailField()

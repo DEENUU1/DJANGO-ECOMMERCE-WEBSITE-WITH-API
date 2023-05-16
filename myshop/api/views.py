@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAdminUser
 
 # This view display all available products
 
+
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -15,6 +16,7 @@ class ProductListView(generics.ListAPIView):
 
 
 # This view display all available category
+
 
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -24,6 +26,7 @@ class CategoryListView(generics.ListAPIView):
 
 # This view display all available coupons
 
+
 class CouponListView(generics.ListAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponsSerializer
@@ -31,6 +34,7 @@ class CouponListView(generics.ListAPIView):
 
 
 # This view display all available orders
+
 
 class OrderListView(generics.ListAPIView):
     queryset = Order.objects.all()
@@ -40,6 +44,7 @@ class OrderListView(generics.ListAPIView):
 
 # This view display all available order items
 
+
 class OrderItemListView(generics.ListAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
@@ -47,6 +52,7 @@ class OrderItemListView(generics.ListAPIView):
 
 
 # This view display all available delivery options
+
 
 class DeliveryListView(generics.ListAPIView):
     queryset = Delivery.objects.all()
@@ -56,35 +62,39 @@ class DeliveryListView(generics.ListAPIView):
 
 # This view allows to add products
 
+
 class AddProductView(generics.CreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminUser]
-    http_method_names = ['post', 'get', 'options']
+    http_method_names = ["post", "get", "options"]
 
 
 # This view allows to add category
+
 
 class AddCategoryView(generics.CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsAdminUser]
-    http_method_names = ['post', 'get', 'options']
+    http_method_names = ["post", "get", "options"]
 
 
 # This view allows to add coupon
+
 
 class AddCouponView(generics.CreateAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponsSerializer
     permission_classes = [IsAdminUser]
-    http_method_names = ['post', 'get', 'options']
+    http_method_names = ["post", "get", "options"]
 
 
 # This view allows to add delivery option
+
 
 class AddDeliveryView(generics.CreateAPIView):
     queryset = Delivery.objects.all()
     serializer_class = DeliverySerializer
     permission_classes = [IsAdminUser]
-    http_method_names = ['post', 'get', 'options']
+    http_method_names = ["post", "get", "options"]

@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import BannerInfo,AboutShopDescription, DeliveryInfo, FooterDescription, FooterContactInfo, NavbarLogo
+from .models import (
+    BannerInfo,
+    AboutShopDescription,
+    DeliveryInfo,
+    FooterDescription,
+    FooterContactInfo,
+    NavbarLogo,
+)
 
 admin.site.register(BannerInfo)
 admin.site.register(AboutShopDescription)

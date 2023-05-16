@@ -4,8 +4,7 @@ from django.conf import settings
 
 # This function allows to send emails
 def send_email(subject, template_name, username, email):
-    template = render_to_string(template_name,
-                                {'username': username})
+    template = render_to_string(template_name, {"username": username})
     subject_email = subject
     email = EmailMessage(
         subject_email,
@@ -13,6 +12,5 @@ def send_email(subject, template_name, username, email):
         settings.EMAIL_HOST_USER,
         [email],
     )
-    email.fail_silently=False
+    email.fail_silently = False
     email.send()
-

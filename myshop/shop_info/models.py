@@ -5,13 +5,16 @@ from django.db import models
 
 # Changing text in baner under navigation bar
 
+
 class BannerInfo(models.Model):
     text = models.CharField(max_length=100)
 
     def __str__(self):
         return self.text
 
+
 # Changing shop description on page /shop_info/about
+
 
 class AboutShopDescription(models.Model):
     text = models.TextField()
@@ -19,7 +22,9 @@ class AboutShopDescription(models.Model):
     def __str__(self):
         return self.text
 
+
 # Changing delivery information on page /shop_info/shipping
+
 
 class DeliveryInfo(models.Model):
     text = models.TextField()
@@ -27,7 +32,9 @@ class DeliveryInfo(models.Model):
     def __str__(self):
         return self.text
 
+
 # Change shop description in footer
+
 
 class FooterDescription(models.Model):
     text = models.CharField(max_length=250)
@@ -35,7 +42,9 @@ class FooterDescription(models.Model):
     def __str__(self):
         return self.text
 
+
 # Change contact information in footer
+
 
 class FooterContactInfo(models.Model):
     address = models.CharField(max_length=100)
@@ -45,7 +54,9 @@ class FooterContactInfo(models.Model):
     def __str__(self):
         return self.email
 
+
 # Change the shop name in navigation bar
+
 
 class NavbarLogo(models.Model):
     name = models.CharField(max_length=10)

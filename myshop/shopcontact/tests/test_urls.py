@@ -4,8 +4,7 @@ from shopcontact.views import contact
 
 
 class TestUrls(SimpleTestCase):
-
     def test_contact_resolve(self):
-        url = reverse('contact')
+        url = reverse("contact")
         print(resolve(url))
         self.assertEqual(resolve(url).func, contact)

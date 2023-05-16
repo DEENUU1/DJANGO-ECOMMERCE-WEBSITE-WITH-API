@@ -1,5 +1,5 @@
 
-# DJANGO ECOMMERCE WEBSITE 
+# DJANGO ECOMMERCE WEBSITE
 
 This is an online store design.\
 Created with Django, Django Rest Framework, HTML, CSS, JS.
@@ -24,7 +24,7 @@ The most difficult part of this project was integrating the payment system, as w
 
 ## Features
 
-- Improve cart and order function 
+- Improve cart and order function
 - Add choice of delivery options
 
 ## Installation and configuration
@@ -35,7 +35,7 @@ Clone this repository on your local machine
 ```bash
   > git clone <link>
 ```
-Go to the main file 
+Go to the main file
 ```bash
   > cd myshop
 ```
@@ -45,7 +45,7 @@ Install files from requirements
   > pip install -r requirements.txt
 ```
 
-Makemigrations and migrate 
+Makemigrations and migrate
 ```bash
   > py manage.py makemigrations
   > py manage.py migrate
@@ -81,15 +81,15 @@ First go to admin panel 127.0.0.1:8000/admin
 - Registered users
 - PayPal IPNS
 - Orders
-- Product rates 
-- Messages from customers 
+- Product rates
+- Messages from customers
 
 #### Editing most "static" value
-- Description about shop 
+- Description about shop
 - Information which is displaying on the baner under the navigation bar
 - Information about delivery
-- Footer information 
-- Navigation bar logo 
+- Footer information
+- Navigation bar logo
 
 
 ### Project configuration
@@ -99,7 +99,7 @@ First go to admin panel 127.0.0.1:8000/admin
 Ngrok allows you to create server on your local machine. It is really helpful when you need to check if the payments work.
 
 
-  Open ngrok and type 
+  Open ngrok and type
 ```bash
   > ngrok http 8000
 
@@ -107,27 +107,27 @@ Ngrok allows you to create server on your local machine. It is really helpful wh
 
   Inside cart/views.py add this code
 
-  from django.views.decorators.csrf import csrf_exempt 
+  from django.views.decorators.csrf import csrf_exempt
 
   add @csrf_exempt above every functions
 
   Then go to the url that ngrok generated for your server and test payment and django signals.
 ```
 
-#### Changing the title of webpage 
+#### Changing the title of webpage
 To change title of every page you need to go to all templates that are inside the project
 and change the title inside every template. \
 If you are using PyCharm click "ctrl" + "shift" + "f" and type <title>. \
-That should make it a lot easier 
+That should make it a lot easier
 
 
 #### Changing the content of emails
 
-This website can send emails in a few cases: 
-- When user successfull create a new account 
+This website can send emails in a few cases:
+- When user successfull create a new account
 - When user is changing his password
 - When user paid for a orders
-- When the payment got cancelled 
+- When the payment got cancelled
 
 First you need to go to file called "accounts". Then open folder called "templates" \
 and open files which are starting with "email". \
@@ -140,11 +140,11 @@ Then open file called "views.py" and change the value of variable subject_email 
 21 and 45.
 
 
-#### Changing static files: 
+#### Changing static files:
 There is only one way to change PDF files that are included inside website. \
 Go to your main folder, there is folder called "static" and inside this folder \
 there is folder called "pdf". \
-Inside this folder you can add your pdf files. \ 
+Inside this folder you can add your pdf files. \
 Then go to application called "SHOP_INFO" in your project and folder called "templates" \
 Inside this folder is a file called "all_documents.html" open it and change the file name \
 that you just added.
@@ -153,7 +153,7 @@ that you just added.
 
 
 ```bash
-  You added file called nowy_regulamin.pdf 
+  You added file called nowy_regulamin.pdf
 
   So you gonna change this line of code:
 
@@ -175,7 +175,7 @@ that you just added.
 ```
 
 On this url are displayed links for all available API:
-#### Only admin user can get access 
+#### Only admin user can get access
 - [GET] Product
 - [GET] Category
 - [POST] Product
@@ -189,4 +189,3 @@ On this url are displayed links for all available API:
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-

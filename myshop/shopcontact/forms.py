@@ -5,7 +5,8 @@ from .models import Contact
 # they are stored in database
 # Admin can read them in admin panel
 
+
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ('email', 'subject', 'text', 'file')
+        fields = ("email", "subject", "text", "file")
